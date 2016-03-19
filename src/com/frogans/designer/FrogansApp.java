@@ -1,6 +1,5 @@
 package com.frogans.designer;
 
-import com.frogans.designer.view.RootLayoutController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -54,17 +53,17 @@ public class FrogansApp extends Application {
 //        primaryStage.getIcons().add(new Image(FrogansApp.class.getResourceAsStream("/images/something.png")));
 
         initRootLayout();
-        showFirstSplitPane();
+        showCollapsableContainers();
 
     }
 
-    private void showFirstSplitPane() {
+    private void showCollapsableContainers() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(FrogansApp.class.getResource("view/DesignerLayout.fxml"));
             AnchorPane anchorPane = (AnchorPane) loader.load();
 
-            rootLayout.setCenter(anchorPane);
+            rootLayout.setLeft(anchorPane);
 
             //Controller goes here
             //TODO
