@@ -1,19 +1,23 @@
 package com.frogans.designer;
 
-import com.frogans.designer.model.FsdlParser;
+import com.frogans.designer.view.RootLayoutController;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 /**
  * Main class that handles all the views and displays the app and starts plugins
- *
+ * <p>
  * Created by Naoufal EL BANTLI on 3/19/2016.
  */
 public class FrogansApp extends Application {
 
     private Stage primaryStage;
-    private BorderPane borderPane;
+    private BorderPane rootLayout;
 
     public Stage getPrimaryStage() {
         return primaryStage;
@@ -44,7 +48,37 @@ public class FrogansApp extends Application {
 //        //fsdlParser.parseFileElement();
 //        fsdlParser.parseFileXPath();
 
-        this.primaryStage=primaryStage;
+        this.primaryStage = primaryStage;
+        primaryStage.setTitle("Frogans Designer");
+//        primaryStage.getIcons().add(new Image(FrogansApp.class.getResourceAsStream("/images/something.png")));
+
+        initRootLayout();
+
+    }
+
+    /*
+    * Showing root Layout with menu bar
+    *
+    * */
+    public void initRootLayout() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(FrogansApp.class.getResource("view/RootLayout.fxml"));
+            rootLayout = (BorderPane) loader.load();
+
+            Scene scene  = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+
+            //Set controller for Later
+            //TODO
+//            RootLayoutController controller = loader.getController();
+//            controller.setFrogansApp(this);
+
+            primaryStage.show();
+
+        } catch (IOException e) {
+            System.err.println("Problem in initRootLayout\n"+e);
+        }
 
 
     }
