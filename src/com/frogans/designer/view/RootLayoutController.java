@@ -4,7 +4,7 @@ import com.frogans.designer.FrogansApp;
 import javafx.fxml.FXML;
 
 /**
- * Created by naouf on 3/19/2016.
+ * Created by Naoufal EL BANTLI on 3/19/2016.
  */
 public class RootLayoutController {
     private FrogansApp frogansApp;
@@ -21,4 +21,6 @@ public class RootLayoutController {
     public void initialize(){
 
     }
+
+
 }
