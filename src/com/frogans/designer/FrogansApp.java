@@ -4,6 +4,7 @@ import com.frogans.designer.view.RootLayoutController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -53,6 +54,26 @@ public class FrogansApp extends Application {
 //        primaryStage.getIcons().add(new Image(FrogansApp.class.getResourceAsStream("/images/something.png")));
 
         initRootLayout();
+        showFirstSplitPane();
+
+    }
+
+    private void showFirstSplitPane() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(FrogansApp.class.getResource("view/DesignerLayout.fxml"));
+            AnchorPane anchorPane = (AnchorPane) loader.load();
+
+            rootLayout.setCenter(anchorPane);
+
+            //Controller goes here
+            //TODO
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
@@ -60,13 +81,13 @@ public class FrogansApp extends Application {
     * Showing root Layout with menu bar
     *
     * */
-    public void initRootLayout() {
+    private void initRootLayout() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(FrogansApp.class.getResource("view/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
 
-            Scene scene  = new Scene(rootLayout);
+            Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
 
             //Set controller for Later
@@ -77,7 +98,7 @@ public class FrogansApp extends Application {
             primaryStage.show();
 
         } catch (IOException e) {
-            System.err.println("Problem in initRootLayout\n"+e);
+            System.err.println("Problem in initRootLayout\n" + e);
         }
 
 
