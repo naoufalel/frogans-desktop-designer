@@ -85,6 +85,8 @@ public class FsdlParser {
 
             for (int j = 0; j < nodeList1.getLength(); j++) {
                 System.out.println("\t"+nodeList1.item(j).getNodeName());
+                //TODO
+                //Display what's inside each tag
             }
             expression="";
         }
