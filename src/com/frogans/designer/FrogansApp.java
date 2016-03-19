@@ -1,6 +1,7 @@
 package com.frogans.designer;
 
 import javafx.application.Application;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -9,6 +10,17 @@ import javafx.stage.Stage;
  * Created by Naoufal EL BANTLI on 3/19/2016.
  */
 public class FrogansApp extends Application {
+
+    private Stage primaryStage;
+    private BorderPane borderPane;
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     /**
      * The main entry point for all JavaFX applications.
