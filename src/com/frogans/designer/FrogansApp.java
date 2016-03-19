@@ -1,14 +1,8 @@
 package com.frogans.designer;
 
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.input.MouseDragEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -59,15 +53,15 @@ public class FrogansApp extends Application {
 //        primaryStage.getIcons().add(new Image(FrogansApp.class.getResourceAsStream("/images/something.png")));
 
         initRootLayout();
-        showCollapsableContainers();
+        showSplitContainers();
 
     }
 
-    private void showCollapsableContainers() {
+    private void showSplitContainers() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(FrogansApp.class.getResource("view/DesignerLayout.fxml"));
-            AnchorPane anchorPane = (AnchorPane) loader.load();
+            AnchorPane anchorPane = loader.load();
 
 
             rootLayout.setCenter(anchorPane);
@@ -91,7 +85,7 @@ public class FrogansApp extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(FrogansApp.class.getResource("view/RootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();
+            rootLayout = loader.load();
 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
