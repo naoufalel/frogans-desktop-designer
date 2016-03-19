@@ -70,17 +70,24 @@ public class FsdlParser {
         node = (Node) xpath.evaluate(expression,doc, XPathConstants.NODE);
         //System.out.println(node.getNodeName());
 
-        expression="/frogans-fsdl/button/*";
+        expression="/frogans-fsdl/*";
         nodeList = (NodeList) xpath.evaluate(expression,doc, XPathConstants.NODESET);
 
-        Element element = (Element) nodeList.item(0);
-        System.out.println(element.getAttributes().getNamedItem("layerid").getNodeValue());
+//        Element element = (Element) nodeList.item(0);
+//        System.out.println(element.getAttributes().getNamedItem("layerid").getNodeValue());
 
-//        for (int i = 0; i < nodeList.getLength(); i++) {
-//            nodeList.item(i).setNodeValue("hoola");
-//            System.out.println(nodeList.item(i).getNodeName());
-//
-//        }
+        NodeList nodeList1;
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            String aTag = nodeList.item(i).getNodeName();
+            System.out.println(aTag);
+            expression="/frogans-fsdl/"+aTag+"/*";
+            nodeList1 = (NodeList) xpath.evaluate(expression,doc,XPathConstants.NODESET);
+
+            for (int j = 0; j < nodeList1.getLength(); j++) {
+                System.out.println("\t"+nodeList1.item(j).getNodeName());
+            }
+            expression="";
+        }
     }
 
 }

@@ -24,6 +24,7 @@ public class DesignerLayoutController {
     @FXML
     public void initialize(){
         accordion.setExpandedPane(titledPane);
+
     }
 
 
