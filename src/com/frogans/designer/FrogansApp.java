@@ -1,8 +1,14 @@
 package com.frogans.designer;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -61,9 +67,17 @@ public class FrogansApp extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(FrogansApp.class.getResource("view/DesignerLayout.fxml"));
-            AnchorPane anchorPane = (AnchorPane) loader.load();
+            ScrollPane scrollPane = (ScrollPane) loader.load();
 
-            rootLayout.setLeft(anchorPane);
+            scrollPane.hvalueProperty().addListener(new ChangeListener<Number>() {
+                @Override
+                public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                    System.out.println(newValue.intValue());
+                }
+            });
+
+
+            rootLayout.setLeft(scrollPane);
 
             //Controller goes here
             //TODO
