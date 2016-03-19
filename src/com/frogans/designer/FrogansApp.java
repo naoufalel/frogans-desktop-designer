@@ -67,17 +67,10 @@ public class FrogansApp extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(FrogansApp.class.getResource("view/DesignerLayout.fxml"));
-            ScrollPane scrollPane = (ScrollPane) loader.load();
-
-            scrollPane.hvalueProperty().addListener(new ChangeListener<Number>() {
-                @Override
-                public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                    System.out.println(newValue.intValue());
-                }
-            });
+            AnchorPane anchorPane = (AnchorPane) loader.load();
 
 
-            rootLayout.setLeft(scrollPane);
+            rootLayout.setCenter(anchorPane);
 
             //Controller goes here
             //TODO
