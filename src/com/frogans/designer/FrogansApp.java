@@ -1,5 +1,6 @@
 package com.frogans.designer;
 
+import com.frogans.designer.model.FsdlParser;
 import javafx.application.Application;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -39,6 +40,12 @@ public class FrogansApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
+//        FsdlParser fsdlParser = new FsdlParser("C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.7.1-win32\\test\\helloworld\\home.fsdl");
+//        //fsdlParser.parseFileElement();
+//        fsdlParser.parseFileXPath();
+
+        this.primaryStage=primaryStage;
+
 
     }
 }
