@@ -26,8 +26,17 @@ public class DesignerLayoutController {
         root.setExpanded(true);
         //create children
         frogansApp.getMainTree().forEach(e->{
+
             root.getChildren().add(e);
             e.setExpanded(false);
+            if(e.getValue().equals("button")){
+                e.setExpanded(true);
+                frogansApp.getButtonTree().forEach(a->{
+                    e.getChildren().add(a);
+                    a.setExpanded(false);
+                });
+            }
+
         });
 
         treeHierarchy.setRoot(root);

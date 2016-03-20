@@ -30,9 +30,15 @@ public class FrogansApp extends Application {
     FsdlParser fsdlParser = new FsdlParser(filename);
 
     private List<TreeItem<String>> mainTree ;
+    private  List<TreeItem<String>> buttonTree;
+
 
     public List<TreeItem<String>> getMainTree() {
         return mainTree;
+    }
+
+    public List<TreeItem<String>> getButtonTree() {
+        return buttonTree;
     }
 
     public Stage getPrimaryStage() {
@@ -60,11 +66,9 @@ public class FrogansApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        //fsdlParser.parseFileElement();
-        //fsdlParser.parseFileXPath();
-        //fsdlParser.momamak();
         mainTree = fsdlParser.gaga();
+        buttonTree = fsdlParser.returnSubButton();
+
 
 
         this.primaryStage = primaryStage;

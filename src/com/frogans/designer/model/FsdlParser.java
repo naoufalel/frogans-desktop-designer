@@ -16,6 +16,10 @@ import java.util.*;
 public class FsdlParser {
     private File file;
 
+
+
+
+
     public FsdlParser(String filename) {
         this.file = new File(filename);
     }
@@ -59,37 +63,75 @@ public class FsdlParser {
 
             Document document = saxBuilder.build(file);
 
-            //System.out.println("Root element :"
-                  //  + document.getRootElement().getName());
+            System.out.println("Root element :"
+                    + document.getRootElement().getName());
 
             Element classElement = document.getRootElement();
 
             List<Element> tagElements = classElement.getChildren();
-            //System.out.println("----------------------------");
+            System.out.println("----------------------------");
 
             List<TreeItem<String>> mainTags = new ArrayList<>();
+
+
             tagElements.forEach(e -> {
-                //System.out.println(e.getName());
+                System.out.println(e.getName());
                 if(e.getName().equals("layer"))
                     mainTags.add(new TreeItem<>(e.getAttribute("layerid").getValue()));
                 else
                     mainTags.add(new TreeItem<>(e.getName()));
 
-                //ifTagIsLayer(e);
+                ifTagIsLayer(e);
 
-//                List<Element> a = e.getChildren();
-//                a.forEach(i -> {
-//                    //System.out.println("\t" + i.getName());
-//                    ifTagIsLayer(i);
-//                    ifTagIsText(i);
-//
-//                });
+                List<Element> a = e.getChildren();
+                a.forEach(i -> {
+                    System.out.println("\t" + i.getName());
+                    ifTagIsLayer(i);
+                    ifTagIsText(i);
+
+                });
             });
 
             return mainTags;
         } catch (Exception e) {
             System.err.println("fuck");
 
+        }
+        return null;
+    }
+
+    public List<TreeItem<String>> returnSubButton(){
+        try{
+            SAXBuilder saxBuilder = new SAXBuilder();
+
+            Document document = saxBuilder.build(file);
+
+            System.out.println("Root element :"
+                    + document.getRootElement().getName());
+
+            Element classElement = document.getRootElement();
+
+            List<Element> tagElements1 = classElement.getChildren();
+
+            List<TreeItem<String>> subButtonTags = new ArrayList<>();
+
+            tagElements1.forEach(e->{
+                        if(e.getName().equals("button")){
+
+                            List<Element> submok = e.getChildren();
+
+                            submok.forEach(a->{
+                        subButtonTags.add(new TreeItem<>(a.getAttribute("layerid").getValue()));
+                    });
+                }
+
+            }
+            );
+
+            System.out.println("lololo");
+            return subButtonTags;
+        }catch (Exception e){
+            System.err.println("fiick"+e);
         }
         return null;
     }
