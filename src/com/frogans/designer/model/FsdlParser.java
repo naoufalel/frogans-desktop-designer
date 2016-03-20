@@ -59,32 +59,32 @@ public class FsdlParser {
 
             Document document = saxBuilder.build(file);
 
-            System.out.println("Root element :"
-                    + document.getRootElement().getName());
+            //System.out.println("Root element :"
+                  //  + document.getRootElement().getName());
 
             Element classElement = document.getRootElement();
 
             List<Element> tagElements = classElement.getChildren();
-            System.out.println("----------------------------");
+            //System.out.println("----------------------------");
 
             List<TreeItem<String>> mainTags = new ArrayList<>();
             tagElements.forEach(e -> {
-                System.out.println(e.getName());
+                //System.out.println(e.getName());
                 mainTags.add(new TreeItem<>(e.getName()));
 
-                ifTagIsLayer(e);
+                //ifTagIsLayer(e);
 
-                List<Element> a = e.getChildren();
-                a.forEach(i -> {
-                    System.out.println("\t" + i.getName());
-                    ifTagIsLayer(i);
-                    ifTagIsText(i);
-
-                });
+//                List<Element> a = e.getChildren();
+//                a.forEach(i -> {
+//                    //System.out.println("\t" + i.getName());
+//                    ifTagIsLayer(i);
+//                    ifTagIsText(i);
+//
+//                });
             });
 
             return mainTags;
-        } catch (Exception ioe) {
+        } catch (Exception e) {
             System.err.println("fuck");
 
         }

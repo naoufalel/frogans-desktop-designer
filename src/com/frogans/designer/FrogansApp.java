@@ -25,7 +25,7 @@ public class FrogansApp extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
-    FsdlParser fsdlParser = new FsdlParser("C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.7.1-win32\\test\\helloworld\\slide2.fsdl");
+    FsdlParser fsdlParser = new FsdlParser("C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.7.1-win32\\test\\helloworld\\home.fsdl");
 
     private List<TreeItem<String>> mainTree ;
 
