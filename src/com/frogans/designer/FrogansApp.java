@@ -3,13 +3,18 @@ package com.frogans.designer;
 import com.frogans.designer.model.FsdlParser;
 import com.frogans.designer.view.DesignerLayoutController;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.TreeItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Main class that handles all the views and displays the app and starts plugins
@@ -20,9 +25,13 @@ public class FrogansApp extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
+    FsdlParser fsdlParser = new FsdlParser("C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.7.1-win32\\test\\helloworld\\slide2.fsdl");
 
+    private List<TreeItem<String>> mainTree ;
 
-
+    public List<TreeItem<String>> getMainTree() {
+        return mainTree;
+    }
 
     public Stage getPrimaryStage() {
         return primaryStage;
@@ -49,18 +58,19 @@ public class FrogansApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FsdlParser fsdlParser = new FsdlParser("C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.7.1-win32\\test\\helloworld\\slide2.fsdl");
+
         //fsdlParser.parseFileElement();
         //fsdlParser.parseFileXPath();
         //fsdlParser.momamak();
-        fsdlParser.gaga();
+        mainTree = fsdlParser.gaga();
 
-//        this.primaryStage = primaryStage;
-//        primaryStage.setTitle("Frogans Designer");
-////        primaryStage.getIcons().add(new Image(FrogansApp.class.getResourceAsStream("/images/something.png")));
-//
-//        initRootLayout();
-//        showSplitContainers();
+
+        this.primaryStage = primaryStage;
+        primaryStage.setTitle("Frogans Designer");
+//        primaryStage.getIcons().add(new Image(FrogansApp.class.getResourceAsStream("/images/something.png")));
+
+        initRootLayout();
+        showSplitContainers();
 
     }
 

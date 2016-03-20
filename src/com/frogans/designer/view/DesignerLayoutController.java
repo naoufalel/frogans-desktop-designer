@@ -19,13 +19,22 @@ public class DesignerLayoutController {
 
     private FrogansApp frogansApp;
 
+
     public void setFrogansApp(FrogansApp frogansApp) {
         this.frogansApp = frogansApp;
+        TreeItem<String> root = new TreeItem<>("frogans-fsdl");
+        root.setExpanded(true);
+        //create children
+        frogansApp.getMainTree().forEach(e->{
+            root.getChildren().add(e);
+            e.setExpanded(false);
+        });
+
+        treeHierarchy.setRoot(root);
+
     }
 
     public DesignerLayoutController(){
-
-
     }
 
     @FXML
@@ -33,18 +42,6 @@ public class DesignerLayoutController {
 
         accordion.setExpandedPane(titledPane);
 
-
-        TreeItem<String> root = new TreeItem<>("frogans-fsdl");
-        root.setExpanded(true);
-        //create child
-        TreeItem<String> itemChild = new TreeItem<>("resdraw");
-        root.getChildren().add(itemChild);
-        itemChild.setExpanded(false);
-        itemChild = new TreeItem<>("layer");
-
-        //root is the parent of itemChild
-        root.getChildren().add(itemChild);
-        treeHierarchy.setRoot(root);
 
     }
 
