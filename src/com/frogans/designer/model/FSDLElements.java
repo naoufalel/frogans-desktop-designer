@@ -36,4 +36,13 @@ public class FSDLElements{
         combine
     }
 
+    public enum ResdrawAttributes{
+        resid,
+        size,
+        figure,
+        stroke,
+        round,
+        color
+    }
+
 }

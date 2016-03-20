@@ -70,7 +70,10 @@ public class FsdlParser {
             List<TreeItem<String>> mainTags = new ArrayList<>();
             tagElements.forEach(e -> {
                 //System.out.println(e.getName());
-                mainTags.add(new TreeItem<>(e.getName()));
+                if(e.getName().equals("layer"))
+                    mainTags.add(new TreeItem<>(e.getAttribute("layerid").getValue()));
+                else
+                    mainTags.add(new TreeItem<>(e.getName()));
 
                 //ifTagIsLayer(e);
 
