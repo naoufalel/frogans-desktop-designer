@@ -49,10 +49,11 @@ public class FrogansApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FsdlParser fsdlParser = new FsdlParser("C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.7.1-win32\\test\\helloworld\\home.fsdl");
+        FsdlParser fsdlParser = new FsdlParser("C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.7.1-win32\\test\\helloworld\\slide2.fsdl");
         //fsdlParser.parseFileElement();
-        fsdlParser.parseFileXPath();
+        //fsdlParser.parseFileXPath();
         //fsdlParser.momamak();
+        fsdlParser.gaga();
 
 //        this.primaryStage = primaryStage;
 //        primaryStage.setTitle("Frogans Designer");

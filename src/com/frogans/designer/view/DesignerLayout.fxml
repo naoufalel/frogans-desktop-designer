@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
@@ -8,7 +9,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frogans.designer.view.DesignerLayoutController">
    <children>
-      <SplitPane cache="true" dividerPositions="0.22444889779559118, 0.781563126252505" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" SplitPane.resizableWithParent="false">
+      <SplitPane cache="true" dividerPositions="0.23647294589178355, 0.781563126252505" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" SplitPane.resizableWithParent="false">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
                <children>
@@ -18,17 +19,17 @@
                            <children>
                               <Accordion fx:id="accordion" prefHeight="276.0" prefWidth="221.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <panes>
-                                    <TitledPane fx:id="titledPane" text="untitled 1">
+                                    <TitledPane fx:id="titledPane" text="Controls">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                        </content>
                                     </TitledPane>
-                                    <TitledPane text="untitled 2">
+                                    <TitledPane text="Contaniers">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                        </content>
                                     </TitledPane>
-                                    <TitledPane text="untitled 3">
+                                    <TitledPane text="Shapes">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                        </content>
@@ -39,7 +40,15 @@
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" SplitPane.resizableWithParent="false">
                            <children>
-                              <TreeView fx:id="treeHierarchy" cache="true" editable="true" prefHeight="295.0" prefWidth="215.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <TitledPane prefHeight="295.0" prefWidth="219.0" text="Hierarchy" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TreeView fx:id="treeHierarchy" prefHeight="265.0" prefWidth="219.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </TitledPane>
                            </children>
                         </AnchorPane>
                     </items>
@@ -49,11 +58,25 @@
                <children>
                   <ScrollPane minHeight="0" minWidth="0" prefHeight="598.0" prefWidth="550.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="900.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="900.0">
+                           <children>
+                              <Label layoutX="150.0" layoutY="239.0" prefHeight="51.0" prefWidth="304.0" text="Design goes here">
+                                 <font>
+                                    <Font size="39.0" />
+                                 </font>
+                              </Label>
+                           </children></AnchorPane>
                     </content>
                   </ScrollPane>
                </children></AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" SplitPane.resizableWithParent="false" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" SplitPane.resizableWithParent="false">
+               <children>
+                  <TitledPane layoutX="7.0" layoutY="6.0" text="Properties" underline="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </TitledPane>
+               </children></AnchorPane>
         </items>
       </SplitPane>
    </children>

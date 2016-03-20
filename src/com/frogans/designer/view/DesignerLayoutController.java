@@ -30,6 +30,10 @@ public class DesignerLayoutController {
 
     @FXML
     public void initialize(){
+
+        accordion.setExpandedPane(titledPane);
+
+
         TreeItem<String> root = new TreeItem<>("frogans-fsdl");
         root.setExpanded(true);
         //create child
