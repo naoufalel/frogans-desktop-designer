@@ -1,6 +1,7 @@
 package com.frogans.designer;
 
 import com.frogans.designer.model.FsdlParser;
+import com.frogans.designer.view.DesignerLayoutController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,6 +20,9 @@ public class FrogansApp extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
+
+
+
 
     public Stage getPrimaryStage() {
         return primaryStage;
@@ -47,8 +51,8 @@ public class FrogansApp extends Application {
     public void start(Stage primaryStage) throws Exception {
         FsdlParser fsdlParser = new FsdlParser("C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.7.1-win32\\test\\helloworld\\home.fsdl");
         //fsdlParser.parseFileElement();
-        //fsdlParser.parseFileXPath();
-        fsdlParser.momamak();
+        fsdlParser.parseFileXPath();
+        //fsdlParser.momamak();
 
 //        this.primaryStage = primaryStage;
 //        primaryStage.setTitle("Frogans Designer");
@@ -70,6 +74,9 @@ public class FrogansApp extends Application {
 
             //Controller goes here
             //TODO
+
+            DesignerLayoutController controller = loader.getController();
+            controller.setFrogansApp(this);
 
 
         } catch (IOException e) {

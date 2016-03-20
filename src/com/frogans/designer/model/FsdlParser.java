@@ -1,10 +1,11 @@
 package com.frogans.designer.model;
 
+import javafx.scene.control.TreeItem;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.w3c.dom.xpath.XPathEvaluator;
+
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -16,7 +17,6 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Created by Naoufal EL BANTLI on 3/19/2016.
@@ -80,23 +80,34 @@ public class FsdlParser {
         NodeList nodeList1;
 
 
-        for (int i = 0; i < nodeList.getLength(); i++) {
-            String aTag = nodeList.item(i).getNodeName();
-
-            //System.out.println(aTag);
-            expression = "/frogans-fsdl/" + aTag + "/*";
-            nodeList1 = (NodeList) xpath.evaluate(expression, doc, XPathConstants.NODESET);
-            System.out.println(nodeList1);
-
-//            for (int j = 0; j < nodeList1.getLength(); j++) {
+//        for (int i = 0; i < nodeList.getLength(); i++) {
+//            String aTag = nodeList.item(i).getNodeName();
 //
-//                System.out.println("\t"+nodeList1.item(j).getNodeName());
-//                //TODO
-//                //Display what's inside each tag
-//            }
+//            //System.out.println(aTag);
+//            expression = "/frogans-fsdl/" + aTag + "/*";
+//            nodeList1 = (NodeList) xpath.evaluate(expression, doc, XPathConstants.NODESET);
+//            System.out.println(nodeList1);
+//
+////            for (int j = 0; j < nodeList1.getLength(); j++) {
+////
+////                System.out.println("\t"+nodeList1.item(j).getNodeName());
+////                //TODO
+////                //Display what's inside each tag
+////            }
+//
+//            expression = "";
+//        }
 
-            expression = "";
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            System.out.println(nodeList.item(i).getNodeName());
+            expression="*";
+            nodeList1 = (NodeList) xpath.evaluate(expression,nodeList.item(i),XPathConstants.NODESET);
+            for (int j = 0; j < nodeList1.getLength(); j++) {
+                System.out.println("\t"+nodeList1.item(j).getNodeName());
+            }
         }
+
+
 
     }
 
@@ -130,6 +141,10 @@ public class FsdlParser {
                         if (node1.getNodeType() != Node.TEXT_NODE){
                             System.out.println("\t" + node1.getNodeName());
                             ifTageisLayer(node1);
+                            if(node1.getNodeName().equals("text")){
+                                //Element element1 = (Element) node1;
+                                System.out.println("\t\t"+node1.getTextContent());
+                            }
                         }
 
                     }
