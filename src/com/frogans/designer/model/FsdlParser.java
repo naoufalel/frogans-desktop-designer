@@ -1,6 +1,8 @@
 package com.frogans.designer.model;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 import org.jdom2.Attribute;
 import org.jdom2.Document;
@@ -16,9 +18,13 @@ import java.util.*;
 public class FsdlParser {
     private File file;
 
+    public File getFile() {
+        return file;
+    }
 
-
-
+    public void setFile(File file) {
+        this.file = file;
+    }
 
     public FsdlParser(String filename) {
         this.file = new File(filename);
@@ -36,7 +42,7 @@ public class FsdlParser {
 
             kkk.forEach(e -> {
                 Attribute a = layer.getAttribute(e.toString());
-                kjh.add(e.toString()+": "+checkAttributeifNull(a));
+                kjh.add(e.toString() + ": " + checkAttributeifNull(a));
             });
 
             System.out.println("\t" + kjh);
@@ -57,7 +63,7 @@ public class FsdlParser {
             return "";
     }
 
-    public List<TreeItem<String>> gaga() {
+    public ObservableList<TreeItem<String>> gaga() {
         try {
             SAXBuilder saxBuilder = new SAXBuilder();
 
@@ -71,12 +77,12 @@ public class FsdlParser {
             List<Element> tagElements = classElement.getChildren();
             System.out.println("----------------------------");
 
-            List<TreeItem<String>> mainTags = new ArrayList<>();
+            ObservableList<TreeItem<String>> mainTags = FXCollections.observableArrayList();
 
 
             tagElements.forEach(e -> {
                 System.out.println(e.getName());
-                if(e.getName().equals("layer"))
+                if (e.getName().equals("layer"))
                     mainTags.add(new TreeItem<>(e.getAttribute("layerid").getValue()));
                 else
                     mainTags.add(new TreeItem<>(e.getName()));
@@ -100,8 +106,8 @@ public class FsdlParser {
         return null;
     }
 
-    public List<TreeItem<String>> returnSubButton(){
-        try{
+    public List<TreeItem<String>> returnSubButton() {
+        try {
             SAXBuilder saxBuilder = new SAXBuilder();
 
             Document document = saxBuilder.build(file);
@@ -115,23 +121,23 @@ public class FsdlParser {
 
             List<TreeItem<String>> subButtonTags = new ArrayList<>();
 
-            tagElements1.forEach(e->{
-                        if(e.getName().equals("button")){
+            tagElements1.forEach(e -> {
+                        if (e.getName().equals("button")) {
 
                             List<Element> submok = e.getChildren();
 
-                            submok.forEach(a->{
-                        subButtonTags.add(new TreeItem<>(a.getAttribute("layerid").getValue()));
-                    });
-                }
+                            submok.forEach(a -> {
+                                subButtonTags.add(new TreeItem<>(a.getAttribute("layerid").getValue()));
+                            });
+                        }
 
-            }
+                    }
             );
 
             System.out.println("lololo");
             return subButtonTags;
-        }catch (Exception e){
-            System.err.println("fiick"+e);
+        } catch (Exception e) {
+            System.err.println("fiick" + e);
         }
         return null;
     }

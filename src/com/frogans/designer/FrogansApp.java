@@ -5,17 +5,19 @@ import com.frogans.designer.view.DesignerLayoutController;
 import com.frogans.designer.view.RootLayoutController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TreeItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.prefs.Preferences;
 
 /**
  * Main class that handles all the views and displays the app and starts plugins
@@ -26,25 +28,48 @@ public class FrogansApp extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
-    String filename = "C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.7.1-win32\\test\\helloworld\\home.fsdl";
 
-    FsdlParser fsdlParser = new FsdlParser(filename);
+    FsdlParser fsdlParser;
+    private ObservableList<TreeItem<String>> mainTags = FXCollections.observableArrayList();
 
-    private List<TreeItem<String>> mainTree ;
-    private  List<TreeItem<String>> buttonTree;
-
-
-    public List<TreeItem<String>> getMainTree() {
-        return mainTree;
+    public ObservableList<TreeItem<String>> getMainTags() {
+        return mainTags;
     }
 
-    public List<TreeItem<String>> getButtonTree() {
-        return buttonTree;
+    public void setMainTags(ObservableList<TreeItem<String>> mainTags) {
+        this.mainTags = mainTags;
     }
+
+    public FsdlParser getFsdlParser() {
+        return fsdlParser;
+    }
+
+//    private List<TreeItem<String>> mainTree;
+//    private List<TreeItem<String>> buttonTree;
+//
+//    public void setMainTree(List<TreeItem<String>> mainTree) {
+//        this.mainTree = mainTree;
+//    }
+//
+//    public void setButtonTree(List<TreeItem<String>> buttonTree) {
+//        this.buttonTree = buttonTree;
+//    }
+//
+//    public List<TreeItem<String>> getMainTree() {
+//        return mainTree;
+//    }
+//
+//    public List<TreeItem<String>> getButtonTree() {
+//        return buttonTree;
+//    }
+
 
     public Stage getPrimaryStage() {
         return primaryStage;
     }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     public static void main(String[] args) {
         launch(args);
@@ -67,10 +92,6 @@ public class FrogansApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        mainTree = fsdlParser.gaga();
-        buttonTree = fsdlParser.returnSubButton();
-
-
 
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Frogans Designer");
@@ -80,29 +101,7 @@ public class FrogansApp extends Application {
         showSplitContainers();
 
     }
-
-    private void showSplitContainers() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(FrogansApp.class.getResource("view/DesignerLayout.fxml"));
-            AnchorPane anchorPane = loader.load();
-
-
-            rootLayout.setCenter(anchorPane);
-
-            //Controller goes here
-            //TODO
-
-            DesignerLayoutController controller = loader.getController();
-            controller.setFrogansApp(this);
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /*
     * Showing root Layout with menu bar
@@ -129,5 +128,55 @@ public class FrogansApp extends Application {
         }
 
 
+    }
+
+    private void showSplitContainers() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(FrogansApp.class.getResource("view/DesignerLayout.fxml"));
+            AnchorPane anchorPane = loader.load();
+
+
+            rootLayout.setCenter(anchorPane);
+
+            //Controller goes here
+            //TODO
+
+            DesignerLayoutController controller = loader.getController();
+            controller.setFrogansApp(this);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void setReminderFilePath(File file) {
+        Preferences prefs = Preferences.userNodeForPackage(FrogansApp.class);
+        if (file != null) {
+            prefs.put("filePath", file.getPath());
+
+        } else {
+            prefs.remove("filePath");
+
+        }
+    }
+
+    public void loadAfile(File file){
+        try{
+
+            fsdlParser.setFile(file);
+            mainTags = fsdlParser.gaga();
+
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Problem");
+            alert.setHeaderText("Problem in opening a file");
+            alert.setContentText("There was a problem while opening "+file.getName()+". Please check if the file exists");
+
+            alert.showAndWait();
+            System.err.println("load a file.\n"+e);
+        }
     }
 }
