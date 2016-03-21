@@ -2,6 +2,7 @@ package com.frogans.designer;
 
 import com.frogans.designer.model.FsdlParser;
 import com.frogans.designer.view.DesignerLayoutController;
+import com.frogans.designer.view.RootLayoutController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
@@ -110,7 +111,7 @@ public class FrogansApp extends Application {
     private void initRootLayout() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(FrogansApp.class.getResource("view/RootLayout.fxml"));
+            loader.setLocation(FrogansApp.class.getResource("view/Root.fxml"));
             rootLayout = loader.load();
 
             Scene scene = new Scene(rootLayout);
@@ -118,8 +119,8 @@ public class FrogansApp extends Application {
 
             //Set controller for Later
             //TODO
-//            RootLayoutController controller = loader.getController();
-//            controller.setFrogansApp(this);
+            RootLayoutController controller = loader.getController();
+            controller.setFrogansApp(this);
 
             primaryStage.show();
 
