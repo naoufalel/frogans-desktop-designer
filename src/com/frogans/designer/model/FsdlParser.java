@@ -26,8 +26,8 @@ public class FsdlParser {
         this.file = file;
     }
 
-    public FsdlParser(String filename) {
-        this.file = new File(filename);
+    public FsdlParser(File file) {
+        this.file = file;
     }
 
     private void ifTagIsLayer(Element layer) {

@@ -3,9 +3,13 @@ package com.frogans.designer;
 import com.frogans.designer.model.FsdlParser;
 import com.frogans.designer.view.DesignerLayoutController;
 import com.frogans.designer.view.RootLayoutController;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -13,6 +17,7 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +35,12 @@ public class FrogansApp extends Application {
     private BorderPane rootLayout;
 
     FsdlParser fsdlParser;
+    Timeline timeline;
+
+    public Timeline getTimeline() {
+        return timeline;
+    }
+
     private ObservableList<TreeItem<String>> mainTags = FXCollections.observableArrayList();
 
     public ObservableList<TreeItem<String>> getMainTags() {
@@ -43,25 +54,6 @@ public class FrogansApp extends Application {
     public FsdlParser getFsdlParser() {
         return fsdlParser;
     }
-
-//    private List<TreeItem<String>> mainTree;
-//    private List<TreeItem<String>> buttonTree;
-//
-//    public void setMainTree(List<TreeItem<String>> mainTree) {
-//        this.mainTree = mainTree;
-//    }
-//
-//    public void setButtonTree(List<TreeItem<String>> buttonTree) {
-//        this.buttonTree = buttonTree;
-//    }
-//
-//    public List<TreeItem<String>> getMainTree() {
-//        return mainTree;
-//    }
-//
-//    public List<TreeItem<String>> getButtonTree() {
-//        return buttonTree;
-//    }
 
 
     public Stage getPrimaryStage() {
@@ -145,6 +137,15 @@ public class FrogansApp extends Application {
             DesignerLayoutController controller = loader.getController();
             controller.setFrogansApp(this);
 
+            timeline = new Timeline(
+                    new KeyFrame(
+                            Duration.seconds(1),
+                            new TreeLoadingEventHandler(controller)
+                    )
+            );
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.play();
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -152,31 +153,51 @@ public class FrogansApp extends Application {
 
     }
 
-    public void setReminderFilePath(File file) {
-        Preferences prefs = Preferences.userNodeForPackage(FrogansApp.class);
-        if (file != null) {
-            prefs.put("filePath", file.getPath());
+//    public void setReminderFilePath(File file) {
+//        Preferences prefs = Preferences.userNodeForPackage(FrogansApp.class);
+//        if (file != null) {
+//            prefs.put("filePath", file.getPath());
+//
+//        } else {
+//            prefs.remove("filePath");
+//
+//        }
+//    }
 
-        } else {
-            prefs.remove("filePath");
-
-        }
-    }
-
-    public void loadAfile(File file){
-        try{
-
-            fsdlParser.setFile(file);
+    public void loadAfile(File file) {
+        try {
+            fsdlParser = new FsdlParser(file);
+            //fsdlParser.setFile(file);
             mainTags = fsdlParser.gaga();
 
-        }catch (Exception e){
+            //setReminderFilePath(file);
+            primaryStage.setTitle("Frogans Designer - " + file.getName());
+
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Problem");
             alert.setHeaderText("Problem in opening a file");
-            alert.setContentText("There was a problem while opening "+file.getName()+". Please check if the file exists");
+            alert.setContentText("There was a problem while opening " + file.getName() + ". Please check if the file exists");
 
             alert.showAndWait();
-            System.err.println("load a file.\n"+e);
+            System.err.println("load a file.\n" + e);
+        }
+    }
+
+    private class TreeLoadingEventHandler implements EventHandler<ActionEvent> {
+        private DesignerLayoutController controller;
+
+        TreeLoadingEventHandler(DesignerLayoutController controller) {
+            this.controller = controller;
+        }
+
+        @Override
+        public void handle(ActionEvent t) {
+            //mainTags = fsdlParser.gaga();
+            if (!mainTags.isEmpty()) {
+                controller.createSubTree();
+                timeline.pause();
+            }
         }
     }
 }
