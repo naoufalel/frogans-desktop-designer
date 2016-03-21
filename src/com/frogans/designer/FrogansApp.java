@@ -164,12 +164,18 @@ public class FrogansApp extends Application {
 //        }
 //    }
 
-    public void loadAfile(File file) {
+    public void loadAFile(File file) {
         try {
             fsdlParser = new FsdlParser(file);
             //fsdlParser.setFile(file);
             mainTags = fsdlParser.gaga();
 
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ghjkl");
+            alert.setHeaderText("lkljhgf");
+            alert.setContentText("oiuyghfhjklmkjhg");
+
+            alert.showAndWait();
             //setReminderFilePath(file);
             primaryStage.setTitle("Frogans Designer - " + file.getName());
 

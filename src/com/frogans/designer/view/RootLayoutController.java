@@ -1,11 +1,8 @@
 package com.frogans.designer.view;
 
 import com.frogans.designer.FrogansApp;
-import com.sun.java_cup.internal.runtime.Symbol;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -55,7 +52,7 @@ public class RootLayoutController {
                 if (!file.getPath().endsWith(".fsdl")) {
                     file = new File(file.getPath() + ".fsdl");
                 }
-                frogansApp.loadAfile(file);
+                frogansApp.loadAFile(file);
                 frogansApp.getTimeline().play();
             }
 

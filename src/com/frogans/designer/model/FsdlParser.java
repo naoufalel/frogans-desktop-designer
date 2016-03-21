@@ -81,7 +81,7 @@ public class FsdlParser {
 
 
             tagElements.forEach(e -> {
-                System.out.println(e.getName());
+                //System.out.println(e.getName());
                 if (e.getName().equals("layer"))
                     mainTags.add(new TreeItem<>(e.getAttribute("layerid").getValue()));
                 else
@@ -89,13 +89,13 @@ public class FsdlParser {
 
                 ifTagIsLayer(e);
 
-                List<Element> a = e.getChildren();
-                a.forEach(i -> {
-                    System.out.println("\t" + i.getName());
-                    ifTagIsLayer(i);
-                    ifTagIsText(i);
-
-                });
+//                List<Element> a = e.getChildren();
+//                a.forEach(i -> {
+//                    System.out.println("\t" + i.getName());
+//                    ifTagIsLayer(i);
+//                    ifTagIsText(i);
+//
+//                });
             });
 
             return mainTags;
