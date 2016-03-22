@@ -2,12 +2,10 @@ package com.frogans.designer;
 
 import com.frogans.designer.model.FsdlParser;
 import com.frogans.designer.view.DesignerLayoutController;
-import com.frogans.designer.view.RootLayoutController;
+import com.frogans.designer.view.RootController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +19,7 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.prefs.Preferences;
 
@@ -41,13 +40,13 @@ public class FrogansApp extends Application {
         return timeline;
     }
 
-    private ObservableList<TreeItem<String>> mainTags = FXCollections.observableArrayList();
+    private List<TreeItem<String>> mainTags = new ArrayList<>();
 
-    public ObservableList<TreeItem<String>> getMainTags() {
+    public List<TreeItem<String>> getMainTags() {
         return mainTags;
     }
 
-    public void setMainTags(ObservableList<TreeItem<String>> mainTags) {
+    public void setMainTags(List<TreeItem<String>> mainTags) {
         this.mainTags = mainTags;
     }
 
@@ -84,7 +83,8 @@ public class FrogansApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+//        fsdlParser = new FsdlParser(new File("C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.7.1-win32\\test\\helloworld\\home.fsdl"));
+//        fsdlParser.parseFsdlFile();
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Frogans Designer");
 //        primaryStage.getIcons().add(new Image(FrogansApp.class.getResourceAsStream("/images/something.png")));
@@ -110,7 +110,7 @@ public class FrogansApp extends Application {
 
             //Set controller for Later
             //TODO
-            RootLayoutController controller = loader.getController();
+            RootController controller = loader.getController();
             controller.setFrogansApp(this);
 
             primaryStage.show();
@@ -131,9 +131,6 @@ public class FrogansApp extends Application {
 
             rootLayout.setCenter(anchorPane);
 
-            //Controller goes here
-            //TODO
-
             DesignerLayoutController controller = loader.getController();
             controller.setFrogansApp(this);
 
@@ -153,29 +150,25 @@ public class FrogansApp extends Application {
 
     }
 
-//    public void setReminderFilePath(File file) {
-//        Preferences prefs = Preferences.userNodeForPackage(FrogansApp.class);
-//        if (file != null) {
-//            prefs.put("filePath", file.getPath());
-//
-//        } else {
-//            prefs.remove("filePath");
-//
-//        }
-//    }
+    public void setReminderFilePath(File file) {
+        Preferences prefs = Preferences.userNodeForPackage(FrogansApp.class);
+        if (file != null) {
+            prefs.put("filePath", file.getPath());
+
+        } else {
+            prefs.remove("filePath");
+
+        }
+    }
 
     public void loadAFile(File file) {
         try {
             fsdlParser = new FsdlParser(file);
-            //fsdlParser.setFile(file);
-            mainTags = fsdlParser.gaga();
+            mainTags = fsdlParser.parseFsdlFile();
+            //mainTags = fsdlParser.gaga();
 
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ghjkl");
-            alert.setHeaderText("lkljhgf");
-            alert.setContentText("oiuyghfhjklmkjhg");
 
-            alert.showAndWait();
+
             //setReminderFilePath(file);
             primaryStage.setTitle("Frogans Designer - " + file.getName());
 

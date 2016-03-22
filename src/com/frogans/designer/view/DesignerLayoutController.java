@@ -7,6 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.Callback;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Naoufal EL BANTLI on 3/19/2016.
  */
@@ -21,7 +24,7 @@ public class DesignerLayoutController {
 
     TreeItem<String> root = new TreeItem<>("frogans-fsdl");
 
-    private ObservableList<TreeItem<String>> temp = FXCollections.observableArrayList();
+    private List<TreeItem<String>> temp = new ArrayList<>();
 
     public TreeView<String> getTreeHierarchy() {
         return treeHierarchy;
@@ -67,7 +70,6 @@ public class DesignerLayoutController {
     public void initialize() {
         accordion.setExpandedPane(titledPane);
         //treeHierarchy.setCellFactory(param -> param.setShowRoot(true));
-
 
     }
 

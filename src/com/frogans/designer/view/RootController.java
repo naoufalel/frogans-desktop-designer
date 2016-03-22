@@ -10,7 +10,7 @@ import java.io.File;
 /**
  * Created by Naoufal EL BANTLI on 3/19/2016.
  */
-public class RootLayoutController {
+public class RootController {
     private FrogansApp frogansApp;
 
 
@@ -18,7 +18,7 @@ public class RootLayoutController {
         this.frogansApp = frogansApp;
     }
 
-    public RootLayoutController() {
+    public RootController() {
 
     }
 
