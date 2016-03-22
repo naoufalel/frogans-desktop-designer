@@ -7,6 +7,7 @@ package com.frogans.designer.model;
 
 public class FSDLElements {
 
+
     public enum MainFsdlTags {
         resdraw,
         setrelief,

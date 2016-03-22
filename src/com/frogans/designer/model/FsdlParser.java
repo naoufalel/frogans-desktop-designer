@@ -9,10 +9,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-//import org.jdom2.Attribute;
-//import org.jdom2.Document;
-//import org.jdom2.Element;
-//import org.jdom2.input.SAXBuilder;
+
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -170,14 +167,17 @@ public class FsdlParser {
             NodeList nodeList = element.getChildNodes();
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node =  nodeList.item(i);
-                if(node.getNodeType()!=Node.TEXT_NODE && node.getNodeType()!=Node.COMMENT_NODE)
+                if(node.getNodeType()!=Node.TEXT_NODE && node.getNodeType()!=Node.COMMENT_NODE){
                     //System.out.println(node.getNodeName());
-                if(node.getNodeName().equals("layer")){
-                    System.out.println(node.getNodeName());
-                    Element element1 = (Element) node;
-                    a.add(new TreeItem<>(element1.getAttribute("layerid")));
-                }else
-                    a.add(new TreeItem<>(node.getNodeName()));
+//                if(node.getNodeName().equals("layer")){
+//                    System.out.println(node.getNodeName());
+//                    Element element1 = (Element) node;
+//                    a.add(new TreeItem<>(element1.getAttribute("layerid")));
+//                }else{
+                    Element element2 = (Element) node;
+                    a.add(new TreeItem<>(getIDofElement(element2)));
+//                }
+                }
             }
 
             return a;
@@ -189,6 +189,24 @@ public class FsdlParser {
             alert.showAndWait();
         }
         return null;
+    }
+
+
+    private String getIDofElement(Element element){
+
+        List<FSDLElements.MainFsdlTags> fsdlMainTags = Arrays.asList(FSDLElements.MainFsdlTags.values());
+        String a ="";
+        for(FSDLElements.MainFsdlTags e : fsdlMainTags){
+            if(element.getNodeName().equals(e.toString())){
+                if(e.toString().equals("button")){
+                    a = element.getAttribute("buttonid");
+                }else
+                    a=element.getNodeName();
+            }
+        }
+
+
+        return a;
     }
 }
 
