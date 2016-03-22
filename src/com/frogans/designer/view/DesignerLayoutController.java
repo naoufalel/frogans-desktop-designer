@@ -24,7 +24,7 @@ public class DesignerLayoutController {
 
     TreeItem<String> root = new TreeItem<>("frogans-fsdl");
 
-    private List<TreeItem<String>> temp = new ArrayList<>();
+    private ObservableList<TreeItem<String>> temp = FXCollections.observableArrayList();
 
     public TreeView<String> getTreeHierarchy() {
         return treeHierarchy;

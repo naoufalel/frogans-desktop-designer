@@ -5,7 +5,7 @@ package com.frogans.designer.model;
  */
 
 
-public class FSDLElements{
+public class FSDLElements {
 
     public enum MainFsdlTags {
         resdraw,
@@ -23,19 +23,21 @@ public class FSDLElements{
         button
     }
 
-    public enum SubFsdlTags{
+    public enum SubFsdlTags {
         relief,
         font,
         text,
         layer
     }
-    public enum FileFsdlTags{
+
+    public enum FileFsdlTags {
         fileid,
         nature,
         name,
         cache
     }
-    public enum LayerAttributes{
+
+    public enum layerAttributes {
         layerid,
         leapout,
         resref,
@@ -51,7 +53,8 @@ public class FSDLElements{
         shadowref,
         visible
     }
-    public enum ButtonAttributes{
+
+    public enum buttonAttributes {
         buttonid,
         go_to, //TODO original name is goto
         fileref,
@@ -60,7 +63,7 @@ public class FSDLElements{
         email
     }
 
-    public enum ResdrawAttributes{
+    public enum resdrawAttributes {
         resid,
         size,
         figure,
@@ -70,11 +73,12 @@ public class FSDLElements{
         //color
     }
 
-    public enum NextAttributes{
+    public enum nextAttributes {
         delay,
         fileref
     }
-    public enum ResimageAttributes{
+
+    public enum resimageAttributes {
         resid,
         size,
         fileref,
@@ -84,7 +88,8 @@ public class FSDLElements{
         adjust,
         origin
     }
-    public enum RespixelsAttributes{
+
+    public enum respixelsAttributes {
         resid,
         size,
         columns,
@@ -94,7 +99,8 @@ public class FSDLElements{
         alpha
 
     }
-    public enum RespathAttributes{
+
+    public enum respathAttributes {
         resid,
         size,
         crop,
@@ -107,10 +113,12 @@ public class FSDLElements{
         adjust,
         //color
     }
-    public enum SetfontAttributes{
+
+    public enum setfontAttributes {
         fontid
     }
-    public enum FontAttributes{
+
+    public enum fontAttributes {
         scripts,
         pfont,
         height,
@@ -124,7 +132,7 @@ public class FSDLElements{
         //color
     }
 
-    public enum RestextAttributes{
+    public enum restextAttributes {
         resid,
         size,
         orientation,
@@ -134,18 +142,19 @@ public class FSDLElements{
         vstyle
     }
 
-    public enum TextAttributes{
+    public enum textAttributes {
         //fontref,
         //talign,
         //linespace,
         vstyle,
         //join
     }
-    public enum SetfilterAttribute{
+
+    public enum setfilterAttribute {
         filterid
     }
 
-    public enum FilterAttributes{
+    public enum filterAttributes {
         effect,
         level,
         angle,
@@ -153,30 +162,35 @@ public class FSDLElements{
         color
     }
 
-    public enum SetreliefAttribute{
+    public enum setreliefAttribute {
         reliefid
     }
-    public enum ReliefAttributes{
+
+    public enum reliefAttributes {
         rpos
         //color,
         //blur,
         //opacity,
     }
-    public enum SetshadowAttribute{
+
+    public enum setshadowAttribute {
         shadowid
     }
-    public enum ShadowAttributes{
+
+    public enum shadowAttributes {
         rpos,
         //color,
         //blur,
         //opacity,
         combine
     }
-    public enum ResmergeAttributes{
+
+    public enum resmergeAttributes {
         resid,
         size
     }
-    public enum MergeAttributes{
+
+    public enum mergeAttributes {
         resref,
         //flip,
         //filterref,

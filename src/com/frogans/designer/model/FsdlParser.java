@@ -155,9 +155,9 @@ public class FsdlParser {
 //        return null;
 //    }
 
-    public List<TreeItem<String>> parseFsdlFile() {
+    public ObservableList<TreeItem<String>> parseFsdlFile() {
         try {
-            List<TreeItem<String>> a = new ArrayList<>();
+            ObservableList<TreeItem<String>> a = FXCollections.observableArrayList();
 
             DocumentBuilderFactory factory =
                     DocumentBuilderFactory.newInstance();

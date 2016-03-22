@@ -6,6 +6,8 @@ import com.frogans.designer.view.RootController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -40,13 +42,13 @@ public class FrogansApp extends Application {
         return timeline;
     }
 
-    private List<TreeItem<String>> mainTags = new ArrayList<>();
+    private ObservableList<TreeItem<String>> mainTags = FXCollections.observableArrayList();
 
-    public List<TreeItem<String>> getMainTags() {
+    public ObservableList<TreeItem<String>> getMainTags() {
         return mainTags;
     }
 
-    public void setMainTags(List<TreeItem<String>> mainTags) {
+    public void setMainTags(ObservableList<TreeItem<String>> mainTags) {
         this.mainTags = mainTags;
     }
 
