@@ -166,8 +166,8 @@ public class FsdlParser {
             System.out.println(element.getNodeName());
             NodeList nodeList = element.getChildNodes();
             for (int i = 0; i < nodeList.getLength(); i++) {
-                Node node =  nodeList.item(i);
-                if(node.getNodeType()!=Node.TEXT_NODE && node.getNodeType()!=Node.COMMENT_NODE){
+                Node node = nodeList.item(i);
+                if (node.getNodeType() != Node.TEXT_NODE && node.getNodeType() != Node.COMMENT_NODE) {
                     //System.out.println(node.getNodeName());
 //                if(node.getNodeName().equals("layer")){
 //                    System.out.println(node.getNodeName());
@@ -192,16 +192,25 @@ public class FsdlParser {
     }
 
 
-    private String getIDofElement(Element element){
+    private String getIDofElement(Element element) {
 
         List<FSDLElements.MainFsdlTags> fsdlMainTags = Arrays.asList(FSDLElements.MainFsdlTags.values());
-        String a ="";
-        for(FSDLElements.MainFsdlTags e : fsdlMainTags){
-            if(element.getNodeName().equals(e.toString())){
-                if(e.toString().equals("button")){
+        String a = "";
+        for (FSDLElements.MainFsdlTags e : fsdlMainTags) {
+            if (element.getNodeName().equals(e.toString())) {
+                //TODO
+//                for(FSDLElements.MainFsdlTags m : fsdlMainTags){
+//                    if(e.toString().equals(m.toString())){
+//
+//                    }
+//                }
+
+                if (e.toString().equals("button")) {
                     a = element.getAttribute("buttonid");
-                }else
-                    a=element.getNodeName();
+                } else if (e.toString().equals("layer"))
+                    a = element.getAttribute("layerid");
+                else
+                    a = element.getNodeName();
             }
         }
 

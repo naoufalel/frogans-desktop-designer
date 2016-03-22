@@ -53,7 +53,6 @@ public class RootController {
                     file = new File(file.getPath() + ".fsdl");
                 }
                 frogansApp.loadAFile(file);
-                frogansApp.getTimeline().play();
             }
 
         } catch (Exception e) {

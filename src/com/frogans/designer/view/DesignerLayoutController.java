@@ -40,27 +40,7 @@ public class DesignerLayoutController {
 
     public void setFrogansApp(FrogansApp frogansApp) {
         this.frogansApp = frogansApp;
-//        TreeItem<String> root = new TreeItem<>("frogans-fsdl");
-//        root.setExpanded(true);
-//        //create children
-//        frogansApp.getMainTree().forEach(e->{
-//
-//            root.getChildren().add(e);
-//            e.setExpanded(false);
-//            if(e.getValue().equals("button")){
-//                e.setExpanded(true);
-//                frogansApp.getButtonTree().forEach(a->{
-//                    e.getChildren().add(a);
-//                    a.setExpanded(false);
-//                });
-//            }
-//
-//        });
-//
-//        treeHierarchy.setRoot(root);
         treeHierarchy.setRoot(createSubTree());
-
-
     }
 
     public DesignerLayoutController() {
@@ -69,28 +49,24 @@ public class DesignerLayoutController {
     @FXML
     public void initialize() {
         accordion.setExpandedPane(titledPane);
-        //treeHierarchy.setCellFactory(param -> param.setShowRoot(true));
-
     }
 
-    public TreeItem<String> createSubTree(){
-        if(!root.getChildren().isEmpty()){
+    public TreeItem<String> createSubTree() {
+        if (!root.getChildren().isEmpty()) {
             root.getChildren().removeAll(temp);
-            frogansApp.getMainTags().forEach(e->{
+            frogansApp.getMainTags().forEach(e -> {
                 root.getChildren().add(e);
                 e.setExpanded(false);
             });
             temp = frogansApp.getMainTags();
-        }else{
+        } else {
             root.setExpanded(true);
-            frogansApp.getMainTags().forEach(e->{
+            frogansApp.getMainTags().forEach(e -> {
                 root.getChildren().add(e);
                 e.setExpanded(false);
             });
             temp = frogansApp.getMainTags();
         }
-
-
         return root;
     }
 

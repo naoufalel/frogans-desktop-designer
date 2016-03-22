@@ -124,6 +124,9 @@ public class FrogansApp extends Application {
 
     }
 
+    /**
+     * Showing split anchors in the center of root
+     */
     private void showSplitContainers() {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -167,13 +170,10 @@ public class FrogansApp extends Application {
         try {
             fsdlParser = new FsdlParser(file);
             mainTags = fsdlParser.parseFsdlFile();
-            //mainTags = fsdlParser.gaga();
-
-
 
             //setReminderFilePath(file);
             primaryStage.setTitle("Frogans Designer - " + file.getName());
-
+            timeline.play();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Problem");
@@ -194,7 +194,6 @@ public class FrogansApp extends Application {
 
         @Override
         public void handle(ActionEvent t) {
-            //mainTags = fsdlParser.gaga();
             if (!mainTags.isEmpty()) {
                 controller.createSubTree();
                 timeline.pause();
