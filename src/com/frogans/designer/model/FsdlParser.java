@@ -164,6 +164,7 @@ public class FsdlParser {
 
             Element element = doc.getDocumentElement();
             System.out.println(element.getNodeName());
+            // get tags after frogans-fsdl
             NodeList nodeList = element.getChildNodes();
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
