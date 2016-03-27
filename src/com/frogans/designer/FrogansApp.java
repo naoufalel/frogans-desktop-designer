@@ -21,8 +21,6 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.prefs.Preferences;
 
 /**
@@ -85,14 +83,17 @@ public class FrogansApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-//        fsdlParser = new FsdlParser(new File("C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.7.1-win32\\test\\helloworld\\home.fsdl"));
+        String filename = "C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.9.1-win32\\FrogansPlayer4Dev-noinstall-alpha0.9.1-win32\\test\\helloworld\\home.fsdl";
+        fsdlParser = new FsdlParser(new File(filename));
 //        fsdlParser.parseFsdlFile();
-        this.primaryStage = primaryStage;
-        primaryStage.setTitle("Frogans Designer");
-//        primaryStage.getIcons().add(new Image(FrogansApp.class.getResourceAsStream("/images/something.png")));
+//        this.primaryStage = primaryStage;
+//        primaryStage.setTitle("Frogans Designer");
+////        primaryStage.getIcons().add(new Image(FrogansApp.class.getResourceAsStream("/images/something.png")));
+//
+//        initRootLayout();
+//        showSplitContainers();
 
-        initRootLayout();
-        showSplitContainers();
+        fsdlParser.layerParsing();
 
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -110,8 +111,6 @@ public class FrogansApp extends Application {
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
 
-            //Set controller for Later
-            //TODO
             RootController controller = loader.getController();
             controller.setFrogansApp(this);
 

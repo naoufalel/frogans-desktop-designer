@@ -40,8 +40,8 @@ public class FSDLElements {
 
     public enum layerAttributes {
         layerid,
-        leapout,
         resref,
+        leapout,
         flip,
         filterref,
         reliefref,

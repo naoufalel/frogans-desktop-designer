@@ -1,6 +1,7 @@
 package com.frogans.designer.model;
 
 
+import com.frogans.designer.model.Elements.LayerFSDL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -14,6 +15,7 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+
 import java.util.*;
 
 /**
@@ -60,12 +62,12 @@ public class FsdlParser {
 //        }
 //    }
 //
-//    private String checkAttributeifNull(Attribute attribute) {
-//        if (attribute != null)
-//            return attribute.getValue();
-//        else
-//            return "";
-//    }
+    private String checkAttributeifNull(Element e, String s) {
+        if (e.getAttribute(s) != null)
+            return e.getAttribute(s);
+        else
+            return "";
+    }
 //
 //    public List<TreeItem<String>> gaga() {
 //        try {
@@ -217,6 +219,41 @@ public class FsdlParser {
 
 
         return a;
+    }
+
+    public void layerParsing() {
+        try {
+
+            ObservableList<LayerFSDL> layers = FXCollections.observableArrayList();
+            List<FSDLElements.layerAttributes> layerAttributes = Arrays.asList(FSDLElements.layerAttributes.values());
+
+            DocumentBuilderFactory factory =
+                    DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(file);
+            doc.getDocumentElement().normalize();
+
+            Element element = doc.getDocumentElement();
+            System.out.println(element.getNodeName());
+
+            NodeList nodeList = element.getChildNodes();
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+                if (node.getNodeType() != Node.TEXT_NODE && node.getNodeType() != Node.COMMENT_NODE) {
+                    if(node.getNodeName().equals("layer")){
+                        layerAttributes.forEach(e->{
+                            Element element1 = (Element) node;
+                            System.out.println(checkAttributeifNull(element1,e.toString()));
+                        });
+                        System.out.println("--------------------------------");
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            System.err.println("fuck frogans.\n" + e);
+        }
     }
 }
 
