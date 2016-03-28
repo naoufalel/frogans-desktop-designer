@@ -1,17 +1,20 @@
 package com.frogans.designer.view;
 
 import com.frogans.designer.FrogansApp;
+import com.frogans.designer.view.PropertiesLayout.LayerLayoutController;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 
 import java.util.ArrayList;
@@ -27,6 +30,12 @@ public class DesignerLayoutController {
 
     @FXML
     private TitledPane titledPane;
+    @FXML
+    private TitledPane propertiesPane;
+
+    public TitledPane getPropertiesPane() {
+        return propertiesPane;
+    }
 
     @FXML
     TreeView<String> treeHierarchy;

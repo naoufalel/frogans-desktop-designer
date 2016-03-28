@@ -2,6 +2,7 @@ package com.frogans.designer;
 
 import com.frogans.designer.model.FsdlParser;
 import com.frogans.designer.view.DesignerLayoutController;
+import com.frogans.designer.view.PropertiesLayout.LayerLayoutController;
 import com.frogans.designer.view.RootController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -83,17 +84,18 @@ public class FrogansApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        String filename = "C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.9.1-win32\\FrogansPlayer4Dev-noinstall-alpha0.9.1-win32\\test\\helloworld\\home.fsdl";
-        fsdlParser = new FsdlParser(new File(filename));
-//        fsdlParser.parseFsdlFile();
-//        this.primaryStage = primaryStage;
-//        primaryStage.setTitle("Frogans Designer");
-////        primaryStage.getIcons().add(new Image(FrogansApp.class.getResourceAsStream("/images/something.png")));
-//
-//        initRootLayout();
-//        showSplitContainers();
+//        String filename = "C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.9.1-win32\\FrogansPlayer4Dev-noinstall-alpha0.9.1-win32\\test\\helloworld\\home.fsdl";
+//        fsdlParser = new FsdlParser(new File(filename));
+        //fsdlParser.parseFsdlFile();
+        this.primaryStage = primaryStage;
+        primaryStage.setTitle("Frogans Designer");
+//        primaryStage.getIcons().add(new Image(FrogansApp.class.getResourceAsStream("/images/something.png")));
 
-        fsdlParser.layerParsing();
+        initRootLayout();
+        showSplitContainers();
+
+
+//        fsdlParser.layerParsing();
 
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -137,6 +139,14 @@ public class FrogansApp extends Application {
 
             DesignerLayoutController controller = loader.getController();
             controller.setFrogansApp(this);
+
+            FXMLLoader loader2 = new FXMLLoader();
+            loader2.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/LayerLayout.fxml"));
+            AnchorPane layerFuck = loader2.load();
+
+            controller.getPropertiesPane().setContent(layerFuck);
+
+
 
             timeline = new Timeline(
                     new KeyFrame(
@@ -199,4 +209,21 @@ public class FrogansApp extends Application {
             }
         }
     }
+
+//    private void insertLayerFuck(){
+//        try {
+//            DesignerLayoutController controller = new DesignerLayoutController();
+//            FXMLLoader loader = new FXMLLoader();
+//            loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/LayerLayout.fxml"));
+//            AnchorPane layerFuck = loader.load();
+//
+//            controller.getPropertiesPane().setContent(layerFuck);
+//
+////            LayerLayoutController controller1 = loader.getController();
+////            controller1.setFrogansApp(this);
+//
+//        }catch (Exception e){
+//            System.err.println("FUCK FROGANS.\n"+e);
+//        }
+//    }
 }

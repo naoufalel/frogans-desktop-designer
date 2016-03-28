@@ -40,8 +40,24 @@ public class FSDLElements {
 
     public enum layerAttributes {
         layerid,
-        resref,
         leapout,
+        resref,
+        flip,
+        filterref,
+        reliefref,
+        blur,
+        opacity,
+        angle,
+        pos,
+        align,
+        combine,
+        shadowref
+    }
+
+    public enum layerButtonrAttributes {
+        layerid,
+        leapout,
+        resref,
         flip,
         filterref,
         reliefref,

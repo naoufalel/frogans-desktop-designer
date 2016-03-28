@@ -2,6 +2,7 @@ package com.frogans.designer.model;
 
 
 import com.frogans.designer.model.Elements.LayerFSDL;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -16,6 +17,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
+import java.lang.reflect.Method;
 import java.util.*;
 
 /**
@@ -56,7 +58,7 @@ public class FsdlParser {
 //    }
 
 
-//    private void ifTagIsText(Element text) {
+    //    private void ifTagIsText(Element text) {
 //        if (text.getName().equals("text")) {
 //            System.out.println("\t\t" + text.getText());
 //        }
@@ -238,19 +240,35 @@ public class FsdlParser {
 
             NodeList nodeList = element.getChildNodes();
 
+
+            Class<?> aClass = Class.forName("com.frogans.designer.model.Elements.LayerFSDL");
+            Object obj = aClass.newInstance();
+
+
+            Class[] paramString = new Class[1];
+            paramString[0] = String.class;
+
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
                 if (node.getNodeType() != Node.TEXT_NODE && node.getNodeType() != Node.COMMENT_NODE) {
-                    if(node.getNodeName().equals("layer")){
-                        layerAttributes.forEach(e->{
+                    if (node.getNodeName().equals("layer")) {
+                        obj = aClass.newInstance();
+                        for (FSDLElements.layerAttributes e : layerAttributes) {
                             Element element1 = (Element) node;
-                            System.out.println(checkAttributeifNull(element1,e.toString()));
-                        });
-                        System.out.println("--------------------------------");
+                            try {
+                                Method method = aClass.getDeclaredMethod("set" + e.toString(), paramString);
+                                method.invoke(obj, checkAttributeifNull(element1, e.toString()));
+                            } catch (Exception e1) {
+                                System.err.println("Seuury :\n" + e1);
+                            }
+                        }
+                        layers.add((LayerFSDL) obj);
                     }
                 }
             }
-
+            layers.forEach(e -> {
+                System.out.println("mok : " + e.toString());
+            });
         } catch (Exception e) {
             System.err.println("fuck frogans.\n" + e);
         }
