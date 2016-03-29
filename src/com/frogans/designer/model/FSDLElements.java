@@ -54,7 +54,7 @@ public class FSDLElements {
         shadowref
     }
 
-    public enum layerButtonrAttributes {
+    public enum layerButtonAttributes {
         layerid,
         leapout,
         resref,
@@ -66,9 +66,9 @@ public class FSDLElements {
         angle,
         pos,
         align,
-        combine,
-        shadowref,
-        visible
+        combineButton,
+        visible,
+        shadowref
     }
 
     public enum buttonAttributes {

@@ -1,22 +1,23 @@
 package com.frogans.designer.model;
 
 
+import com.frogans.designer.model.Elements.ButtonFSDL;
 import com.frogans.designer.model.Elements.LayerFSDL;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TreeItem;
-import org.w3c.dom.Element;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
+import org.xml.sax.SAXException;
 
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.*;
 
@@ -65,9 +66,30 @@ public class FsdlParser {
 //    }
 //
     private String checkAttributeifNull(Element e, String s) {
-        if (e.getAttribute(s) != null)
+        if (e.getAttribute(s) != null) {
+            if (e.getNodeName().equals("button")) {
+                NamedNodeMap nodeList = e.getAttributes();
+                for (int i = 0; i < nodeList.getLength(); i++) {
+                    Node n = nodeList.item(i);
+                    if (n.getNodeName().equals("goto")) {
+                        String temp = e.getAttribute("goto");
+                        e.removeAttribute("goto");
+                        e.setAttribute("go_to", temp);
+                    }
+                }
+            }if (e.getParentNode().getNodeName().equals("button")) {
+                NamedNodeMap nodeList = e.getAttributes();
+                for (int i = 0; i < nodeList.getLength(); i++) {
+                    Node n = nodeList.item(i);
+                    if (n.getNodeName().equals("combine")) {
+                        String temp = e.getAttribute("combine");
+                        e.removeAttribute("combine");
+                        e.setAttribute("combineButton", temp);
+                    }
+                }
+            }
             return e.getAttribute(s);
-        else
+        } else
             return "";
     }
 //
@@ -273,6 +295,96 @@ public class FsdlParser {
             System.err.println("fuck frogans.\n" + e);
         }
     }
+
+
+    public void buttonParsing() {
+        try {
+            ObservableList<LayerFSDL> layers = FXCollections.observableArrayList();
+            ObservableList<ButtonFSDL> buttons = FXCollections.observableArrayList();
+            List<FSDLElements.layerButtonAttributes> layerButtonAttributes = Arrays.asList(FSDLElements.layerButtonAttributes.values());
+            List<FSDLElements.buttonAttributes> buttonAttributes = Arrays.asList(FSDLElements.buttonAttributes.values());
+
+            DocumentBuilderFactory factory =
+                    DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(file);
+            doc.getDocumentElement().normalize();
+
+            Element element = doc.getDocumentElement();
+            System.out.println(element.getNodeName());
+
+            NodeList nodeList = element.getChildNodes();
+
+
+            Class<?> aButtonClass = Class.forName("com.frogans.designer.model.Elements.ButtonFSDL");
+            Object objButton = aButtonClass.newInstance();
+
+            Class<?> aLayerClass = Class.forName("com.frogans.designer.model.Elements.LayerFSDL");
+            Object objLayer = aLayerClass.newInstance();
+
+            Class[] paramString = new Class[1];
+            paramString[0] = String.class;
+            Class[] paramLayer = new Class[1];
+            paramLayer[0] = LayerFSDL.class;
+
+            Element element1 = null;
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+                if (node.getNodeType() != Node.TEXT_NODE && node.getNodeType() != Node.COMMENT_NODE) {
+                    if (node.getNodeName().equals("button")) {
+                        objButton = aButtonClass.newInstance();
+                        for (FSDLElements.buttonAttributes b : buttonAttributes) {
+                            element1 = (Element) node;
+                            try {
+                                Method method = aButtonClass.getDeclaredMethod("set" + b.toString(), paramString);
+                                method.invoke(objButton, checkAttributeifNull(element1, b.toString()));
+                            } catch (Exception e1) {
+                                System.err.println("Seuury :\n" + e1);
+                            }
+                        }
+                        NodeList nodeList1 = element1.getChildNodes();
+                        for (int j = 0; j < nodeList1.getLength(); j++) {
+                            Node node1 = nodeList1.item(j);
+                            if (node1.getNodeType() != Node.TEXT_NODE && node1.getNodeType() != Node.COMMENT_NODE) {
+                                if (node1.getNodeName().equals("layer")) {
+                                    objLayer = aLayerClass.newInstance();
+                                    for (FSDLElements.layerButtonAttributes e : layerButtonAttributes) {
+                                        Element element2 = (Element) node1;
+                                        try {
+                                            Method method1 = aLayerClass.getDeclaredMethod("set" + e.toString(), paramString);
+                                            method1.invoke(objLayer, checkAttributeifNull(element2, e.toString()));
+                                        } catch (Exception e2) {
+                                            System.err.println("JKHGF :\n" + e2);
+                                        }
+                                    }
+//                                Method method = aButtonClass.getDeclaredMethod("setLayersButton", paramLayer);
+//                                method.invoke(objButton, (LayerFSDL) objLayer);
+                                    layers.add((LayerFSDL) objLayer);
+
+                                }
+                            }
+
+                        }
+                        buttons.add((ButtonFSDL) objButton);
+
+                    }
+                }
+            }
+
+            layers.forEach(e -> {
+                System.out.println("Mok lili  " + e);
+            });
+
+        } catch (
+                Exception e
+                )
+
+        {
+            System.err.println("FUCK CHNOO.\n" + e);
+        }
+    }
+
+
 }
 
 

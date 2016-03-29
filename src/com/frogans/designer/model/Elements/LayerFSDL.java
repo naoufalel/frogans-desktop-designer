@@ -18,14 +18,14 @@ public class LayerFSDL {
     // Mandatory shit
     private StringProperty layerid;
 
-    private StringProperty leapoutValue;
+    private StringProperty leapout;
 
-    private StringProperty combineValue;
+    private StringProperty combine;
 
-    private StringProperty combineButtonValue;
+    private StringProperty combineButton;
 
 
-    private StringProperty[] leapout = {
+    private StringProperty[] leapoutArray = {
             new SimpleStringProperty("all"),
             new SimpleStringProperty("lead"),
             new SimpleStringProperty("vigentte")
@@ -34,12 +34,12 @@ public class LayerFSDL {
 
     private StringProperty pos;
 
-    private StringProperty[] combine = {
+    private StringProperty[] combineArray = {
             new SimpleStringProperty("add"),
             new SimpleStringProperty("cutout"),
             new SimpleStringProperty("inter")
     };
-    private StringProperty[] combineButton = {
+    private StringProperty[] combineButtonArray = {
             new SimpleStringProperty("add"),
             new SimpleStringProperty("clip"),
             new SimpleStringProperty("cutout"),
@@ -48,8 +48,8 @@ public class LayerFSDL {
 
 
     // Optional shit
-    private StringProperty flipValue;
-    private StringProperty[] flip = {
+    private StringProperty flip;
+    private StringProperty[] flipArray = {
             new SimpleStringProperty("none"),
             new SimpleStringProperty("xdir"),
             new SimpleStringProperty("ydir"),
@@ -63,8 +63,8 @@ public class LayerFSDL {
 
     private StringProperty angle;
 
-    private StringProperty alignValue;
-    private StringProperty[] align = {
+    private StringProperty align;
+    private StringProperty[] alignArray = {
             new SimpleStringProperty("left-top"),
             new SimpleStringProperty("left-middle"),
             new SimpleStringProperty("left-bottom"),
@@ -81,8 +81,8 @@ public class LayerFSDL {
 
 
     // Mandatory and optional shit
-    private StringProperty visibleValue;
-    private StringProperty[] visible = {
+    private StringProperty visible;
+    private StringProperty[] visibleArray = {
             new SimpleStringProperty("always"),
             new SimpleStringProperty("nofocus"),
             new SimpleStringProperty("focus")
@@ -91,19 +91,20 @@ public class LayerFSDL {
 
     public LayerFSDL(){
         this.layerid = new SimpleStringProperty("");
-        this.leapoutValue = new SimpleStringProperty("");
+        this.leapout = new SimpleStringProperty("");
         this.resref = new SimpleStringProperty("");
-        this.flipValue = new SimpleStringProperty("");
+        this.flip = new SimpleStringProperty("");
         this.filterref = new SimpleStringProperty("");
         this.reliefref = new SimpleStringProperty("");
         this.blur = new SimpleStringProperty("");
         this.opacity = new SimpleStringProperty("");
         this.angle = new SimpleStringProperty("");
         this.pos = new SimpleStringProperty("");
-        this.alignValue = new SimpleStringProperty("");
-        this.combineValue = new SimpleStringProperty("");
+        this.align = new SimpleStringProperty("");
+        this.combine = new SimpleStringProperty("");
         this.shadowref = new SimpleStringProperty("");
-
+        this.combineButton = new SimpleStringProperty("");
+        this.visible = new SimpleStringProperty("");
     }
 
     /**
@@ -139,17 +140,17 @@ public class LayerFSDL {
                      StringProperty shadowref
     ) {
         this.layerid = layerid;
-        this.leapoutValue = leapoutValue;
+        this.leapout = leapoutValue;
         this.resref = resref;
-        this.flipValue = flipValue;
+        this.flip = flipValue;
         this.filterref = filterref;
         this.reliefref = reliefref;
         this.blur = blur;
         this.opacity = opacity;
         this.angle = angle;
         this.pos = pos;
-        this.alignValue = alignValue;
-        this.combineValue = combineValue;
+        this.align = alignValue;
+        this.combine = combineValue;
         this.shadowref = shadowref;
 
     }
@@ -188,19 +189,19 @@ public class LayerFSDL {
                      StringProperty visibleValue
     ) {
         this.layerid = layerid;
-        this.leapoutValue = leapoutValue;
+        this.leapout = leapoutValue;
         this.resref = resref;
-        this.flipValue = flipValue;
+        this.flip = flipValue;
         this.filterref = filterref;
         this.reliefref = reliefref;
         this.blur = blur;
         this.opacity = opacity;
         this.angle = angle;
         this.pos = pos;
-        this.alignValue = alignValue;
-        this.combineButtonValue = combineButtonValue;
+        this.align = alignValue;
+        this.combineButton = combineButtonValue;
         this.shadowref = shadowref;
-        this.visibleValue = visibleValue;
+        this.visible = visibleValue;
     }
 
     public String getLayerid() {
@@ -211,44 +212,28 @@ public class LayerFSDL {
         return layerid;
     }
 
-    public void setlayerid(String layerid) {
-        this.layerid.set(layerid);
+    public String getLeapout() {
+        return leapout.get();
     }
 
-    public String getLeapoutValue() {
-        return leapoutValue.get();
+    public StringProperty leapoutProperty() {
+        return leapout;
     }
 
-    public StringProperty leapoutValueProperty() {
-        return leapoutValue;
+    public String getCombine() {
+        return combine.get();
     }
 
-    public void setleapout(String leapoutValue) {
-        this.leapoutValue.set(leapoutValue);
+    public StringProperty combineProperty() {
+        return combine;
     }
 
-    public String getCombineValue() {
-        return combineValue.get();
+    public String getCombineButton() {
+        return combineButton.get();
     }
 
-    public StringProperty combineValueProperty() {
-        return combineValue;
-    }
-
-    public void setcombine(String combineValue) {
-        this.combineValue.set(combineValue);
-    }
-
-    public String getCombineButtonValue() {
-        return combineButtonValue.get();
-    }
-
-    public StringProperty combineButtonValueProperty() {
-        return combineButtonValue;
-    }
-
-    public void setCombineButton(String combineButtonValue) {
-        this.combineButtonValue.set(combineButtonValue);
+    public StringProperty combineButtonProperty() {
+        return combineButton;
     }
 
     public String getResref() {
@@ -259,10 +244,6 @@ public class LayerFSDL {
         return resref;
     }
 
-    public void setresref(String resref) {
-        this.resref.set(resref);
-    }
-
     public String getPos() {
         return pos.get();
     }
@@ -271,20 +252,12 @@ public class LayerFSDL {
         return pos;
     }
 
-    public void setpos(String pos) {
-        this.pos.set(pos);
+    public String getFlip() {
+        return flip.get();
     }
 
-    public String getFlipValue() {
-        return flipValue.get();
-    }
-
-    public StringProperty flipValueProperty() {
-        return flipValue;
-    }
-
-    public void setflip(String flipValue) {
-        this.flipValue.set(flipValue);
+    public StringProperty flipProperty() {
+        return flip;
     }
 
     public String getFilterref() {
@@ -295,20 +268,12 @@ public class LayerFSDL {
         return filterref;
     }
 
-    public void setfilterref(String filterref) {
-        this.filterref.set(filterref);
-    }
-
     public String getReliefref() {
         return reliefref.get();
     }
 
     public StringProperty reliefrefProperty() {
         return reliefref;
-    }
-
-    public void setreliefref(String reliefref) {
-        this.reliefref.set(reliefref);
     }
 
     public String getBlur() {
@@ -319,20 +284,12 @@ public class LayerFSDL {
         return blur;
     }
 
-    public void setblur(String blur) {
-        this.blur.set(blur);
-    }
-
     public String getOpacity() {
         return opacity.get();
     }
 
     public StringProperty opacityProperty() {
         return opacity;
-    }
-
-    public void setopacity(String opacity) {
-        this.opacity.set(opacity);
     }
 
     public String getAngle() {
@@ -343,20 +300,12 @@ public class LayerFSDL {
         return angle;
     }
 
-    public void setangle(String angle) {
-        this.angle.set(angle);
+    public String getAlign() {
+        return align.get();
     }
 
-    public String getAlignValue() {
-        return alignValue.get();
-    }
-
-    public StringProperty alignValueProperty() {
-        return alignValue;
-    }
-
-    public void setalign(String alignValue) {
-        this.alignValue.set(alignValue);
+    public StringProperty alignProperty() {
+        return align;
     }
 
     public String getShadowref() {
@@ -367,44 +316,94 @@ public class LayerFSDL {
         return shadowref;
     }
 
+    public String getVisible() {
+        return visible.get();
+    }
+
+    public StringProperty visibleProperty() {
+        return visible;
+    }
+
+
+    public void setlayerid(String layerid) {
+        this.layerid.set(layerid);
+    }
+
+    public void setleapout(String leapout) {
+        this.leapout.set(leapout);
+    }
+
+    public void setcombine(String combine) {
+        this.combine.set(combine);
+    }
+
+    public void setcombineButton(String combineButton) {
+        this.combineButton.set(combineButton);
+    }
+
+    public void setresref(String resref) {
+        this.resref.set(resref);
+    }
+
+    public void setpos(String pos) {
+        this.pos.set(pos);
+    }
+
+    public void setflip(String flip) {
+        this.flip.set(flip);
+    }
+
+    public void setfilterref(String filterref) {
+        this.filterref.set(filterref);
+    }
+
+    public void setreliefref(String reliefref) {
+        this.reliefref.set(reliefref);
+    }
+
+    public void setblur(String blur) {
+        this.blur.set(blur);
+    }
+
+    public void setopacity(String opacity) {
+        this.opacity.set(opacity);
+    }
+
+    public void setangle(String angle) {
+        this.angle.set(angle);
+    }
+
+    public void setalign(String align) {
+        this.align.set(align);
+    }
+
     public void setshadowref(String shadowref) {
         this.shadowref.set(shadowref);
     }
 
-    public String getVisibleValue() {
-        return visibleValue.get();
-    }
-
-    public StringProperty visibleValueProperty() {
-        return visibleValue;
-    }
-
-    public void setVisibleValue(String visibleValue) {
-        this.visibleValue.set(visibleValue);
+    public void setvisible(String visible) {
+        this.visible.set(visible);
     }
 
     @Override
     public String toString() {
         return "LayerFSDL{" +
                 "layerid=" + layerid +
-                ", leapoutValue=" + leapoutValue +
-                ", combineValue=" + combineValue +
-                ", leapout=" + Arrays.toString(leapout) +
+                ", leapout=" + leapout +
+                ", combine=" + combine +
+                ", combineButton=" + combineButton +
                 ", resref=" + resref +
                 ", pos=" + pos +
-                ", combine=" + Arrays.toString(combine) +
-                ", combineButton=" + Arrays.toString(combineButton) +
-                ", flipValue=" + flipValue +
-                ", flip=" + Arrays.toString(flip) +
+                ", flip=" + flip +
                 ", filterref=" + filterref +
                 ", reliefref=" + reliefref +
                 ", blur=" + blur +
                 ", opacity=" + opacity +
                 ", angle=" + angle +
-                ", alignValue=" + alignValue +
-                ", align=" + Arrays.toString(align) +
+                ", align=" + align +
                 ", shadowref=" + shadowref +
-                ", visibleValue=" + visibleValue +
+                ", visible=" + visible +
                 '}';
     }
+
 }
