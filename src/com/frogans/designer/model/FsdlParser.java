@@ -2,6 +2,7 @@ package com.frogans.designer.model;
 
 
 import com.frogans.designer.model.Elements.ButtonFSDL;
+import com.frogans.designer.model.Elements.FileFSDL;
 import com.frogans.designer.model.Elements.LayerFSDL;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -182,16 +183,7 @@ public class FsdlParser {
         try {
             ObservableList<TreeItem<String>> a = FXCollections.observableArrayList();
 
-            DocumentBuilderFactory factory =
-                    DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(file);
-            doc.getDocumentElement().normalize();
-
-            Element element = doc.getDocumentElement();
-            System.out.println(element.getNodeName());
-            // get tags after frogans-fsdl
-            NodeList nodeList = element.getChildNodes();
+            NodeList nodeList = getNodeListFromRoot();
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
                 if (node.getNodeType() != Node.TEXT_NODE && node.getNodeType() != Node.COMMENT_NODE) {
@@ -251,16 +243,7 @@ public class FsdlParser {
             ObservableList<LayerFSDL> layers = FXCollections.observableArrayList();
             List<FSDLElements.layerAttributes> layerAttributes = Arrays.asList(FSDLElements.layerAttributes.values());
 
-            DocumentBuilderFactory factory =
-                    DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(file);
-            doc.getDocumentElement().normalize();
-
-            Element element = doc.getDocumentElement();
-            System.out.println(element.getNodeName());
-
-            NodeList nodeList = element.getChildNodes();
+            NodeList nodeList = getNodeListFromRoot();
 
 
             Class<?> aClass = Class.forName("com.frogans.designer.model.Elements.LayerFSDL");
@@ -296,6 +279,19 @@ public class FsdlParser {
         }
     }
 
+    private NodeList getNodeListFromRoot() throws ParserConfigurationException, SAXException, IOException {
+        DocumentBuilderFactory factory =
+                DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = builder.parse(file);
+        doc.getDocumentElement().normalize();
+
+        Element element = doc.getDocumentElement();
+        System.out.println(element.getNodeName());
+
+        return element.getChildNodes();
+    }
+
 
     public void buttonParsing() {
         try {
@@ -304,16 +300,7 @@ public class FsdlParser {
             List<FSDLElements.layerButtonAttributes> layerButtonAttributes = Arrays.asList(FSDLElements.layerButtonAttributes.values());
             List<FSDLElements.buttonAttributes> buttonAttributes = Arrays.asList(FSDLElements.buttonAttributes.values());
 
-            DocumentBuilderFactory factory =
-                    DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(file);
-            doc.getDocumentElement().normalize();
-
-            Element element = doc.getDocumentElement();
-            System.out.println(element.getNodeName());
-
-            NodeList nodeList = element.getChildNodes();
+            NodeList nodeList = getNodeListFromRoot();
 
 
             Class<?> aButtonClass = Class.forName("com.frogans.designer.model.Elements.ButtonFSDL");
@@ -326,6 +313,8 @@ public class FsdlParser {
             paramString[0] = String.class;
             Class[] paramLayer = new Class[1];
             paramLayer[0] = LayerFSDL.class;
+
+            ButtonFSDL buttonFSDL = new ButtonFSDL();
 
             Element element1 = null;
             for (int i = 0; i < nodeList.getLength(); i++) {
@@ -357,23 +346,27 @@ public class FsdlParser {
                                             System.err.println("JKHGF :\n" + e2);
                                         }
                                     }
-//                                Method method = aButtonClass.getDeclaredMethod("setLayersButton", paramLayer);
-//                                method.invoke(objButton, (LayerFSDL) objLayer);
-                                    layers.add((LayerFSDL) objLayer);
+                                    buttonFSDL = (ButtonFSDL) objButton;
+                                    buttonFSDL.getLayersButton().add((LayerFSDL) objLayer);
+                                    //layers.add((LayerFSDL) objLayer);
 
                                 }
                             }
 
                         }
-                        buttons.add((ButtonFSDL) objButton);
+                        buttons.add(buttonFSDL);
 
                     }
                 }
             }
 
-            layers.forEach(e -> {
-                System.out.println("Mok lili  " + e);
-            });
+//            buttons.forEach(e->{
+//                e.getLayersButton().forEach(t->{
+//                    System.out.println(t);
+//                });
+//            });
+
+            buttons.forEach(System.out::println);
 
         } catch (
                 Exception e
@@ -383,6 +376,50 @@ public class FsdlParser {
             System.err.println("FUCK CHNOO.\n" + e);
         }
     }
+
+
+    public void fileParsing(){
+        try {
+
+            ObservableList<FileFSDL> files = FXCollections.observableArrayList();
+            List<FSDLElements.FileFsdlTags> fileAttribute = Arrays.asList(FSDLElements.FileFsdlTags.values());
+
+            NodeList nodeList = getNodeListFromRoot();
+
+
+            Class<?> aFileClass = Class.forName("com.frogans.designer.model.Elements.FileFSDL");
+            Object objFile = aFileClass.newInstance();
+
+            Class[] paramString = new Class[1];
+            paramString[0] = String.class;
+
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+                if (node.getNodeType() != Node.TEXT_NODE && node.getNodeType() != Node.COMMENT_NODE) {
+                    if(node.getNodeName().equals("file")){
+                        objFile = aFileClass.newInstance();
+                        Element element1 = (Element) node;
+                        for(FSDLElements.FileFsdlTags f : fileAttribute){
+                            Method m = aFileClass.getDeclaredMethod("set"+f.toString(), paramString);
+                            m.invoke(objFile, checkAttributeifNull(element1,f.toString()));
+                        }
+                        files.add((FileFSDL) objFile);
+                    }
+                }
+
+            }
+
+            files.forEach((e->{
+                System.out.println(e);
+            }));
+
+        } catch (Exception e) {
+            System.err.println("oui ....\n"+e);
+        }
+    }
+
+
 
 
 }
