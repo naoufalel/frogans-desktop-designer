@@ -1,4 +1,4 @@
-package com.frogans.designer.model;
+package com.frogans.designer.model.Elements;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -10,7 +10,7 @@ import java.util.Arrays;
  */
 public class FilterFSDL {
     private StringProperty effect;
-    private StringProperty[]effectArray={
+    private StringProperty[] effectArray = {
             new SimpleStringProperty("light"),
             new SimpleStringProperty("contrast"),
             new SimpleStringProperty("saturation"),
@@ -29,36 +29,29 @@ public class FilterFSDL {
     private StringProperty tolerance;
     private StringProperty color;
 
-    @Override
-    public String toString() {
-        return "FilterFSDL{" +
-                "effectValue=" + effectValue +
-                ", effect=" + Arrays.toString(effect) +
-                ", level=" + level +
-                ", angle=" + angle +
-                ", tolerance=" + tolerance +
-                ", color=" + color +
-                '}';
+
+    public FilterFSDL() {
+        this.effect = new SimpleStringProperty("");
+        this.level = new SimpleStringProperty("");
+        this.angle = new SimpleStringProperty("");
+        this.tolerance = new SimpleStringProperty("");
+        this.color = new SimpleStringProperty("");
     }
 
-    public String getEffectValue() {
-        return effectValue.get();
-    }
-
-    public StringProperty effectValueProperty() {
-        return effectValue;
-    }
-
-    public void seteffectvalue(String effectValue) {
-        this.effectValue.set(effectValue);
-    }
-
-    public StringProperty[] getEffect() {
-        return effect;
-    }
-
-    public void seteffect(StringProperty[] effect) {
+    public FilterFSDL(StringProperty effect, StringProperty level, StringProperty angle, StringProperty tolerance, StringProperty color) {
         this.effect = effect;
+        this.level = level;
+        this.angle = angle;
+        this.tolerance = tolerance;
+        this.color = color;
+    }
+
+    public String getEffect() {
+        return effect.get();
+    }
+
+    public StringProperty effectProperty() {
+        return effect;
     }
 
     public String getLevel() {
@@ -69,20 +62,12 @@ public class FilterFSDL {
         return level;
     }
 
-    public void setlevel(String level) {
-        this.level.set(level);
-    }
-
     public String getAngle() {
         return angle.get();
     }
 
     public StringProperty angleProperty() {
         return angle;
-    }
-
-    public void setangle(String angle) {
-        this.angle.set(angle);
     }
 
     public String getTolerance() {
@@ -93,10 +78,6 @@ public class FilterFSDL {
         return tolerance;
     }
 
-    public void settolerance(String tolerance) {
-        this.tolerance.set(tolerance);
-    }
-
     public String getColor() {
         return color.get();
     }
@@ -105,21 +86,34 @@ public class FilterFSDL {
         return color;
     }
 
+    public void seteffect(String effect) {
+        this.effect.set(effect);
+    }
+
+    public void setlevel(String level) {
+        this.level.set(level);
+    }
+
+    public void setangle(String angle) {
+        this.angle.set(angle);
+    }
+
+    public void settolerance(String tolerance) {
+        this.tolerance.set(tolerance);
+    }
+
     public void setcolor(String color) {
         this.color.set(color);
     }
 
-    public FilterFSDL(StringProperty effectValue,
-                      StringProperty[] effect,
-                      StringProperty level,
-                      StringProperty angle,
-                      StringProperty tolerance,
-                      StringProperty color) {
-        this.effectValue = effectValue;
-        this.effect = effect;
-        this.level = level;
-        this.angle = angle;
-        this.tolerance = tolerance;
-        this.color = color;
+    @Override
+    public String toString() {
+        return "FilterFSDL{" +
+                "effect=" + effect +
+                ", level=" + level +
+                ", angle=" + angle +
+                ", tolerance=" + tolerance +
+                ", color=" + color +
+                '}';
     }
 }

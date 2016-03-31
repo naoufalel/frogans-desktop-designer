@@ -1,4 +1,4 @@
-package com.frogans.designer.model;
+package com.frogans.designer.model.Elements;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -12,7 +12,7 @@ public class MergeFSDL {
 
     private StringProperty resref;
     private StringProperty flip;
-    private StringProperty[] flipArray={
+    private StringProperty[] flipArray = {
             new SimpleStringProperty("none"),
             new SimpleStringProperty("xdir"),
             new SimpleStringProperty("ydir"),
@@ -25,7 +25,7 @@ public class MergeFSDL {
     private StringProperty angle;
     private StringProperty pos;
     private StringProperty align;
-    private StringProperty[] alignArray={
+    private StringProperty[] alignArray = {
             new SimpleStringProperty("left-top"),
             new SimpleStringProperty("left-middle"),
             new SimpleStringProperty("left-bottom"),
@@ -37,7 +37,7 @@ public class MergeFSDL {
             new SimpleStringProperty("right-bottom")
     };
     private StringProperty combine;
-    private StringProperty[] combineArray={
+    private StringProperty[] combineArray = {
             new SimpleStringProperty("add"),
             new SimpleStringProperty("clip"),
             new SimpleStringProperty("cutout"),
@@ -45,24 +45,33 @@ public class MergeFSDL {
     };
     private StringProperty shadowref;
 
-    @Override
-    public String toString() {
-        return "MergeFSDL{" +
-                "resref=" + resref +
-                ", flipValue=" + flipValue +
-                ", flip=" + Arrays.toString(flip) +
-                ", filterref=" + filterref +
-                ", reliefref=" + reliefref +
-                ", blur=" + blur +
-                ", opacity=" + opacity +
-                ", angle=" + angle +
-                ", pos=" + pos +
-                ", alignValue=" + alignValue +
-                ", align=" + Arrays.toString(align) +
-                ", combineValue=" + combineValue +
-                ", combine=" + Arrays.toString(combine) +
-                ", shadowref=" + shadowref +
-                '}';
+
+    public MergeFSDL() {
+        this.resref = new SimpleStringProperty("");
+        this.flip = new SimpleStringProperty("");
+        this.filterref = new SimpleStringProperty("");
+        this.reliefref = new SimpleStringProperty("");
+        this.blur = new SimpleStringProperty("");
+        this.opacity = new SimpleStringProperty("");
+        this.angle = new SimpleStringProperty("");
+        this.pos = new SimpleStringProperty("");
+        this.align = new SimpleStringProperty("");
+        this.combine = new SimpleStringProperty("");
+        this.shadowref = new SimpleStringProperty("");
+    }
+
+    public MergeFSDL(StringProperty resref, StringProperty flip, StringProperty filterref, StringProperty reliefref, StringProperty blur, StringProperty opacity, StringProperty angle, StringProperty pos, StringProperty align, StringProperty combine, StringProperty shadowref) {
+        this.resref = resref;
+        this.flip = flip;
+        this.filterref = filterref;
+        this.reliefref = reliefref;
+        this.blur = blur;
+        this.opacity = opacity;
+        this.angle = angle;
+        this.pos = pos;
+        this.align = align;
+        this.combine = combine;
+        this.shadowref = shadowref;
     }
 
     public String getResref() {
@@ -73,28 +82,12 @@ public class MergeFSDL {
         return resref;
     }
 
-    public void setresref(String resref) {
-        this.resref.set(resref);
+    public String getFlip() {
+        return flip.get();
     }
 
-    public String getFlipValue() {
-        return flipValue.get();
-    }
-
-    public StringProperty flipValueProperty() {
-        return flipValue;
-    }
-
-    public void setflipvalue(String flipValue) {
-        this.flipValue.set(flipValue);
-    }
-
-    public StringProperty[] getFlip() {
+    public StringProperty flipProperty() {
         return flip;
-    }
-
-    public void setflip(StringProperty[] flip) {
-        this.flip = flip;
     }
 
     public String getFilterref() {
@@ -105,20 +98,12 @@ public class MergeFSDL {
         return filterref;
     }
 
-    public void setfilterref(String filterref) {
-        this.filterref.set(filterref);
-    }
-
     public String getReliefref() {
         return reliefref.get();
     }
 
     public StringProperty reliefrefProperty() {
         return reliefref;
-    }
-
-    public void setreliefref(String reliefref) {
-        this.reliefref.set(reliefref);
     }
 
     public String getBlur() {
@@ -129,20 +114,12 @@ public class MergeFSDL {
         return blur;
     }
 
-    public void setblur(String blur) {
-        this.blur.set(blur);
-    }
-
     public String getOpacity() {
         return opacity.get();
     }
 
     public StringProperty opacityProperty() {
         return opacity;
-    }
-
-    public void setopacity(String opacity) {
-        this.opacity.set(opacity);
     }
 
     public String getAngle() {
@@ -153,10 +130,6 @@ public class MergeFSDL {
         return angle;
     }
 
-    public void setangle(String angle) {
-        this.angle.set(angle);
-    }
-
     public String getPos() {
         return pos.get();
     }
@@ -165,48 +138,20 @@ public class MergeFSDL {
         return pos;
     }
 
-    public void setpos(String pos) {
-        this.pos.set(pos);
+    public String getAlign() {
+        return align.get();
     }
 
-    public String getAlignValue() {
-        return alignValue.get();
-    }
-
-    public StringProperty alignValueProperty() {
-        return alignValue;
-    }
-
-    public void setalignvalue(String alignValue) {
-        this.alignValue.set(alignValue);
-    }
-
-    public StringProperty[] getAlign() {
+    public StringProperty alignProperty() {
         return align;
     }
 
-    public void setalign(StringProperty[] align) {
-        this.align = align;
+    public String getCombine() {
+        return combine.get();
     }
 
-    public String getCombineValue() {
-        return combineValue.get();
-    }
-
-    public StringProperty combineValueProperty() {
-        return combineValue;
-    }
-
-    public void setcombinevalue(String combineValue) {
-        this.combineValue.set(combineValue);
-    }
-
-    public StringProperty[] getCombine() {
+    public StringProperty combineProperty() {
         return combine;
-    }
-
-    public void setcombine(StringProperty[] combine) {
-        this.combine = combine;
     }
 
     public String getShadowref() {
@@ -217,37 +162,64 @@ public class MergeFSDL {
         return shadowref;
     }
 
+    public void setresref(String resref) {
+        this.resref.set(resref);
+    }
+
+    public void setflip(String flip) {
+        this.flip.set(flip);
+    }
+
+    public void setfilterref(String filterref) {
+        this.filterref.set(filterref);
+    }
+
+    public void setreliefref(String reliefref) {
+        this.reliefref.set(reliefref);
+    }
+
+    public void setblur(String blur) {
+        this.blur.set(blur);
+    }
+
+    public void setopacity(String opacity) {
+        this.opacity.set(opacity);
+    }
+
+    public void setangle(String angle) {
+        this.angle.set(angle);
+    }
+
+    public void setpos(String pos) {
+        this.pos.set(pos);
+    }
+
+    public void setalign(String align) {
+        this.align.set(align);
+    }
+
+    public void setcombine(String combine) {
+        this.combine.set(combine);
+    }
+
     public void setshadowref(String shadowref) {
         this.shadowref.set(shadowref);
     }
 
-    public MergeFSDL(StringProperty resref,
-                     StringProperty flipValue,
-                     StringProperty[] flip,
-                     StringProperty filterref,
-                     StringProperty reliefref,
-                     StringProperty blur,
-                     StringProperty opacity,
-                     StringProperty angle,
-                     StringProperty pos,
-                     StringProperty alignValue,
-                     StringProperty[] align,
-                     StringProperty combineValue,
-                     StringProperty[] combine,
-                     StringProperty shadowref) {
-        this.resref = resref;
-        this.flipValue = flipValue;
-        this.flip = flip;
-        this.filterref = filterref;
-        this.reliefref = reliefref;
-        this.blur = blur;
-        this.opacity = opacity;
-        this.angle = angle;
-        this.pos = pos;
-        this.alignValue = alignValue;
-        this.align = align;
-        this.combineValue = combineValue;
-        this.combine = combine;
-        this.shadowref = shadowref;
+    @Override
+    public String toString() {
+        return "MergeFSDL{" +
+                "resref=" + resref +
+                ", flip=" + flip +
+                ", filterref=" + filterref +
+                ", reliefref=" + reliefref +
+                ", blur=" + blur +
+                ", opacity=" + opacity +
+                ", angle=" + angle +
+                ", pos=" + pos +
+                ", align=" + align +
+                ", combine=" + combine +
+                ", shadowref=" + shadowref +
+                '}';
     }
 }
