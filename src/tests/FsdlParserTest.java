@@ -2,13 +2,12 @@ package tests;
 
 import com.frogans.designer.model.FsdlParser;
 import javafx.scene.control.TreeItem;
-import org.testng.annotations.Test;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by naouf on 3/22/2016.
