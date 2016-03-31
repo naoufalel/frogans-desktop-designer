@@ -1,27 +1,23 @@
 package com.frogans.designer.model.Elements;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
- * Created by Aladdin on 29-Mar-16.
+ * Created by Naoufal EL BANTLI on 29-Mar-16.
  */
 public class NextFSDL {
 
     private StringProperty delay;
     private StringProperty fileref;
 
-    public NextFSDL(StringProperty delay,
-                    StringProperty fileref) {
+    public NextFSDL() {
+        this.delay = new SimpleStringProperty("");
+        this.fileref = new SimpleStringProperty("");
+    }
+    public NextFSDL(StringProperty delay, StringProperty fileref) {
         this.delay = delay;
         this.fileref = fileref;
-    }
-
-    @Override
-    public String toString() {
-        return "NextFSDL{" +
-                "delay=" + delay +
-                ", fileref=" + fileref +
-                '}';
     }
 
     public String getDelay() {
@@ -30,10 +26,6 @@ public class NextFSDL {
 
     public StringProperty delayProperty() {
         return delay;
-    }
-
-    public void setdelay(String delay) {
-        this.delay.set(delay);
     }
 
     public String getFileref() {
@@ -46,5 +38,17 @@ public class NextFSDL {
 
     public void setfileref(String fileref) {
         this.fileref.set(fileref);
+    }
+
+    public void setdelay(String delay) {
+        this.delay.set(delay);
+    }
+
+    @Override
+    public String toString() {
+        return "NextFSDL{" +
+                "delay=" + delay +
+                ", fileref=" + fileref +
+                '}';
     }
 }

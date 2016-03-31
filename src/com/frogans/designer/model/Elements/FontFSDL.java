@@ -6,7 +6,7 @@ import javafx.beans.property.StringProperty;
 import java.util.Arrays;
 
 /**
- * Created by Aladdin on 29-Mar-16.
+ * Created by Naoufal EL BANTLI on 29-Mar-16.
  */
 public class FontFSDL {
 

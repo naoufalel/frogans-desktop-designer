@@ -38,7 +38,7 @@ public class ResimageFSDL {
                 new SimpleStringProperty("zoom"),
                 new SimpleStringProperty("echo"),
                 new SimpleStringProperty("tile")
-    }
+    };
 
     private StringProperty adjust;
     private StringProperty origin;

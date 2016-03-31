@@ -1,5 +1,6 @@
-package com.frogans.designer.model;
+package com.frogans.designer.model.Elements;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
@@ -12,14 +13,17 @@ public class ReliefFSDL {
     private StringProperty blur;
     private StringProperty opacity;
 
-    @Override
-    public String toString() {
-        return "ReliefFSDL{" +
-                "rpos=" + rpos +
-                ", color=" + color +
-                ", blur=" + blur +
-                ", opacity=" + opacity +
-                '}';
+    public ReliefFSDL() {
+        this.rpos = new SimpleStringProperty("");
+        this.color = new SimpleStringProperty("");
+        this.blur = new SimpleStringProperty("");
+        this.opacity = new SimpleStringProperty("");
+    }
+    public ReliefFSDL(StringProperty rpos, StringProperty color, StringProperty blur, StringProperty opacity) {
+        this.rpos = rpos;
+        this.color = color;
+        this.blur = blur;
+        this.opacity = opacity;
     }
 
     public String getRpos() {
@@ -30,20 +34,12 @@ public class ReliefFSDL {
         return rpos;
     }
 
-    public void setrpos(String rpos) {
-        this.rpos.set(rpos);
-    }
-
     public String getColor() {
         return color.get();
     }
 
     public StringProperty colorProperty() {
         return color;
-    }
-
-    public void setcolor(String color) {
-        this.color.set(color);
     }
 
     public String getBlur() {
@@ -54,10 +50,6 @@ public class ReliefFSDL {
         return blur;
     }
 
-    public void setblur(String blur) {
-        this.blur.set(blur);
-    }
-
     public String getOpacity() {
         return opacity.get();
     }
@@ -66,17 +58,30 @@ public class ReliefFSDL {
         return opacity;
     }
 
+
+    public void setrpos(String rpos) {
+        this.rpos.set(rpos);
+    }
+
+    public void setcolor(String color) {
+        this.color.set(color);
+    }
+
+    public void setblur(String blur) {
+        this.blur.set(blur);
+    }
+
     public void setopacity(String opacity) {
         this.opacity.set(opacity);
     }
 
-    public ReliefFSDL(StringProperty rpos,
-                      StringProperty color,
-                      StringProperty blur,
-                      StringProperty opacity) {
-        this.rpos = rpos;
-        this.color = color;
-        this.blur = blur;
-        this.opacity = opacity;
+    @Override
+    public String toString() {
+        return "ReliefFSDL{" +
+                "rpos=" + rpos +
+                ", color=" + color +
+                ", blur=" + blur +
+                ", opacity=" + opacity +
+                '}';
     }
 }
