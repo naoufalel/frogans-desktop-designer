@@ -19,7 +19,10 @@ public class ReliefFSDL {
         this.blur = new SimpleStringProperty("");
         this.opacity = new SimpleStringProperty("");
     }
-    public ReliefFSDL(StringProperty rpos, StringProperty color, StringProperty blur, StringProperty opacity) {
+    public ReliefFSDL(StringProperty rpos,
+                      StringProperty color,
+                      StringProperty blur,
+                      StringProperty opacity) {
         this.rpos = rpos;
         this.color = color;
         this.blur = blur;

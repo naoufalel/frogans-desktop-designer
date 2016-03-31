@@ -60,7 +60,17 @@ public class MergeFSDL {
         this.shadowref = new SimpleStringProperty("");
     }
 
-    public MergeFSDL(StringProperty resref, StringProperty flip, StringProperty filterref, StringProperty reliefref, StringProperty blur, StringProperty opacity, StringProperty angle, StringProperty pos, StringProperty align, StringProperty combine, StringProperty shadowref) {
+    public MergeFSDL(StringProperty resref,
+                     StringProperty flip,
+                     StringProperty filterref,
+                     StringProperty reliefref,
+                     StringProperty blur,
+                     StringProperty opacity,
+                     StringProperty angle,
+                     StringProperty pos,
+                     StringProperty align,
+                     StringProperty combine,
+                     StringProperty shadowref) {
         this.resref = resref;
         this.flip = flip;
         this.filterref = filterref;

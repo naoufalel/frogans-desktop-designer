@@ -44,7 +44,17 @@ public class FontFSDL {
         this.color = new SimpleStringProperty("");
     }
 
-    public FontFSDL(StringProperty scripts, StringProperty pfont, StringProperty height, StringProperty spacing, StringProperty stretching, StringProperty xbold, StringProperty xitalic, StringProperty underline, StringProperty strikeout, StringProperty opacity, StringProperty color) {
+    public FontFSDL(StringProperty scripts,
+                    StringProperty pfont,
+                    StringProperty height,
+                    StringProperty spacing,
+                    StringProperty stretching,
+                    StringProperty xbold,
+                    StringProperty xitalic,
+                    StringProperty underline,
+                    StringProperty strikeout,
+                    StringProperty opacity,
+                    StringProperty color) {
         this.scripts = scripts;
         this.pfont = pfont;
         this.height = height;

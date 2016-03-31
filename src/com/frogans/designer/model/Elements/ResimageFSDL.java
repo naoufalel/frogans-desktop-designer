@@ -1,4 +1,4 @@
-package com.frogans.designer.model;
+package com.frogans.designer.model.Elements;
 
 
 import com.sun.xml.internal.ws.server.ServerRtException;
@@ -43,119 +43,139 @@ public class ResimageFSDL {
     private StringProperty adjust;
     private StringProperty origin;
 
-    public StringProperty getResid() {
+    public ResimageFSDL() {
+        this.resid = new SimpleStringProperty("");
+        this.size = new SimpleStringProperty("");
+        this.fileref = new SimpleStringProperty("");
+        this.selection = new SimpleStringProperty("");
+        this.bounds = new SimpleStringProperty("");
+        this.aspect = new SimpleStringProperty("");
+        this.adjust = new SimpleStringProperty("");
+        this.origin = new SimpleStringProperty("");
+    }
+    public ResimageFSDL(StringProperty resid,
+                        StringProperty size,
+                        StringProperty fileref,
+                        StringProperty selection,
+                        StringProperty bounds,
+                        StringProperty aspect,
+                        StringProperty adjust,
+                        StringProperty origin) {
+        this.resid = resid;
+        this.size = size;
+        this.fileref = fileref;
+        this.selection = selection;
+        this.bounds = bounds;
+        this.aspect = aspect;
+        this.adjust = adjust;
+        this.origin = origin;
+    }
+
+    public String getResid() {
+        return resid.get();
+    }
+
+    public StringProperty residProperty() {
         return resid;
     }
 
-    public void setresid(StringProperty resid) {
-        this.resid = resid;
+    public String getSize() {
+        return size.get();
     }
 
-    public StringProperty getOrigin() {
-        return origin;
-    }
-
-    public void setorigin(StringProperty origin) {
-        this.origin = origin;
-    }
-
-    public StringProperty getAdjust() {
-        return adjust;
-    }
-
-    public void setadjust(StringProperty adjust) {
-        this.adjust = adjust;
-    }
-
-    public StringProperty getAspectValue() {
-        return aspectValue;
-    }
-
-    public void setaspectvalue(StringProperty aspectValue) {
-        this.aspectValue = aspectValue;
-    }
-
-    public StringProperty[] getAspect() {
-        return aspect;
-    }
-
-    public void setaspect(StringProperty[] aspect) {
-        this.aspect = aspect;
-    }
-
-    public StringProperty getBounds() {
-        return bounds;
-    }
-
-    public void setbounds(StringProperty bounds) {
-        this.bounds = bounds;
-    }
-
-    public StringProperty[] getSelection() {
-        return selection;
-    }
-
-    public void setselection(StringProperty[] selection) {
-        this.selection = selection;
-    }
-
-    public StringProperty getSelectionValue() {
-        return selectionValue;
-    }
-
-    public void setselectionvalue(StringProperty selectionValue) {
-        this.selectionValue = selectionValue;
-    }
-
-    public StringProperty getFileref() {
-        return fileref;
-    }
-
-    public void setfileref(StringProperty fileref) {
-        this.fileref = fileref;
-    }
-
-    public StringProperty getSize() {
+    public StringProperty sizeProperty() {
         return size;
     }
 
-    public void setsize(StringProperty size) {
-        this.size = size;
+    public String getFileref() {
+        return fileref.get();
     }
 
-    public ResimageFSDL(StringProperty adjust,
-                        StringProperty origin,
-                        StringProperty[] aspect,
-                        StringProperty aspectValue,
-                        StringProperty bounds,
-                        StringProperty selectionValue,
-                        StringProperty fileref,
-                        StringProperty[] selection,
-                        StringProperty size,
-                        StringProperty resid) {
-        this.adjust = adjust;
-        this.origin = origin;
-        this.aspect = aspect;
-        this.aspectValue = aspectValue;
-        this.bounds = bounds;
-        this.selectionValue = selectionValue;
-        this.fileref = fileref;
-        this.selection = selection;
-        this.size = size;
-        this.resid = resid;
+    public StringProperty filerefProperty() {
+        return fileref;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    public String getSelection() {
+        return selection.get();
+    }
+
+    public StringProperty selectionProperty() {
+        return selection;
+    }
+
+    public String getBounds() {
+        return bounds.get();
+    }
+
+    public StringProperty boundsProperty() {
+        return bounds;
+    }
+
+    public String getAspect() {
+        return aspect.get();
+    }
+
+    public StringProperty aspectProperty() {
+        return aspect;
+    }
+
+    public String getAdjust() {
+        return adjust.get();
+    }
+
+    public StringProperty adjustProperty() {
+        return adjust;
+    }
+
+    public String getOrigin() {
+        return origin.get();
+    }
+
+    public StringProperty originProperty() {
+        return origin;
+    }
+
+    public void setresid(String resid) {
+        this.resid.set(resid);
+    }
+
+    public void setsize(String size) {
+        this.size.set(size);
+    }
+
+    public void setfileref(String fileref) {
+        this.fileref.set(fileref);
+    }
+
+    public void setselection(String selection) {
+        this.selection.set(selection);
+    }
+
+    public void setbounds(String bounds) {
+        this.bounds.set(bounds);
+    }
+
+    public void setaspect(String aspect) {
+        this.aspect.set(aspect);
+    }
+
+    public void setadjust(String adjust) {
+        this.adjust.set(adjust);
+    }
+
+    public void setorigin(String origin) {
+        this.origin.set(origin);
+    }
+
+    @Override
+    public String toString() {
         return "ResimageFSDL{" +
                 "resid=" + resid +
                 ", size=" + size +
                 ", fileref=" + fileref +
-                ", selectionValue=" + selectionValue +
-                ", selection=" + java.util.Arrays.toString(selection) +
+                ", selection=" + selection +
                 ", bounds=" + bounds +
-                ", aspectValue=" + aspectValue +
-                ", aspect=" + java.util.Arrays.toString(aspect) +
+                ", aspect=" + aspect +
                 ", adjust=" + adjust +
                 ", origin=" + origin +
                 '}';

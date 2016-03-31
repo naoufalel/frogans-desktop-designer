@@ -15,7 +15,8 @@ public class NextFSDL {
         this.delay = new SimpleStringProperty("");
         this.fileref = new SimpleStringProperty("");
     }
-    public NextFSDL(StringProperty delay, StringProperty fileref) {
+    public NextFSDL(StringProperty delay,
+                    StringProperty fileref) {
         this.delay = delay;
         this.fileref = fileref;
     }

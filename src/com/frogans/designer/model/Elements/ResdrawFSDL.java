@@ -1,4 +1,4 @@
-package com.frogans.designer.model;
+package com.frogans.designer.model.Elements;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -6,7 +6,7 @@ import javafx.beans.property.StringProperty;
 import java.util.Arrays;
 
 /**
- * Created by Aladdin on 29-Mar-16.
+ * Created by Naoufal EL BANTLI on 29-Mar-16.
  */
 public class ResdrawFSDL {
 
@@ -27,40 +27,29 @@ public class ResdrawFSDL {
     private StringProperty round;
     private StringProperty color;
 
-    public ResdrawFSDL(StringProperty resid,
-                       StringProperty color,
-                       StringProperty round,
-                       StringProperty thick,
-                       StringProperty[] stroke,
-                       StringProperty[] figure,
-                       StringProperty strokeValue,
-                       StringProperty size,
-                       StringProperty figureValue)
-    {
-        this.resid = resid;
-        this.color = color;
-        this.round = round;
-        this.thick = thick;
-        this.stroke = stroke;
-        this.figure = figure;
-        this.strokeValue = strokeValue;
-        this.size = size;
-        this.figureValue = figureValue;
+    public ResdrawFSDL() {
+        this.resid = new SimpleStringProperty("");
+        this.size = new SimpleStringProperty("");
+        this.figure = new SimpleStringProperty("");
+        this.stroke = new SimpleStringProperty("");
+        this.thick = new SimpleStringProperty("");
+        this.round = new SimpleStringProperty("");
+        this.color = new SimpleStringProperty("");
     }
-
-    @Override
-    public String toString() {
-        return "ResdrawFSDL{" +
-                "resid=" + resid +
-                ", size=" + size +
-                ", figureValue=" + figureValue +
-                ", figure=" + Arrays.toString(figure) +
-                ", strokeValue=" + strokeValue +
-                ", stroke=" + Arrays.toString(stroke) +
-                ", thick=" + thick +
-                ", round=" + round +
-                ", color=" + color +
-                '}';
+    public ResdrawFSDL(StringProperty resid,
+                       StringProperty size,
+                       StringProperty figure,
+                       StringProperty stroke,
+                       StringProperty thick,
+                       StringProperty round,
+                       StringProperty color) {
+        this.resid = resid;
+        this.size = size;
+        this.figure = figure;
+        this.stroke = stroke;
+        this.thick = thick;
+        this.round = round;
+        this.color = color;
     }
 
     public String getResid() {
@@ -71,20 +60,28 @@ public class ResdrawFSDL {
         return resid;
     }
 
-    public void setresid(String resid) {
-        this.resid.set(resid);
+    public String getSize() {
+        return size.get();
     }
 
-    public String getRound() {
-        return round.get();
+    public StringProperty sizeProperty() {
+        return size;
     }
 
-    public StringProperty roundProperty() {
-        return round;
+    public String getFigure() {
+        return figure.get();
     }
 
-    public void setround(String round) {
-        this.round.set(round);
+    public StringProperty figureProperty() {
+        return figure;
+    }
+
+    public String getStroke() {
+        return stroke.get();
+    }
+
+    public StringProperty strokeProperty() {
+        return stroke;
     }
 
     public String getThick() {
@@ -95,8 +92,12 @@ public class ResdrawFSDL {
         return thick;
     }
 
-    public void setthick(String thick) {
-        this.thick.set(thick);
+    public String getRound() {
+        return round.get();
+    }
+
+    public StringProperty roundProperty() {
+        return round;
     }
 
     public String getColor() {
@@ -107,59 +108,44 @@ public class ResdrawFSDL {
         return color;
     }
 
-    public void setcolor(String color) {
-        this.color.set(color);
-    }
-
-    public StringProperty[] getStroke() {
-        return stroke;
-    }
-
-    public void setstroke(StringProperty[] stroke) {
-        this.stroke = stroke;
-    }
-
-    public String getStrokeValue() {
-        return strokeValue.get();
-    }
-
-    public StringProperty strokeValueProperty() {
-        return strokeValue;
-    }
-
-    public void setstrokevalue(String strokeValue) {
-        this.strokeValue.set(strokeValue);
-    }
-
-    public String getSize() {
-        return size.get();
-    }
-
-    public StringProperty sizeProperty() {
-        return size;
+    public void setresid(String resid) {
+        this.resid.set(resid);
     }
 
     public void setsize(String size) {
         this.size.set(size);
     }
 
-    public StringProperty[] getFigure() {
-        return figure;
+    public void setfigure(String figure) {
+        this.figure.set(figure);
     }
 
-    public void setfigure(StringProperty[] figure) {
-        this.figure = figure;
+    public void setstroke(String stroke) {
+        this.stroke.set(stroke);
     }
 
-    public String getFigureValue() {
-        return figureValue.get();
+    public void setthick(String thick) {
+        this.thick.set(thick);
     }
 
-    public StringProperty figureValueProperty() {
-        return figureValue;
+    public void setround(String round) {
+        this.round.set(round);
     }
 
-    public void setfigurevalue(String figureValue) {
-        this.figureValue.set(figureValue);
+    public void setcolor(String color) {
+        this.color.set(color);
+    }
+
+    @Override
+    public String toString() {
+        return "ResdrawFSDL{" +
+                "resid=" + resid +
+                ", size=" + size +
+                ", figure=" + figure +
+                ", stroke=" + stroke +
+                ", thick=" + thick +
+                ", round=" + round +
+                ", color=" + color +
+                '}';
     }
 }

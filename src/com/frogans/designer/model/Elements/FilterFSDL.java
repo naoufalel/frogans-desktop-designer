@@ -38,7 +38,11 @@ public class FilterFSDL {
         this.color = new SimpleStringProperty("");
     }
 
-    public FilterFSDL(StringProperty effect, StringProperty level, StringProperty angle, StringProperty tolerance, StringProperty color) {
+    public FilterFSDL(StringProperty effect,
+                      StringProperty level,
+                      StringProperty angle,
+                      StringProperty tolerance,
+                      StringProperty color) {
         this.effect = effect;
         this.level = level;
         this.angle = angle;
