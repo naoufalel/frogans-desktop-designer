@@ -8,9 +8,10 @@
   <component name="ChangeListManager">
     <list default="true" id="8142dc4a-b5ae-410f-931f-7b8a196bd808" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/RestextFSDL.java" afterPath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/RestextFSDL.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/SetfilterFSDL.java" afterPath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/SetfilterFSDL.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/SetfontFSDL.java" afterPath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/SetfontFSDL.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/SetreliefFSDL.java" afterPath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/SetreliefFSDL.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/SetshadowFSDL.java" afterPath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/SetshadowFSDL.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/ShadowFSDL.java" afterPath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/ShadowFSDL.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/TextFSDL.java" afterPath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/TextFSDL.java" />
     </list>
     <ignored path="Frogans Project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,23 +34,42 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SetfontFSDL.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/model/Elements/SetfontFSDL.java">
+      <file leaf-file-name="TextFSDL.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/model/Elements/TextFSDL.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="31" column="18" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+            <state relative-caret-position="361">
+              <caret line="114" column="18" selection-start-line="114" selection-start-column="18" selection-end-line="114" selection-end-column="18" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#274#275#0" expanded="true" />
-                <element signature="e#331#332#0" expanded="true" />
-                <element signature="e#378#379#0" expanded="true" />
-                <element signature="e#412#413#0" expanded="true" />
-                <element signature="e#444#445#0" expanded="true" />
-                <element signature="e#478#479#0" expanded="true" />
-                <element signature="e#523#524#0" expanded="true" />
-                <element signature="e#551#552#0" expanded="true" />
-                <element signature="e#593#594#0" expanded="true" />
-                <element signature="e#630#631#0" expanded="true" />
+                <element signature="e#1743#1744#0" expanded="true" />
+                <element signature="e#1779#1780#0" expanded="true" />
+                <element signature="e#1826#1827#0" expanded="true" />
+                <element signature="e#1856#1857#0" expanded="true" />
+                <element signature="e#1889#1890#0" expanded="true" />
+                <element signature="e#1924#1925#0" expanded="true" />
+                <element signature="e#1970#1971#0" expanded="true" />
+                <element signature="e#1999#2000#0" expanded="true" />
+                <element signature="e#2035#2036#0" expanded="true" />
+                <element signature="e#2073#2074#0" expanded="true" />
+                <element signature="e#2122#2123#0" expanded="true" />
+                <element signature="e#2154#2155#0" expanded="true" />
+                <element signature="e#2187#2188#0" expanded="true" />
+                <element signature="e#2222#2223#0" expanded="true" />
+                <element signature="e#2268#2269#0" expanded="true" />
+                <element signature="e#2297#2298#0" expanded="true" />
+                <element signature="e#2328#2329#0" expanded="true" />
+                <element signature="e#2361#2362#0" expanded="true" />
+                <element signature="e#2405#2406#0" expanded="true" />
+                <element signature="e#2432#2433#0" expanded="true" />
+                <element signature="e#2478#2479#0" expanded="true" />
+                <element signature="e#2519#2520#0" expanded="true" />
+                <element signature="e#2563#2564#0" expanded="true" />
+                <element signature="e#2602#2603#0" expanded="true" />
+                <element signature="e#2652#2653#0" expanded="true" />
+                <element signature="e#2697#2698#0" expanded="true" />
+                <element signature="e#2741#2742#0" expanded="true" />
+                <element signature="e#2780#2781#0" expanded="true" />
+                <element signature="e#2820#2821#0" expanded="true" />
+                <element signature="e#2855#2856#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -105,6 +125,10 @@
         <option value="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/SetfilterFSDL.java" />
         <option value="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/RestextFSDL.java" />
         <option value="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/SetfontFSDL.java" />
+        <option value="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/SetreliefFSDL.java" />
+        <option value="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/SetshadowFSDL.java" />
+        <option value="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/ShadowFSDL.java" />
+        <option value="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/TextFSDL.java" />
       </list>
     </option>
   </component>
@@ -757,7 +781,7 @@
       <updated>1458667860424</updated>
       <workItem from="1459186861529" duration="333000" />
       <workItem from="1459277477625" duration="14050000" />
-      <workItem from="1459419257019" duration="4104000" />
+      <workItem from="1459419257019" duration="4476000" />
     </task>
     <task id="LOCAL-00001" summary="got rid of the jdom2 for file parsing, using only the dom one">
       <created>1458673213063</created>
@@ -871,7 +895,14 @@
       <option name="project" value="LOCAL" />
       <updated>1459423240458</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="doing things the right way again">
+      <created>1459423395959</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1459423395959</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -892,7 +923,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18487000" />
+    <option name="totallyTimeSpent" value="18859000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -970,42 +1001,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/FrogansApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2142">
-          <caret line="175" column="28" selection-start-line="175" selection-start-column="28" selection-end-line="175" selection-end-column="28" />
-          <folding>
-            <element signature="docComment;method#start#0;class#FrogansApp#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/model/FsdlParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2635">
-          <caret line="174" column="12" selection-start-line="174" selection-start-column="12" selection-end-line="174" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/model/FSDLElements.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/view/DesignerLayoutController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1005#1006#0" expanded="true" />
-            <element signature="e#1042#1043#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/view/RootController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
@@ -1476,8 +1471,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/model/Elements/SetfontFSDL.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="31" column="18" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+        <state relative-caret-position="595">
+          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#274#275#0" expanded="true" />
@@ -1490,6 +1485,114 @@
             <element signature="e#551#552#0" expanded="true" />
             <element signature="e#593#594#0" expanded="true" />
             <element signature="e#630#631#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/model/Elements/SetreliefFSDL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-132">
+          <caret line="0" column="43" selection-start-line="0" selection-start-column="43" selection-end-line="0" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#282#283#0" expanded="true" />
+            <element signature="e#342#343#0" expanded="true" />
+            <element signature="e#394#395#0" expanded="true" />
+            <element signature="e#434#435#0" expanded="true" />
+            <element signature="e#469#470#0" expanded="true" />
+            <element signature="e#506#507#0" expanded="true" />
+            <element signature="e#554#555#0" expanded="true" />
+            <element signature="e#585#586#0" expanded="true" />
+            <element signature="e#633#634#0" expanded="true" />
+            <element signature="e#676#677#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/model/Elements/SetshadowFSDL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/model/Elements/ShadowFSDL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="105" column="18" selection-start-line="105" selection-start-column="18" selection-end-line="105" selection-end-column="18" />
+          <folding>
+            <element signature="e#1342#1343#0" expanded="true" />
+            <element signature="e#1375#1376#0" expanded="true" />
+            <element signature="e#1419#1420#0" expanded="true" />
+            <element signature="e#1446#1447#0" expanded="true" />
+            <element signature="e#1478#1479#0" expanded="true" />
+            <element signature="e#1512#1513#0" expanded="true" />
+            <element signature="e#1557#1558#0" expanded="true" />
+            <element signature="e#1585#1586#0" expanded="true" />
+            <element signature="e#1616#1617#0" expanded="true" />
+            <element signature="e#1649#1650#0" expanded="true" />
+            <element signature="e#1693#1694#0" expanded="true" />
+            <element signature="e#1720#1721#0" expanded="true" />
+            <element signature="e#1754#1755#0" expanded="true" />
+            <element signature="e#1790#1791#0" expanded="true" />
+            <element signature="e#1837#1838#0" expanded="true" />
+            <element signature="e#1867#1868#0" expanded="true" />
+            <element signature="e#1901#1902#0" expanded="true" />
+            <element signature="e#1937#1938#0" expanded="true" />
+            <element signature="e#1984#1985#0" expanded="true" />
+            <element signature="e#2014#2015#0" expanded="true" />
+            <element signature="e#2054#2055#0" expanded="true" />
+            <element signature="e#2089#2090#0" expanded="true" />
+            <element signature="e#2131#2132#0" expanded="true" />
+            <element signature="e#2168#2169#0" expanded="true" />
+            <element signature="e#2208#2209#0" expanded="true" />
+            <element signature="e#2243#2244#0" expanded="true" />
+            <element signature="e#2289#2290#0" expanded="true" />
+            <element signature="e#2330#2331#0" expanded="true" />
+            <element signature="e#2376#2377#0" expanded="true" />
+            <element signature="e#2417#2418#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/model/Elements/TextFSDL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="114" column="18" selection-start-line="114" selection-start-column="18" selection-end-line="114" selection-end-column="18" />
+          <folding>
+            <element signature="e#1743#1744#0" expanded="true" />
+            <element signature="e#1779#1780#0" expanded="true" />
+            <element signature="e#1826#1827#0" expanded="true" />
+            <element signature="e#1856#1857#0" expanded="true" />
+            <element signature="e#1889#1890#0" expanded="true" />
+            <element signature="e#1924#1925#0" expanded="true" />
+            <element signature="e#1970#1971#0" expanded="true" />
+            <element signature="e#1999#2000#0" expanded="true" />
+            <element signature="e#2035#2036#0" expanded="true" />
+            <element signature="e#2073#2074#0" expanded="true" />
+            <element signature="e#2122#2123#0" expanded="true" />
+            <element signature="e#2154#2155#0" expanded="true" />
+            <element signature="e#2187#2188#0" expanded="true" />
+            <element signature="e#2222#2223#0" expanded="true" />
+            <element signature="e#2268#2269#0" expanded="true" />
+            <element signature="e#2297#2298#0" expanded="true" />
+            <element signature="e#2328#2329#0" expanded="true" />
+            <element signature="e#2361#2362#0" expanded="true" />
+            <element signature="e#2405#2406#0" expanded="true" />
+            <element signature="e#2432#2433#0" expanded="true" />
+            <element signature="e#2478#2479#0" expanded="true" />
+            <element signature="e#2519#2520#0" expanded="true" />
+            <element signature="e#2563#2564#0" expanded="true" />
+            <element signature="e#2602#2603#0" expanded="true" />
+            <element signature="e#2652#2653#0" expanded="true" />
+            <element signature="e#2697#2698#0" expanded="true" />
+            <element signature="e#2741#2742#0" expanded="true" />
+            <element signature="e#2780#2781#0" expanded="true" />
+            <element signature="e#2820#2821#0" expanded="true" />
+            <element signature="e#2855#2856#0" expanded="true" />
           </folding>
         </state>
       </provider>

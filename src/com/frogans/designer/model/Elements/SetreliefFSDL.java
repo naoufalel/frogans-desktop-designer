@@ -1,5 +1,6 @@
-package com.frogans.designer.model;
+package com.frogans.designer.model.Elements;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
@@ -9,11 +10,11 @@ public class SetreliefFSDL {
 
     private StringProperty reliefid;
 
-    @Override
-    public String toString() {
-        return "SetreliefFSDL{" +
-                "reliefid=" + reliefid +
-                '}';
+    public SetreliefFSDL() {
+        this.reliefid = new SimpleStringProperty("");
+    }
+    public SetreliefFSDL(StringProperty reliefid) {
+        this.reliefid = reliefid;
     }
 
     public String getReliefid() {
@@ -28,7 +29,10 @@ public class SetreliefFSDL {
         this.reliefid.set(reliefid);
     }
 
-    public SetreliefFSDL(StringProperty reliefid) {
-        this.reliefid = reliefid;
+    @Override
+    public String toString() {
+        return "SetreliefFSDL{" +
+                "reliefid=" + reliefid +
+                '}';
     }
 }

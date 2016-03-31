@@ -1,4 +1,4 @@
-package com.frogans.designer.model;
+package com.frogans.designer.model.Elements;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -32,18 +32,23 @@ public class TextFSDL {
             new SimpleStringProperty("nospace")
     };
 
-    @Override
-    public String toString() {
-        return "TextFSDL{" +
-                "fontref=" + fontref +
-                ", talignValue=" + talignValue +
-                ", talign=" + Arrays.toString(talign) +
-                ", linespace=" + linespace +
-                ", vstyleValue=" + vstyleValue +
-                ", vstyle=" + Arrays.toString(vstyle) +
-                ", joinValue=" + joinValue +
-                ", join=" + Arrays.toString(join) +
-                '}';
+    public TextFSDL() {
+        this.fontref = new SimpleStringProperty("");
+        this.talign = new SimpleStringProperty("");
+        this.linespace = new SimpleStringProperty("");
+        this.vstyle = new SimpleStringProperty("");
+        this.join = new SimpleStringProperty("");
+    }
+    public TextFSDL(StringProperty fontref,
+                    StringProperty talign,
+                    StringProperty linespace,
+                    StringProperty vstyle,
+                    StringProperty join) {
+        this.fontref = fontref;
+        this.talign = talign;
+        this.linespace = linespace;
+        this.vstyle = vstyle;
+        this.join = join;
     }
 
     public String getFontref() {
@@ -54,28 +59,12 @@ public class TextFSDL {
         return fontref;
     }
 
-    public void setfontref(String fontref) {
-        this.fontref.set(fontref);
+    public String getTalign() {
+        return talign.get();
     }
 
-    public String getTalignValue() {
-        return talignValue.get();
-    }
-
-    public StringProperty talignValueProperty() {
-        return talignValue;
-    }
-
-    public void settalignvalue(String talignValue) {
-        this.talignValue.set(talignValue);
-    }
-
-    public StringProperty[] getTalign() {
+    public StringProperty talignProperty() {
         return talign;
-    }
-
-    public void settalign(StringProperty[] talign) {
-        this.talign = talign;
     }
 
     public String getLinespace() {
@@ -86,65 +75,50 @@ public class TextFSDL {
         return linespace;
     }
 
+    public String getVstyle() {
+        return vstyle.get();
+    }
+
+    public StringProperty vstyleProperty() {
+        return vstyle;
+    }
+
+    public String getJoin() {
+        return join.get();
+    }
+
+    public StringProperty joinProperty() {
+        return join;
+    }
+
+    public void setfontref(String fontref) {
+        this.fontref.set(fontref);
+    }
+
+    public void settalign(String talign) {
+        this.talign.set(talign);
+    }
+
     public void setlinespace(String linespace) {
         this.linespace.set(linespace);
     }
 
-    public String getVstyleValue() {
-        return vstyleValue.get();
+    public void setvstyle(String vstyle) {
+        this.vstyle.set(vstyle);
     }
 
-    public StringProperty vstyleValueProperty() {
-        return vstyleValue;
+    public void setjoin(String join) {
+        this.join.set(join);
     }
 
-    public void setvstylevalue(String vstyleValue) {
-        this.vstyleValue.set(vstyleValue);
-    }
-
-    public StringProperty[] getVstyle() {
-        return vstyle;
-    }
-
-    public void setvstyle(StringProperty[] vstyle) {
-        this.vstyle = vstyle;
-    }
-
-    public String getJoinValue() {
-        return joinValue.get();
-    }
-
-    public StringProperty joinValueProperty() {
-        return joinValue;
-    }
-
-    public void setjoinvalue(String joinValue) {
-        this.joinValue.set(joinValue);
-    }
-
-    public StringProperty[] getJoin() {
-        return join;
-    }
-
-    public void setjoin(StringProperty[] join) {
-        this.join = join;
-    }
-
-    public TextFSDL(StringProperty vstyleValue,
-                    StringProperty fontref,
-                    StringProperty talignValue,
-                    StringProperty[] talign,
-                    StringProperty linespace,
-                    StringProperty[] vstyle,
-                    StringProperty joinValue,
-                    StringProperty[] join) {
-        this.vstyleValue = vstyleValue;
-        this.fontref = fontref;
-        this.talignValue = talignValue;
-        this.talign = talign;
-        this.linespace = linespace;
-        this.vstyle = vstyle;
-        this.joinValue = joinValue;
-        this.join = join;
+    @Override
+    public String toString() {
+        return "TextFSDL{" +
+                "fontref=" + fontref +
+                ", talign=" + talign +
+                ", linespace=" + linespace +
+                ", vstyle=" + vstyle +
+                ", join=" + join +
+                '}';
     }
 }

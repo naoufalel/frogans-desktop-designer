@@ -1,4 +1,4 @@
-package com.frogans.designer.model;
+package com.frogans.designer.model.Elements;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -22,17 +22,25 @@ public class ShadowFSDL {
             new SimpleStringProperty("inter")
     };
 
-    @Override
-    public String toString() {
-        return "ShadowFSDL{" +
-                "rpos=" + rpos +
-                ", color=" + color +
-                ", blur=" + blur +
-                ", opacity=" + opacity +
-                ", combineValue=" + combineValue +
-                ", combine=" + Arrays.toString(combine) +
-                '}';
+    public ShadowFSDL() {
+        this.rpos = new SimpleStringProperty("");
+        this.color = new SimpleStringProperty("");
+        this.blur = new SimpleStringProperty("");
+        this.opacity = new SimpleStringProperty("");
+        this.combine = new SimpleStringProperty("");
     }
+    public ShadowFSDL(StringProperty rpos,
+                      StringProperty color,
+                      StringProperty blur,
+                      StringProperty opacity,
+                      StringProperty combine) {
+        this.rpos = rpos;
+        this.color = color;
+        this.blur = blur;
+        this.opacity = opacity;
+        this.combine = combine;
+    }
+
 
     public String getRpos() {
         return rpos.get();
@@ -40,10 +48,6 @@ public class ShadowFSDL {
 
     public StringProperty rposProperty() {
         return rpos;
-    }
-
-    public void setrpos(String rpos) {
-        this.rpos.set(rpos);
     }
 
     public String getColor() {
@@ -54,20 +58,12 @@ public class ShadowFSDL {
         return color;
     }
 
-    public void setcolor(String color) {
-        this.color.set(color);
-    }
-
     public String getBlur() {
         return blur.get();
     }
 
     public StringProperty blurProperty() {
         return blur;
-    }
-
-    public void setblur(String blur) {
-        this.blur.set(blur);
     }
 
     public String getOpacity() {
@@ -78,41 +74,42 @@ public class ShadowFSDL {
         return opacity;
     }
 
+    public String getCombine() {
+        return combine.get();
+    }
+
+    public StringProperty combineProperty() {
+        return combine;
+    }
+
+    public void setrpos(String rpos) {
+        this.rpos.set(rpos);
+    }
+
+    public void setcolor(String color) {
+        this.color.set(color);
+    }
+
+    public void setblur(String blur) {
+        this.blur.set(blur);
+    }
+
     public void setopacity(String opacity) {
         this.opacity.set(opacity);
     }
 
-    public String getCombineValue() {
-        return combineValue.get();
+    public void setcombine(String combine) {
+        this.combine.set(combine);
     }
 
-    public StringProperty combineValueProperty() {
-        return combineValue;
-    }
-
-    public void setcombinevalue(String combineValue) {
-        this.combineValue.set(combineValue);
-    }
-
-    public StringProperty[] getCombine() {
-        return combine;
-    }
-
-    public void setcombine(StringProperty[] combine) {
-        this.combine = combine;
-    }
-
-    public ShadowFSDL(StringProperty rpos,
-                      StringProperty color,
-                      StringProperty blur,
-                      StringProperty opacity,
-                      StringProperty combineValue,
-                      StringProperty[] combine) {
-        this.rpos = rpos;
-        this.color = color;
-        this.blur = blur;
-        this.opacity = opacity;
-        this.combineValue = combineValue;
-        this.combine = combine;
+    @Override
+    public String toString() {
+        return "ShadowFSDL{" +
+                "rpos=" + rpos +
+                ", color=" + color +
+                ", blur=" + blur +
+                ", opacity=" + opacity +
+                ", combine=" + combine +
+                '}';
     }
 }

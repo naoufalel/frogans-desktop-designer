@@ -1,5 +1,6 @@
-package com.frogans.designer.model;
+package com.frogans.designer.model.Elements;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
@@ -9,11 +10,11 @@ public class SetshadowFSDL {
 
     private StringProperty shadowid;
 
-    @Override
-    public String toString() {
-        return "SetshadowFSDL{" +
-                "shadowid=" + shadowid +
-                '}';
+    public SetshadowFSDL() {
+        this.shadowid = new SimpleStringProperty("");
+    }
+    public SetshadowFSDL(StringProperty shadowid) {
+        this.shadowid = shadowid;
     }
 
     public String getShadowid() {
@@ -28,7 +29,10 @@ public class SetshadowFSDL {
         this.shadowid.set(shadowid);
     }
 
-    public SetshadowFSDL(StringProperty shadowid) {
-        this.shadowid = shadowid;
+    @Override
+    public String toString() {
+        return "SetshadowFSDL{" +
+                "shadowid=" + shadowid +
+                '}';
     }
 }
