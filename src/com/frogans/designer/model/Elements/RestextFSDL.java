@@ -148,4 +148,17 @@ public class RestextFSDL {
     public void setvstyle(String vstyle) {
         this.vstyle.set(vstyle);
     }
+
+    @Override
+    public String toString() {
+        return "RestextFSDL{" +
+                "resid=" + resid +
+                ", size=" + size +
+                ", orientation=" + orientation +
+                ", fontref=" + fontref +
+                ", talign=" + talign +
+                ", linespace=" + linespace +
+                ", vstyle=" + vstyle +
+                '}';
+    }
 }

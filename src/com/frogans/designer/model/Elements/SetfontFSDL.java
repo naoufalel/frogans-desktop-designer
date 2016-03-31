@@ -1,5 +1,6 @@
-package com.frogans.designer.model;
+package com.frogans.designer.model.Elements;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
@@ -8,15 +9,11 @@ import javafx.beans.property.StringProperty;
 public class SetfontFSDL {
     private StringProperty resid;
 
+    public SetfontFSDL() {
+        this.resid = new SimpleStringProperty("");
+    }
     public SetfontFSDL(StringProperty resid) {
         this.resid = resid;
-    }
-
-    @Override
-    public String toString() {
-        return "SetfontFSDL{" +
-                "resid=" + resid +
-                '}';
     }
 
     public String getResid() {
@@ -29,5 +26,12 @@ public class SetfontFSDL {
 
     public void setresid(String resid) {
         this.resid.set(resid);
+    }
+
+    @Override
+    public String toString() {
+        return "SetfontFSDL{" +
+                "resid=" + resid +
+                '}';
     }
 }

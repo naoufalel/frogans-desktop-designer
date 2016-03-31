@@ -1,5 +1,6 @@
 package com.frogans.designer.model.Elements;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
@@ -8,11 +9,11 @@ import javafx.beans.property.StringProperty;
 public class SetfilterFSDL {
     private StringProperty filterid;
 
-    @Override
-    public String toString() {
-        return "SetfilterFSDL{" +
-                "filterid=" + filterid +
-                '}';
+    public SetfilterFSDL() {
+        this.filterid =new SimpleStringProperty("");
+    }
+    public SetfilterFSDL(StringProperty filterid) {
+        this.filterid = filterid;
     }
 
     public String getFilterid() {
@@ -27,7 +28,10 @@ public class SetfilterFSDL {
         this.filterid.set(filterid);
     }
 
-    public SetfilterFSDL(StringProperty filterid) {
-        this.filterid = filterid;
+    @Override
+    public String toString() {
+        return "SetfilterFSDL{" +
+                "filterid=" + filterid +
+                '}';
     }
 }
