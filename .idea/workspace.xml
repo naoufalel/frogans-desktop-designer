@@ -8,7 +8,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8142dc4a-b5ae-410f-931f-7b8a196bd808" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/ResmergeFSDL.java" afterPath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/ResmergeFSDL.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/RespathFSDL.java" afterPath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/RespathFSDL.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/RespixelsFSDL.java" afterPath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/RespixelsFSDL.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/RestextFSDL.java" afterPath="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/RestextFSDL.java" />
     </list>
     <ignored path="Frogans Project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,26 +33,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ResmergeFSDL.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/model/Elements/ResmergeFSDL.java">
+      <file leaf-file-name="RestextFSDL.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/model/Elements/RestextFSDL.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="44" column="20" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#579#580#0" expanded="true" />
-                <element signature="e#613#614#0" expanded="true" />
-                <element signature="e#658#659#0" expanded="true" />
-                <element signature="e#686#687#0" expanded="true" />
-                <element signature="e#717#718#0" expanded="true" />
-                <element signature="e#750#751#0" expanded="true" />
-                <element signature="e#794#795#0" expanded="true" />
-                <element signature="e#821#822#0" expanded="true" />
-                <element signature="e#864#865#0" expanded="true" />
-                <element signature="e#901#902#0" expanded="true" />
-                <element signature="e#941#942#0" expanded="true" />
-                <element signature="e#976#977#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="480">
+              <caret line="42" column="3" selection-start-line="42" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -100,6 +88,9 @@
         <option value="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/ResimageFSDL.java" />
         <option value="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/ResdrawFSDL.java" />
         <option value="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/ResmergeFSDL.java" />
+        <option value="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/RespathFSDL.java" />
+        <option value="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/RespixelsFSDL.java" />
+        <option value="$PROJECT_DIR$/src/com/frogans/designer/model/Elements/RestextFSDL.java" />
       </list>
     </option>
   </component>
@@ -752,7 +743,7 @@
       <updated>1458667860424</updated>
       <workItem from="1459186861529" duration="333000" />
       <workItem from="1459277477625" duration="14050000" />
-      <workItem from="1459419257019" duration="3299000" />
+      <workItem from="1459419257019" duration="3774000" />
     </task>
     <task id="LOCAL-00001" summary="got rid of the jdom2 for file parsing, using only the dom one">
       <created>1458673213063</created>
@@ -845,7 +836,14 @@
       <option name="project" value="LOCAL" />
       <updated>1459422508421</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="doing things the right way again">
+      <created>1459422590506</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1459422590506</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -866,7 +864,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17682000" />
+    <option name="totallyTimeSpent" value="18157000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -944,31 +942,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/FrogansApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2142">
-          <caret line="175" column="28" selection-start-line="175" selection-start-column="28" selection-end-line="175" selection-end-column="28" />
-          <folding>
-            <element signature="docComment;method#start#0;class#FrogansApp#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/model/FsdlParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2635">
-          <caret line="174" column="12" selection-start-line="174" selection-start-column="12" selection-end-line="174" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/model/FSDLElements.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/view/DesignerLayoutController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1445,6 +1418,134 @@
             <element signature="e#941#942#0" expanded="true" />
             <element signature="e#976#977#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/model/Elements/RespathFSDL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3332">
+          <caret line="199" column="18" selection-start-line="199" selection-start-column="18" selection-end-line="199" selection-end-column="18" />
+          <folding>
+            <element signature="e#2646#2647#0" expanded="true" />
+            <element signature="e#2680#2681#0" expanded="true" />
+            <element signature="e#2725#2726#0" expanded="true" />
+            <element signature="e#2753#2754#0" expanded="true" />
+            <element signature="e#2784#2785#0" expanded="true" />
+            <element signature="e#2817#2818#0" expanded="true" />
+            <element signature="e#2861#2862#0" expanded="true" />
+            <element signature="e#2888#2889#0" expanded="true" />
+            <element signature="e#2919#2920#0" expanded="true" />
+            <element signature="e#2952#2953#0" expanded="true" />
+            <element signature="e#2996#2997#0" expanded="true" />
+            <element signature="e#3023#3024#0" expanded="true" />
+            <element signature="e#3057#3058#0" expanded="true" />
+            <element signature="e#3093#3094#0" expanded="true" />
+            <element signature="e#3140#3141#0" expanded="true" />
+            <element signature="e#3170#3171#0" expanded="true" />
+            <element signature="e#3203#3204#0" expanded="true" />
+            <element signature="e#3238#3239#0" expanded="true" />
+            <element signature="e#3284#3285#0" expanded="true" />
+            <element signature="e#3313#3314#0" expanded="true" />
+            <element signature="e#3345#3346#0" expanded="true" />
+            <element signature="e#3379#3380#0" expanded="true" />
+            <element signature="e#3424#3425#0" expanded="true" />
+            <element signature="e#3452#3453#0" expanded="true" />
+            <element signature="e#3484#3485#0" expanded="true" />
+            <element signature="e#3518#3519#0" expanded="true" />
+            <element signature="e#3563#3564#0" expanded="true" />
+            <element signature="e#3591#3592#0" expanded="true" />
+            <element signature="e#3622#3623#0" expanded="true" />
+            <element signature="e#3655#3656#0" expanded="true" />
+            <element signature="e#3699#3700#0" expanded="true" />
+            <element signature="e#3726#3727#0" expanded="true" />
+            <element signature="e#3759#3760#0" expanded="true" />
+            <element signature="e#3794#3795#0" expanded="true" />
+            <element signature="e#3840#3841#0" expanded="true" />
+            <element signature="e#3869#3870#0" expanded="true" />
+            <element signature="e#3901#3902#0" expanded="true" />
+            <element signature="e#3935#3936#0" expanded="true" />
+            <element signature="e#3980#3981#0" expanded="true" />
+            <element signature="e#4008#4009#0" expanded="true" />
+            <element signature="e#4050#4051#0" expanded="true" />
+            <element signature="e#4087#4088#0" expanded="true" />
+            <element signature="e#4127#4128#0" expanded="true" />
+            <element signature="e#4162#4163#0" expanded="true" />
+            <element signature="e#4202#4203#0" expanded="true" />
+            <element signature="e#4237#4238#0" expanded="true" />
+            <element signature="e#4283#4284#0" expanded="true" />
+            <element signature="e#4324#4325#0" expanded="true" />
+            <element signature="e#4368#4369#0" expanded="true" />
+            <element signature="e#4407#4408#0" expanded="true" />
+            <element signature="e#4449#4450#0" expanded="true" />
+            <element signature="e#4486#4487#0" expanded="true" />
+            <element signature="e#4528#4529#0" expanded="true" />
+            <element signature="e#4565#4566#0" expanded="true" />
+            <element signature="e#4605#4606#0" expanded="true" />
+            <element signature="e#4640#4641#0" expanded="true" />
+            <element signature="e#4684#4685#0" expanded="true" />
+            <element signature="e#4723#4724#0" expanded="true" />
+            <element signature="e#4765#4766#0" expanded="true" />
+            <element signature="e#4802#4803#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/model/Elements/RespixelsFSDL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="137" column="18" selection-start-line="137" selection-start-column="18" selection-end-line="137" selection-end-column="18" />
+          <folding>
+            <element signature="e#1694#1695#0" expanded="true" />
+            <element signature="e#1728#1729#0" expanded="true" />
+            <element signature="e#1773#1774#0" expanded="true" />
+            <element signature="e#1801#1802#0" expanded="true" />
+            <element signature="e#1832#1833#0" expanded="true" />
+            <element signature="e#1865#1866#0" expanded="true" />
+            <element signature="e#1909#1910#0" expanded="true" />
+            <element signature="e#1936#1937#0" expanded="true" />
+            <element signature="e#1970#1971#0" expanded="true" />
+            <element signature="e#2006#2007#0" expanded="true" />
+            <element signature="e#2053#2054#0" expanded="true" />
+            <element signature="e#2083#2084#0" expanded="true" />
+            <element signature="e#2114#2115#0" expanded="true" />
+            <element signature="e#2147#2148#0" expanded="true" />
+            <element signature="e#2191#2192#0" expanded="true" />
+            <element signature="e#2218#2219#0" expanded="true" />
+            <element signature="e#2248#2249#0" expanded="true" />
+            <element signature="e#2280#2281#0" expanded="true" />
+            <element signature="e#2323#2324#0" expanded="true" />
+            <element signature="e#2349#2350#0" expanded="true" />
+            <element signature="e#2381#2382#0" expanded="true" />
+            <element signature="e#2415#2416#0" expanded="true" />
+            <element signature="e#2460#2461#0" expanded="true" />
+            <element signature="e#2488#2489#0" expanded="true" />
+            <element signature="e#2520#2521#0" expanded="true" />
+            <element signature="e#2554#2555#0" expanded="true" />
+            <element signature="e#2599#2600#0" expanded="true" />
+            <element signature="e#2627#2628#0" expanded="true" />
+            <element signature="e#2669#2670#0" expanded="true" />
+            <element signature="e#2706#2707#0" expanded="true" />
+            <element signature="e#2746#2747#0" expanded="true" />
+            <element signature="e#2781#2782#0" expanded="true" />
+            <element signature="e#2827#2828#0" expanded="true" />
+            <element signature="e#2868#2869#0" expanded="true" />
+            <element signature="e#2908#2909#0" expanded="true" />
+            <element signature="e#2943#2944#0" expanded="true" />
+            <element signature="e#2981#2982#0" expanded="true" />
+            <element signature="e#3014#3015#0" expanded="true" />
+            <element signature="e#3056#3057#0" expanded="true" />
+            <element signature="e#3093#3094#0" expanded="true" />
+            <element signature="e#3135#3136#0" expanded="true" />
+            <element signature="e#3172#3173#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/frogans/designer/model/Elements/RestextFSDL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="42" column="3" selection-start-line="42" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>

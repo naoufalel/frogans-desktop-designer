@@ -1,4 +1,4 @@
-package com.frogans.designer.model;
+package com.frogans.designer.model.Elements;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -42,57 +42,38 @@ public class RespathFSDL {
     };
     private StringProperty color;
 
+    public RespathFSDL() {
+        this.resid = new SimpleStringProperty("");
+        this.size = new SimpleStringProperty("");
+        this.crop = new SimpleStringProperty("");
+        this.corners = new SimpleStringProperty("");
+        this.stroke = new SimpleStringProperty("");
+        this.thick = new SimpleStringProperty("");
+        this.close = new SimpleStringProperty("");
+        this.fill = new SimpleStringProperty("");
+        this.color = new SimpleStringProperty("");
+        this.spread = new SimpleStringProperty("");
+    }
     public RespathFSDL(StringProperty resid,
-                       StringProperty[] spread,
-                       StringProperty spreadValue,
-                       StringProperty color,
-                       StringProperty fillValue,
-                       StringProperty[] fill,
-                       StringProperty[] close,
-                       StringProperty closeValue,
-                       StringProperty thick,
-                       StringProperty[] stroke,
-                       StringProperty strokeValue,
-                       StringProperty[] crop,
+                       StringProperty size,
+                       StringProperty crop,
                        StringProperty corners,
-                       StringProperty cropValue,
-                       StringProperty size) {
+                       StringProperty stroke,
+                       StringProperty thick,
+                       StringProperty close,
+                       StringProperty fill,
+                       StringProperty color,
+                       StringProperty spread) {
         this.resid = resid;
-        this.spread = spread;
-        this.spreadValue = spreadValue;
-        this.color = color;
-        this.fillValue = fillValue;
-        this.fill = fill;
-        this.close = close;
-        this.closeValue = closeValue;
-        this.thick = thick;
-        this.stroke = stroke;
-        this.strokeValue = strokeValue;
+        this.size = size;
         this.crop = crop;
         this.corners = corners;
-        this.cropValue = cropValue;
-        this.size = size;
-    }
-
-    @Override
-    public String toString() {
-        return "RespathFSDL{" +
-                "resid=" + resid +
-                ", size=" + size +
-                ", cropValue=" + cropValue +
-                ", crop=" + Arrays.toString(crop) +
-                ", corners=" + corners +
-                ", strokeValue=" + strokeValue +
-                ", stroke=" + Arrays.toString(stroke) +
-                ", thick=" + thick +
-                ", closeValue=" + closeValue +
-                ", close=" + Arrays.toString(close) +
-                ", fillValue=" + fillValue +
-                ", fill=" + Arrays.toString(fill) +
-                ", spreadValue=" + spreadValue +
-                ", spread=" + Arrays.toString(spread) +
-                ", color=" + color +
-                '}';
+        this.stroke = stroke;
+        this.thick = thick;
+        this.close = close;
+        this.fill = fill;
+        this.color = color;
+        this.spread = spread;
     }
 
     public String getResid() {
@@ -103,112 +84,20 @@ public class RespathFSDL {
         return resid;
     }
 
-    public void setresid(String resid) {
-        this.resid.set(resid);
+    public String getSize() {
+        return size.get();
     }
 
-    public String getColor() {
-        return color.get();
+    public StringProperty sizeProperty() {
+        return size;
     }
 
-    public StringProperty colorProperty() {
-        return color;
+    public String getCrop() {
+        return crop.get();
     }
 
-    public void setcolor(String color) {
-        this.color.set(color);
-    }
-
-    public String getSpreadValue() {
-        return spreadValue.get();
-    }
-
-    public StringProperty spreadValueProperty() {
-        return spreadValue;
-    }
-
-    public void setspreadvalue(String spreadValue) {
-        this.spreadValue.set(spreadValue);
-    }
-
-    public StringProperty[] getFill() {
-        return fill;
-    }
-
-    public void setfill(StringProperty[] fill) {
-        this.fill = fill;
-    }
-
-    public StringProperty[] getSpread() {
-        return spread;
-    }
-
-    public void setspread(StringProperty[] spread) {
-        this.spread = spread;
-    }
-
-    public String getFillValue() {
-        return fillValue.get();
-    }
-
-    public StringProperty fillValueProperty() {
-        return fillValue;
-    }
-
-    public void setfillvalue(String fillValue) {
-        this.fillValue.set(fillValue);
-    }
-
-    public String getCloseValue() {
-        return closeValue.get();
-    }
-
-    public StringProperty closeValueProperty() {
-        return closeValue;
-    }
-
-    public void setclosevalue(String closeValue) {
-        this.closeValue.set(closeValue);
-    }
-
-    public StringProperty[] getClose() {
-        return close;
-    }
-
-    public void setclose(StringProperty[] close) {
-        this.close = close;
-    }
-
-    public String getThick() {
-        return thick.get();
-    }
-
-    public StringProperty thickProperty() {
-        return thick;
-    }
-
-    public void setthick(String thick) {
-        this.thick.set(thick);
-    }
-
-    public StringProperty[] getStroke() {
-        return stroke;
-    }
-
-    public void setstroke(StringProperty[] stroke) {
-        this.stroke = stroke;
-    }
-
-    public String getStrokeValue() {
-        return strokeValue.get();
-    }
-
-    public StringProperty strokeValueProperty() {
-        return strokeValue;
-    }
-
-    public void setstrokevalue(String strokeValue) {
-        this.strokeValue.set(strokeValue);
+    public StringProperty cropProperty() {
+        return crop;
     }
 
     public String getCorners() {
@@ -219,39 +108,107 @@ public class RespathFSDL {
         return corners;
     }
 
-    public void setcorners(String corners) {
-        this.corners.set(corners);
+    public String getStroke() {
+        return stroke.get();
     }
 
-    public StringProperty[] getCrop() {
-        return crop;
+    public StringProperty strokeProperty() {
+        return stroke;
     }
 
-    public void setcrop(StringProperty[] crop) {
-        this.crop = crop;
+    public String getThick() {
+        return thick.get();
     }
 
-    public String getCropValue() {
-        return cropValue.get();
+    public StringProperty thickProperty() {
+        return thick;
     }
 
-    public StringProperty cropValueProperty() {
-        return cropValue;
+    public String getClose() {
+        return close.get();
     }
 
-    public void setcropvalue(String cropValue) {
-        this.cropValue.set(cropValue);
+    public StringProperty closeProperty() {
+        return close;
     }
 
-    public String getSize() {
-        return size.get();
+    public String getFill() {
+        return fill.get();
     }
 
-    public StringProperty sizeProperty() {
-        return size;
+    public StringProperty fillProperty() {
+        return fill;
+    }
+
+    public String getSpread() {
+        return spread.get();
+    }
+
+    public StringProperty spreadProperty() {
+        return spread;
+    }
+
+    public String getColor() {
+        return color.get();
+    }
+
+    public StringProperty colorProperty() {
+        return color;
+    }
+
+    public void setresid(String resid) {
+        this.resid.set(resid);
     }
 
     public void setsize(String size) {
         this.size.set(size);
+    }
+
+    public void setcrop(String crop) {
+        this.crop.set(crop);
+    }
+
+    public void setcorners(String corners) {
+        this.corners.set(corners);
+    }
+
+    public void setstroke(String stroke) {
+        this.stroke.set(stroke);
+    }
+
+    public void setthick(String thick) {
+        this.thick.set(thick);
+    }
+
+    public void setclose(String close) {
+        this.close.set(close);
+    }
+
+    public void setfill(String fill) {
+        this.fill.set(fill);
+    }
+
+    public void setspread(String spread) {
+        this.spread.set(spread);
+    }
+
+    public void setcolor(String color) {
+        this.color.set(color);
+    }
+
+    @Override
+    public String toString() {
+        return "RespathFSDL{" +
+                "resid=" + resid +
+                ", size=" + size +
+                ", crop=" + crop +
+                ", corners=" + corners +
+                ", stroke=" + stroke +
+                ", thick=" + thick +
+                ", close=" + close +
+                ", fill=" + fill +
+                ", spread=" + spread +
+                ", color=" + color +
+                '}';
     }
 }
