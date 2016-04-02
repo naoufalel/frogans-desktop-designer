@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 /**
  * Created by ABDELKABIR on 02/04/2016.
  */
-public class ResimageLayoutController {
+public class ResdrawLayoutController {
     @FXML
     public void initialize(){
 
