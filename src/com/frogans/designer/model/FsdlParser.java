@@ -386,10 +386,10 @@ public class FsdlParser {
                 if (isNotTextOrComment(node)) {
                     if (node.getNodeName().equals("file")) {
                         objFile = aFileClass.newInstance();
-                        Element element1 = (Element) node;
+                        Element element = (Element) node;
                         for (FSDLElements.fileAttributes f : fileAttribute) {
                             Method m = aFileClass.getDeclaredMethod("set" + f.toString(), paramString);
-                            m.invoke(objFile, checkAttributeifNull(element1, f.toString()));
+                            m.invoke(objFile, checkAttributeifNull(element, f.toString()));
                         }
                         files.add((FileFSDL) objFile);
                     }
@@ -430,31 +430,28 @@ public class FsdlParser {
      */
     public void finalParse() {
         try {
-            NodeList nodeList = getNodeListFromRoot();
+            Class[] paramString = new Class[1];
+            paramString[0] = String.class;
+            List<Object> AlanWalker = new ArrayList<>();
 
+            NodeList nodeList = getNodeListFromRoot();
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
                 if (isNotTextOrComment(node)) {
-                    if (node.getNodeName().equals("resdraw")) {
-
-                        System.out.println();
+                    Element element = (Element) node;
+                    String temp = capitalizeFirstLetter(element.getNodeName());
+                    Class<?> clz = Class.forName("com.frogans.designer.model.Elements." + temp + "FSDL");
+                    Object obj = clz.newInstance();
+                    for (Map.Entry<String, String> entry : getEverything().entries()) {
+                        if (entry.getKey().equals(element.getNodeName())) {
+                            Method m = clz.getDeclaredMethod("set" + entry.getValue(), paramString);
+                            m.invoke(obj, checkAttributeifNull(element, entry.getValue()));
+                        }
                     }
+                    AlanWalker.add(obj);
                 }
             }
-
-            //getEverything().entries().forEach(System.out::println);
-
-            List<FSDLElements.MainFsdlTags> mainFsdlTagses = Arrays.asList(FSDLElements.MainFsdlTags.values());
-            for (FSDLElements.MainFsdlTags oneMainTag : mainFsdlTagses) {
-                for (Map.Entry<String, String> entry : getEverything().entries()) {
-                    if (oneMainTag.toString().equals(entry.getKey())) {
-                        String temp=capitilizeFirstLetter(entry.getKey());
-                        Class<?> cls = Class.forName("com.frogans.designer.model.Elements."+temp+"FSDL");
-                        System.out.println(cls.getName());
-                    }
-                }
-                System.out.println("-------------------------------");
-            }
+            AlanWalker.forEach(e -> System.out.println("test: " + e));
 
         } catch (Exception e) {
             System.err.println("Problem in function of parsing.\n" + e);
@@ -465,8 +462,8 @@ public class FsdlParser {
         return node.getNodeType() != Node.TEXT_NODE && node.getNodeType() != Node.COMMENT_NODE;
     }
 
-    private String capitilizeFirstLetter(String moak){
-        return Character.toUpperCase(moak.charAt(0))+moak.substring(1);
+    private String capitalizeFirstLetter(String moak) {
+        return Character.toUpperCase(moak.charAt(0)) + moak.substring(1);
     }
 
     private ListMultimap<String, String> getEverything() {
@@ -539,6 +536,14 @@ public class FsdlParser {
         return null;
     }
 
+
+    private void parseChildren(Element element) {
+        switch (element.getNodeName()) {
+            case "button":
+                List<String> layers = new ArrayList<>();
+
+        }
+    }
 }
 
 

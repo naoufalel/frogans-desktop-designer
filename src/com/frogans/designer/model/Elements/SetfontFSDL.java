@@ -7,31 +7,31 @@ import javafx.beans.property.StringProperty;
  * Created by Aladdin on 29-Mar-16.
  */
 public class SetfontFSDL {
-    private StringProperty resid;
+    private StringProperty fontid;
 
     public SetfontFSDL() {
-        this.resid = new SimpleStringProperty("");
+        this.fontid = new SimpleStringProperty("");
     }
-    public SetfontFSDL(StringProperty resid) {
-        this.resid = resid;
-    }
-
-    public String getResid() {
-        return resid.get();
+    public SetfontFSDL(StringProperty fontid) {
+        this.fontid = fontid;
     }
 
-    public StringProperty residProperty() {
-        return resid;
+    public String getFontid() {
+        return fontid.get();
     }
 
-    public void setresid(String resid) {
-        this.resid.set(resid);
+    public StringProperty fontidProperty() {
+        return fontid;
+    }
+
+    public void setfontid(String fontid) {
+        this.fontid.set(fontid);
     }
 
     @Override
     public String toString() {
         return "SetfontFSDL{" +
-                "resid=" + resid +
+                "fontid=" + fontid +
                 '}';
     }
 }
