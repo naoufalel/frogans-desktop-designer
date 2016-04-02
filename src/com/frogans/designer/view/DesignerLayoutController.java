@@ -3,6 +3,7 @@ package com.frogans.designer.view;
 import com.frogans.designer.FrogansApp;
 import com.frogans.designer.view.PropertiesLayout.LayerLayoutController;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,18 +19,27 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Naoufal EL BANTLI on 3/19/2016.
  */
 public class DesignerLayoutController {
 
-    @FXML
-    private Accordion accordion;
+    private FrogansApp frogansApp;
+
+    public void setFrogansApp(FrogansApp frogansApp) {
+        this.frogansApp = frogansApp;
+        treeTableHierarchy.setRoot(createSubTree());
+    }
 
     @FXML
+    private Accordion accordion;
+    @FXML
     private TitledPane titledPane;
+
     @FXML
     private TitledPane propertiesPane;
 
@@ -38,61 +48,93 @@ public class DesignerLayoutController {
     }
 
     @FXML
-    TreeView<String> treeHierarchy;
+    private TreeTableView<String> treeTableHierarchy;
     @FXML
-    ListView<String> listControlers;
+    private TreeTableColumn<String, String> elementID;
     @FXML
-    Canvas testCanvas = new Canvas();
-    @FXML
-    TextField tf = new TextField();
+    private TreeTableColumn<String, String> elementType;
 
     TreeItem<String> root = new TreeItem<>("frogans-fsdl");
 
+
+    @FXML
+    ListView<String> listControlers;
+
+    @FXML
+    Canvas testCanvas = new Canvas();
+
+    @FXML
+    TextField tf = new TextField();
+
+    private final ObjectProperty<ListCell<String>> dragSource = new SimpleObjectProperty<>();
+
     private ObservableList<TreeItem<String>> temp = FXCollections.observableArrayList();
+
     private ObservableList<String> controlers = FXCollections.observableArrayList(
             "Button",
             "Textfield",
             "Layer"
     );
 
-    private final ObjectProperty<ListCell<String>> dragSource = new SimpleObjectProperty<>();
-
-    public TreeView<String> getTreeHierarchy() {
-        return treeHierarchy;
+    public TreeTableView<String> getTreeHierarchy() {
+        return treeTableHierarchy;
     }
 
-    public void setTreeHierarchy(TreeView<String> treeHierarchy) {
-        this.treeHierarchy = treeHierarchy;
-    }
-
-    private FrogansApp frogansApp;
-    private ObservableList<TreeItem<String>> mainTree;
-
-
-    public void setFrogansApp(FrogansApp frogansApp) {
-        this.frogansApp = frogansApp;
-        treeHierarchy.setRoot(createSubTree());
+    public void setTreeHierarchy(TreeTableView<String> treeHierarchy) {
+        this.treeTableHierarchy = treeHierarchy;
     }
 
     public DesignerLayoutController() {
+
     }
 
     @FXML
     public void initialize() {
-
         accordion.setExpandedPane(titledPane);
+        someTest();
+        elementID.setCellValueFactory((TreeTableColumn.CellDataFeatures<String,String> p)-> new ReadOnlyStringWrapper(p.getValue().getValue().toString()));
+        elementType.setCellValueFactory(p-> new ReadOnlyStringWrapper(p.getValue().getValue().toString()));
+
+    }
+
+
+    public TreeItem<String> createSubTree() {
+        if (!root.getChildren().isEmpty()) {
+            root.getChildren().removeAll(temp);
+//            frogansApp.getMainTags().forEach(e -> {
+//                root.getChildren().add(e);
+//                e.setExpanded(false);
+//            });
+//            temp = frogansApp.getMainTags();
+        } else {
+            root.setExpanded(true);
+            frogansApp.getMainTags().entrySet().forEach(e->{
+                root.getChildren().add(new TreeItem<>(e.getKey()));
+            });
+//            frogansApp.getMainTags().forEach(e -> {
+//                root.getChildren().add(e);
+//                e.setExpanded(false);
+//            });
+//            temp = frogansApp.getMainTags();
+        }
+
+        return root;
+    }
+
+
+    private void someTest() {
         listControlers.setItems(controlers);
         listControlers.setCellFactory(param -> {
-            ListCell<String> cell = new ListCell<String>(){
+            ListCell<String> cell = new ListCell<String>() {
                 @Override
-                public void updateItem(String item , boolean empty) {
+                public void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
                     setText(item);
                 }
 
             };
             cell.setOnDragDetected(event -> {
-                if(!cell.isEmpty()){
+                if (!cell.isEmpty()) {
                     Dragboard db = cell.startDragAndDrop(TransferMode.ANY);
                     ClipboardContent cc = new ClipboardContent();
                     cc.putString(cell.getItem());
@@ -169,30 +211,5 @@ public class DesignerLayoutController {
                     }
                     event.consume();
                 });
-
     }
-
-
-
-    public TreeItem<String> createSubTree() {
-        if (!root.getChildren().isEmpty()) {
-            root.getChildren().removeAll(temp);
-            frogansApp.getMainTags().forEach(e -> {
-                root.getChildren().add(e);
-                e.setExpanded(false);
-            });
-            temp = frogansApp.getMainTags();
-        } else {
-            root.setExpanded(true);
-            frogansApp.getMainTags().forEach(e -> {
-                root.getChildren().add(e);
-                e.setExpanded(false);
-            });
-            temp = frogansApp.getMainTags();
-        }
-        return root;
-    }
-
-
-
 }

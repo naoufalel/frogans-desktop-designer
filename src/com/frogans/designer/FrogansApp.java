@@ -10,6 +10,7 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +24,7 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.prefs.Preferences;
 
 /**
@@ -42,13 +44,13 @@ public class FrogansApp extends Application {
         return timeline;
     }
 
-    private ObservableList<TreeItem<String>> mainTags = FXCollections.observableArrayList();
+    private ObservableMap<String, String> mainTags = FXCollections.observableMap(new HashMap<>());
 
-    public ObservableList<TreeItem<String>> getMainTags() {
+    public ObservableMap<String, String> getMainTags() {
         return mainTags;
     }
 
-    public void setMainTags(ObservableList<TreeItem<String>> mainTags) {
+    public void setMainTags(ObservableMap<String, String> mainTags) {
         this.mainTags = mainTags;
     }
 
@@ -87,7 +89,7 @@ public class FrogansApp extends Application {
     public void start(Stage primaryStage) throws Exception {
 //        String filename = "C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.9.1-win32\\FrogansPlayer4Dev-noinstall-alpha0.9.1-win32\\test\\helloworld\\home.fsdl";
 //        fsdlParser = new FsdlParser(new File(filename));
-        //fsdlParser.parseFsdlFile();
+//        fsdlParser.parseFsdlFile();
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Frogans Designer");
 //        primaryStage.getIcons().add(new Image(FrogansApp.class.getResourceAsStream("/images/something.png")));

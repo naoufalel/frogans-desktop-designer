@@ -7,6 +7,7 @@ import com.frogans.designer.model.Elements.LayerFSDL;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TreeItem;
 import org.w3c.dom.*;
@@ -179,9 +180,9 @@ public class FsdlParser {
 //        return null;
 //    }
 
-    public ObservableList<TreeItem<String>> parseFsdlFile() {
+    public ObservableMap<String, String> parseFsdlFile() {
         try {
-            ObservableList<TreeItem<String>> a = FXCollections.observableArrayList();
+            ObservableMap<String,String> a = FXCollections.observableMap(new HashMap<>());
 
             NodeList nodeList = getNodeListFromRoot();
             for (int i = 0; i < nodeList.getLength(); i++) {
@@ -194,11 +195,11 @@ public class FsdlParser {
 //                    a.add(new TreeItem<>(element1.getAttribute("layerid")));
 //                }else{
                     Element element2 = (Element) node;
-                    a.add(new TreeItem<>(getIDofElement(element2)));
+                    //a.add(new TreeItem<>(getIDofElement(element2)));
+                    a.put(getIDofElement(element2),element2.getNodeName());
 //                }
                 }
             }
-
             return a;
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -229,7 +230,7 @@ public class FsdlParser {
                 } else if (e.toString().equals("layer"))
                     a = element.getAttribute("layerid");
                 else
-                    a = element.getNodeName();
+                    a = element.getNodeName()+" ID";
             }
         }
 
@@ -249,7 +250,7 @@ public class FsdlParser {
             Class<?> aClass = Class.forName("com.frogans.designer.model.Elements.LayerFSDL");
             Object obj = aClass.newInstance();
 
-
+            LayerFSDL l =new LayerFSDL();
             Class[] paramString = new Class[1];
             paramString[0] = String.class;
 
