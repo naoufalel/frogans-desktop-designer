@@ -87,20 +87,21 @@ public class FrogansApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-//        String filename = "C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.9.1-win32\\FrogansPlayer4Dev-noinstall-alpha0.9.1-win32\\test\\helloworld\\home.fsdl";
-//        fsdlParser = new FsdlParser(new File(filename));
+        String filename = "C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.9.1-win32\\FrogansPlayer4Dev-noinstall-alpha0.9.1-win32\\test\\helloworld\\home.fsdl";
+        fsdlParser = new FsdlParser(new File(filename));
 //        fsdlParser.parseFsdlFile();
-        this.primaryStage = primaryStage;
-        primaryStage.setTitle("Frogans Designer");
-//        primaryStage.getIcons().add(new Image(FrogansApp.class.getResourceAsStream("/images/something.png")));
-
-        initRootLayout();
-        showSplitContainers();
+//        this.primaryStage = primaryStage;
+//        primaryStage.setTitle("Frogans Designer");
+////        primaryStage.getIcons().add(new Image(FrogansApp.class.getResourceAsStream("/images/something.png")));
+//
+//        initRootLayout();
+//        showSplitContainers();
 
 
 //        fsdlParser.layerParsing();
         //fsdlParser.buttonParsing();
 //        fsdlParser.fileParsing();
+            fsdlParser.finalParse();
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -31,7 +31,7 @@ public class FSDLElements {
         layer
     }
 
-    public enum FileFsdlTags {
+    public enum fileAttributes {
         fileid,
         nature,
         name,
@@ -87,7 +87,7 @@ public class FSDLElements {
         stroke,
         thick,
         round,
-        //color
+        color
     }
 
     public enum nextAttributes {
@@ -99,9 +99,9 @@ public class FSDLElements {
         resid,
         size,
         fileref,
-        //selection,
+        selection,
         bounds,
-        //aspect,
+        aspect,
         adjust,
         origin
     }
@@ -128,7 +128,7 @@ public class FSDLElements {
         fill,
         spread,
         adjust,
-        //color
+        color
     }
 
     public enum setfontAttributes {
@@ -140,13 +140,13 @@ public class FSDLElements {
         pfont,
         height,
         spacing,
-        //stretching,
-        //xbold,
-        //xitalic,
-        //underline,
-        //strikeout,
-        //opacity,
-        //color
+        stretching,
+        xbold,
+        xitalic,
+        underline,
+        strikeout,
+        opacity,
+        color
     }
 
     public enum restextAttributes {
@@ -154,20 +154,20 @@ public class FSDLElements {
         size,
         orientation,
         fontref,
-        //talign,
-        //linespace,
+        talign,
+        linespace,
         vstyle
     }
 
     public enum textAttributes {
-        //fontref,
-        //talign,
-        //linespace,
+        fontref,
+        talign,
+        linespace,
         vstyle,
-        //join
+        join
     }
 
-    public enum setfilterAttribute {
+    public enum setfilterAttributes {
         filterid
     }
 
@@ -179,26 +179,26 @@ public class FSDLElements {
         color
     }
 
-    public enum setreliefAttribute {
+    public enum setreliefAttributes {
         reliefid
     }
 
     public enum reliefAttributes {
-        rpos
-        //color,
-        //blur,
-        //opacity,
+        rpos,
+        color,
+        blur,
+        opacity
     }
 
-    public enum setshadowAttribute {
+    public enum setshadowAttributes {
         shadowid
     }
 
     public enum shadowAttributes {
         rpos,
-        //color,
-        //blur,
-        //opacity,
+        color,
+        blur,
+        opacity,
         combine
     }
 
@@ -209,16 +209,16 @@ public class FSDLElements {
 
     public enum mergeAttributes {
         resref,
-        //flip,
-        //filterref,
-        //reliefref,
-        //blur,
-        //opacity,
-        //angle,
+        flip,
+        filterref,
+        reliefref,
+        blur,
+        opacity,
+        angle,
         pos,
-        //align,
-        //combine,
-        //shadowref,
+        align,
+        combine,
+        shadowref,
     }
 
 }

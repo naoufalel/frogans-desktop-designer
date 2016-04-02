@@ -4,22 +4,20 @@ package com.frogans.designer.model;
 import com.frogans.designer.model.Elements.ButtonFSDL;
 import com.frogans.designer.model.Elements.FileFSDL;
 import com.frogans.designer.model.Elements.LayerFSDL;
-import javafx.beans.property.SimpleStringProperty;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.ListMultimap;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TreeItem;
+
 import org.w3c.dom.*;
-import org.xml.sax.SAXException;
 
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 
-import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.*;
 
@@ -79,7 +77,8 @@ public class FsdlParser {
                         e.setAttribute("go_to", temp);
                     }
                 }
-            }if (e.getParentNode().getNodeName().equals("button")) {
+            }
+            if (e.getParentNode().getNodeName().equals("button")) {
                 NamedNodeMap nodeList = e.getAttributes();
                 for (int i = 0; i < nodeList.getLength(); i++) {
                     Node n = nodeList.item(i);
@@ -182,12 +181,12 @@ public class FsdlParser {
 
     public ObservableMap<String, String> parseFsdlFile() {
         try {
-            ObservableMap<String,String> a = FXCollections.observableMap(new HashMap<>());
+            ObservableMap<String, String> a = FXCollections.observableMap(new HashMap<>());
 
             NodeList nodeList = getNodeListFromRoot();
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
-                if (node.getNodeType() != Node.TEXT_NODE && node.getNodeType() != Node.COMMENT_NODE) {
+                if (isNotTextOrComment(node)) {
                     //System.out.println(node.getNodeName());
 //                if(node.getNodeName().equals("layer")){
 //                    System.out.println(node.getNodeName());
@@ -196,7 +195,7 @@ public class FsdlParser {
 //                }else{
                     Element element2 = (Element) node;
                     //a.add(new TreeItem<>(getIDofElement(element2)));
-                    a.put(getIDofElement(element2),element2.getNodeName());
+                    a.put(getIDofElement(element2), element2.getNodeName());
 //                }
                 }
             }
@@ -230,7 +229,7 @@ public class FsdlParser {
                 } else if (e.toString().equals("layer"))
                     a = element.getAttribute("layerid");
                 else
-                    a = element.getNodeName()+" ID";
+                    a = element.getNodeName() + " ID";
             }
         }
 
@@ -250,13 +249,13 @@ public class FsdlParser {
             Class<?> aClass = Class.forName("com.frogans.designer.model.Elements.LayerFSDL");
             Object obj = aClass.newInstance();
 
-            LayerFSDL l =new LayerFSDL();
+            LayerFSDL l = new LayerFSDL();
             Class[] paramString = new Class[1];
             paramString[0] = String.class;
 
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
-                if (node.getNodeType() != Node.TEXT_NODE && node.getNodeType() != Node.COMMENT_NODE) {
+                if (isNotTextOrComment(node)) {
                     if (node.getNodeName().equals("layer")) {
                         obj = aClass.newInstance();
                         for (FSDLElements.layerAttributes e : layerAttributes) {
@@ -278,19 +277,6 @@ public class FsdlParser {
         } catch (Exception e) {
             System.err.println("fuck frogans.\n" + e);
         }
-    }
-
-    private NodeList getNodeListFromRoot() throws ParserConfigurationException, SAXException, IOException {
-        DocumentBuilderFactory factory =
-                DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        Document doc = builder.parse(file);
-        doc.getDocumentElement().normalize();
-
-        Element element = doc.getDocumentElement();
-        System.out.println(element.getNodeName());
-
-        return element.getChildNodes();
     }
 
 
@@ -320,7 +306,7 @@ public class FsdlParser {
             Element element1 = null;
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
-                if (node.getNodeType() != Node.TEXT_NODE && node.getNodeType() != Node.COMMENT_NODE) {
+                if (isNotTextOrComment(node)) {
                     if (node.getNodeName().equals("button")) {
                         objButton = aButtonClass.newInstance();
                         for (FSDLElements.buttonAttributes b : buttonAttributes) {
@@ -335,7 +321,7 @@ public class FsdlParser {
                         NodeList nodeList1 = element1.getChildNodes();
                         for (int j = 0; j < nodeList1.getLength(); j++) {
                             Node node1 = nodeList1.item(j);
-                            if (node1.getNodeType() != Node.TEXT_NODE && node1.getNodeType() != Node.COMMENT_NODE) {
+                            if (isNotTextOrComment(node1)) {
                                 if (node1.getNodeName().equals("layer")) {
                                     objLayer = aLayerClass.newInstance();
                                     for (FSDLElements.layerButtonAttributes e : layerButtonAttributes) {
@@ -379,11 +365,11 @@ public class FsdlParser {
     }
 
 
-    public void fileParsing(){
+    public void fileParsing() {
         try {
 
             ObservableList<FileFSDL> files = FXCollections.observableArrayList();
-            List<FSDLElements.FileFsdlTags> fileAttribute = Arrays.asList(FSDLElements.FileFsdlTags.values());
+            List<FSDLElements.fileAttributes> fileAttribute = Arrays.asList(FSDLElements.fileAttributes.values());
 
             NodeList nodeList = getNodeListFromRoot();
 
@@ -397,13 +383,13 @@ public class FsdlParser {
 
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
-                if (node.getNodeType() != Node.TEXT_NODE && node.getNodeType() != Node.COMMENT_NODE) {
-                    if(node.getNodeName().equals("file")){
+                if (isNotTextOrComment(node)) {
+                    if (node.getNodeName().equals("file")) {
                         objFile = aFileClass.newInstance();
                         Element element1 = (Element) node;
-                        for(FSDLElements.FileFsdlTags f : fileAttribute){
-                            Method m = aFileClass.getDeclaredMethod("set"+f.toString(), paramString);
-                            m.invoke(objFile, checkAttributeifNull(element1,f.toString()));
+                        for (FSDLElements.fileAttributes f : fileAttribute) {
+                            Method m = aFileClass.getDeclaredMethod("set" + f.toString(), paramString);
+                            m.invoke(objFile, checkAttributeifNull(element1, f.toString()));
                         }
                         files.add((FileFSDL) objFile);
                     }
@@ -411,17 +397,147 @@ public class FsdlParser {
 
             }
 
-            files.forEach((e->{
+            files.forEach((e -> {
                 System.out.println(e);
             }));
 
         } catch (Exception e) {
-            System.err.println("oui ....\n"+e);
+            System.err.println("oui ....\n" + e);
         }
     }
 
 
+    private NodeList getNodeListFromRoot() {
+        try {
+            DocumentBuilderFactory factory =
+                    DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(file);
+            doc.getDocumentElement().normalize();
 
+            Element element = doc.getDocumentElement();
+            System.out.println(element.getNodeName());
+
+            return element.getChildNodes();
+        } catch (Exception e) {
+            System.err.println("Problem in parsing file");
+        }
+        return null;
+    }
+
+    /**
+     *
+     */
+    public void finalParse() {
+        try {
+            NodeList nodeList = getNodeListFromRoot();
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+                if (isNotTextOrComment(node)) {
+                    if (node.getNodeName().equals("resdraw")) {
+
+                        System.out.println();
+                    }
+                }
+            }
+
+            //getEverything().entries().forEach(System.out::println);
+
+            List<FSDLElements.MainFsdlTags> mainFsdlTagses = Arrays.asList(FSDLElements.MainFsdlTags.values());
+            for (FSDLElements.MainFsdlTags oneMainTag : mainFsdlTagses) {
+                for (Map.Entry<String, String> entry : getEverything().entries()) {
+                    if (oneMainTag.toString().equals(entry.getKey())) {
+                        String temp=capitilizeFirstLetter(entry.getKey());
+                        Class<?> cls = Class.forName("com.frogans.designer.model.Elements."+temp+"FSDL");
+                        System.out.println(cls.getName());
+                    }
+                }
+                System.out.println("-------------------------------");
+            }
+
+        } catch (Exception e) {
+            System.err.println("Problem in function of parsing.\n" + e);
+        }
+    }
+
+    private boolean isNotTextOrComment(Node node) {
+        return node.getNodeType() != Node.TEXT_NODE && node.getNodeType() != Node.COMMENT_NODE;
+    }
+
+    private String capitilizeFirstLetter(String moak){
+        return Character.toUpperCase(moak.charAt(0))+moak.substring(1);
+    }
+
+    private ListMultimap<String, String> getEverything() {
+        try {
+            ListMultimap<String, String> mapOfElementsAndTheirAttributes = ArrayListMultimap.create();
+
+
+            List<FSDLElements.resdrawAttributes> resdrawAttributes = Arrays.asList(FSDLElements.resdrawAttributes.values());
+            List<FSDLElements.setreliefAttributes> setreliefAttributes = Arrays.asList(FSDLElements.setreliefAttributes.values());
+            List<FSDLElements.setshadowAttributes> setshadowAttributes = Arrays.asList(FSDLElements.setshadowAttributes.values());
+            List<FSDLElements.respixelsAttributes> respixelsAttributes = Arrays.asList(FSDLElements.respixelsAttributes.values());
+            List<FSDLElements.respathAttributes> respathAttributes = Arrays.asList(FSDLElements.respathAttributes.values());
+            List<FSDLElements.resmergeAttributes> resmergeAttributes = Arrays.asList(FSDLElements.resmergeAttributes.values());
+            List<FSDLElements.nextAttributes> nextAttributes = Arrays.asList(FSDLElements.nextAttributes.values());
+            List<FSDLElements.layerAttributes> layerAttributes = Arrays.asList(FSDLElements.layerAttributes.values());
+            List<FSDLElements.setfontAttributes> setfontAttributes = Arrays.asList(FSDLElements.setfontAttributes.values());
+            List<FSDLElements.restextAttributes> restextAttributes = Arrays.asList(FSDLElements.restextAttributes.values());
+            List<FSDLElements.fileAttributes> fileAttributes = Arrays.asList(FSDLElements.fileAttributes.values());
+            List<FSDLElements.resimageAttributes> resimageAttributes = Arrays.asList(FSDLElements.resimageAttributes.values());
+            List<FSDLElements.buttonAttributes> buttonAttributes = Arrays.asList(FSDLElements.buttonAttributes.values());
+
+
+            for (FSDLElements.setreliefAttributes setreliefAttribute : setreliefAttributes) {
+                mapOfElementsAndTheirAttributes.put("setrelief", setreliefAttribute.toString());
+            }
+            for (FSDLElements.setshadowAttributes setshadowAttribute : setshadowAttributes) {
+                mapOfElementsAndTheirAttributes.put("setshadow", setshadowAttribute.toString());
+            }
+            for (FSDLElements.respathAttributes respathAttribute : respathAttributes) {
+                mapOfElementsAndTheirAttributes.put("respath", respathAttribute.toString());
+            }
+            for (FSDLElements.resmergeAttributes resmergeAttribute : resmergeAttributes) {
+                mapOfElementsAndTheirAttributes.put("resmerge", resmergeAttribute.toString());
+            }
+            for (FSDLElements.setfontAttributes setfontAttribute : setfontAttributes) {
+                mapOfElementsAndTheirAttributes.put("setfont", setfontAttribute.toString());
+            }
+            for (FSDLElements.restextAttributes restextAttribute : restextAttributes) {
+                mapOfElementsAndTheirAttributes.put("restext", restextAttribute.toString());
+            }
+            for (FSDLElements.layerAttributes layerAttribute : layerAttributes) {
+                mapOfElementsAndTheirAttributes.put("layer", layerAttribute.toString());
+            }
+            for (FSDLElements.buttonAttributes buttonAttribute : buttonAttributes) {
+                mapOfElementsAndTheirAttributes.put("button", buttonAttribute.toString());
+            }
+            for (FSDLElements.fileAttributes fileAttribute : fileAttributes) {
+                mapOfElementsAndTheirAttributes.put("file", fileAttribute.toString());
+            }
+            for (FSDLElements.resdrawAttributes resdrawAttribute : resdrawAttributes) {
+                mapOfElementsAndTheirAttributes.put("resdraw", resdrawAttribute.toString());
+            }
+            for (FSDLElements.respixelsAttributes respixelsAttribute : respixelsAttributes) {
+                mapOfElementsAndTheirAttributes.put("respixel", respixelsAttribute.toString());
+            }
+            for (FSDLElements.nextAttributes nextAttribute : nextAttributes) {
+                mapOfElementsAndTheirAttributes.put("next", nextAttribute.toString());
+            }
+            for (FSDLElements.resimageAttributes resimageAttribute : resimageAttributes) {
+                mapOfElementsAndTheirAttributes.put("resimage", resimageAttribute.toString());
+            }
+
+
+            return mapOfElementsAndTheirAttributes;
+        } catch (Exception e) {
+            System.err.println("jhgf.\n" + e);
+        }
+
+
+        return null;
+    }
 
 }
 
