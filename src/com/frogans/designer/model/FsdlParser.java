@@ -39,32 +39,6 @@ public class FsdlParser {
         this.file = file;
     }
 
-//    private void ifTagIsLayer(Element layer) {
-//        if (layer.getName().equals("layer")) {
-//            //String fuck="";
-////            for(FSDLElements.LayerAttributes l : FSDLElements.LayerAttributes.values()){
-////                Attribute temp = layer.getAttribute(l.toString());
-////                fuck+=checkAttributeifNull(temp)+", ";
-////            }
-//            List<FSDLElements.LayerAttributes> kkk = Arrays.asList(FSDLElements.LayerAttributes.values());
-//            List<String> kjh = new ArrayList<>();
-//
-//            kkk.forEach(e -> {
-//                Attribute a = layer.getAttribute(e.toString());
-//                kjh.add(e.toString() + ": " + checkAttributeifNull(a));
-//            });
-//
-//            System.out.println("\t" + kjh);
-//        }
-//    }
-
-
-    //    private void ifTagIsText(Element text) {
-//        if (text.getName().equals("text")) {
-//            System.out.println("\t\t" + text.getText());
-//        }
-//    }
-//
     private String checkAttributeifNull(Element e, String s) {
         if (e.getAttribute(s) != null) {
             if (e.getNodeName().equals("button")) {
@@ -93,149 +67,7 @@ public class FsdlParser {
         } else
             return "";
     }
-//
-//    public List<TreeItem<String>> gaga() {
-//        try {
-//            SAXBuilder saxBuilder = new SAXBuilder();
-//
-//            Document document = saxBuilder.build(file);
-//
-////            System.out.println("Root element :"
-////                    + document.getRootElement().getName());
-//
-//            Element classElement = document.getRootElement();
-//
-//            List<Element> tagElements = classElement.getChildren();
-//            //System.out.println("----------------------------");
-//
-//           List<TreeItem<String>> mainElements = new ArrayList<>();
-//
-//
-//            tagElements.forEach(e -> {
-//                //System.out.println(e.getName());
-//                if (e.getName().equals("layer"))
-//                    mainElements.add(new TreeItem<>(e.getAttribute("layerid").getValue()));
-//                else
-//                    mainElements.add(new TreeItem<>(e.getName()));
-//
-//                //ifTagIsLayer(e);
-//
-////                List<Element> a = e.getChildren();
-////                a.forEach(i -> {
-////                    System.out.println("\t" + i.getName());
-////                    ifTagIsLayer(i);
-////                    ifTagIsText(i);
-////
-////                });
-//            });
-//
-//            return mainElements;
-//        } catch (Exception e) {
-//            Alert alert = new Alert(Alert.AlertType.ERROR);
-//            alert.setTitle("Problem");
-//            alert.setHeaderText("Problem in opening a file");
-//            alert.setContentText("There was a problem while opening " + file.getName() + ". Please check if the file exists");
-//
-//            alert.showAndWait();
-//            System.err.println("fuck");
-//
-//        }
-//        return null;
-//    }
-//
-//    public List<TreeItem<String>> returnSubButton() {
-//        try {
-//            SAXBuilder saxBuilder = new SAXBuilder();
-//
-//            Document document = saxBuilder.build(file);
-//
-//            System.out.println("Root element :"
-//                    + document.getRootElement().getName());
-//
-//            Element classElement = document.getRootElement();
-//
-//            List<Element> tagElements1 = classElement.getChildren();
-//
-//            List<TreeItem<String>> subButtonTags = new ArrayList<>();
-//
-//            tagElements1.forEach(e -> {
-//                        if (e.getName().equals("button")) {
-//
-//                            List<Element> submok = e.getChildren();
-//
-//                            submok.forEach(a -> {
-//                                subButtonTags.add(new TreeItem<>(a.getAttribute("layerid").getValue()));
-//                            });
-//                        }
-//
-//                    }
-//            );
-//
-//            System.out.println("lololo");
-//            return subButtonTags;
-//        } catch (Exception e) {
-//            System.err.println("fiick" + e);
-//        }
-//        return null;
-//    }
 
-    public ObservableMap<String, String> parseFsdlFile() {
-        try {
-            ObservableMap<String, String> a = FXCollections.observableMap(new HashMap<>());
-
-            NodeList nodeList = getNodeListFromRoot();
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                Node node = nodeList.item(i);
-                if (isNotTextOrComment(node)) {
-                    //System.out.println(node.getNodeName());
-//                if(node.getNodeName().equals("layer")){
-//                    System.out.println(node.getNodeName());
-//                    Element element1 = (Element) node;
-//                    a.add(new TreeItem<>(element1.getAttribute("layerid")));
-//                }else{
-                    Element element2 = (Element) node;
-                    //a.add(new TreeItem<>(getIDofElement(element2)));
-                    a.put(getIDofElement(element2), element2.getNodeName());
-//                }
-                }
-            }
-            return a;
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Problem in opening file");
-            alert.setContentText("There was a problem parsing the file");
-            alert.showAndWait();
-        }
-        return null;
-    }
-
-
-    private String getIDofElement(Element element) {
-
-        List<FSDLElements.MainFsdlTags> fsdlMainTags = Arrays.asList(FSDLElements.MainFsdlTags.values());
-        String a = "";
-        for (FSDLElements.MainFsdlTags e : fsdlMainTags) {
-            if (element.getNodeName().equals(e.toString())) {
-                //TODO
-//                for(FSDLElements.MainFsdlTags m : fsdlMainTags){
-//                    if(e.toString().equals(m.toString())){
-//
-//                    }
-//                }
-
-                if (e.toString().equals("button")) {
-                    a = element.getAttribute("buttonid");
-                } else if (e.toString().equals("layer"))
-                    a = element.getAttribute("layerid");
-                else
-                    a = element.getNodeName() + " ID";
-            }
-        }
-
-
-        return a;
-    }
 
     public void layerParsing() {
         try {
@@ -449,27 +281,52 @@ public class FsdlParser {
                         }
                     }
                     AlanWalker.add(obj);
+                    System.out.println(parseChildren(element));
                 }
             }
-            AlanWalker.forEach(e -> System.out.println("test: " + e));
+            //AlanWalker.forEach(e -> System.out.println("test: " + e));
 
         } catch (Exception e) {
             System.err.println("Problem in function of parsing.\n" + e);
         }
     }
 
-    private boolean isNotTextOrComment(Node node) {
-        return node.getNodeType() != Node.TEXT_NODE && node.getNodeType() != Node.COMMENT_NODE;
-    }
+    private List<Object> parseChildren(Element element) {
+        List<Object> MorganFreeman = new ArrayList<>();
+        Class[] paramString = new Class[1];
+        paramString[0] = String.class;
+        try {
+            switch (element.getNodeName()) {
+                case "button":
+                    NodeList nodeList = element.getChildNodes();
+                    for (int i = 0; i < nodeList.getLength(); i++) {
+                        Node node = nodeList.item(i);
+                        if (isNotTextOrComment(node)) {
+                            Element element1 = (Element) node;
+                            String temp = capitalizeFirstLetter(element1.getNodeName());
+                            Class<?> clz = Class.forName("com.frogans.designer.model.Elements." + temp + "FSDL");
+                            Object obj2 = clz.newInstance();
+                            for (Map.Entry<String, String> entry : getEverythingOfChildren().entries()) {
+                                if (entry.getKey().equals(element1.getNodeName())) {
+                                    Method m = clz.getDeclaredMethod("set" + entry.getValue(), paramString);
+                                    m.invoke(obj2, checkAttributeifNull(element1, entry.getValue()));
+                                }
+                            }
+                            MorganFreeman.add(obj2);
+                        }
 
-    private String capitalizeFirstLetter(String moak) {
-        return Character.toUpperCase(moak.charAt(0)) + moak.substring(1);
+                    }
+            }
+            return MorganFreeman;
+        } catch (Exception e) {
+            System.err.println("WHO CAARRRES ??\n" + e);
+        }
+        return null;
     }
 
     private ListMultimap<String, String> getEverything() {
         try {
             ListMultimap<String, String> mapOfElementsAndTheirAttributes = ArrayListMultimap.create();
-
 
             List<FSDLElements.resdrawAttributes> resdrawAttributes = Arrays.asList(FSDLElements.resdrawAttributes.values());
             List<FSDLElements.setreliefAttributes> setreliefAttributes = Arrays.asList(FSDLElements.setreliefAttributes.values());
@@ -525,24 +382,63 @@ public class FsdlParser {
             for (FSDLElements.resimageAttributes resimageAttribute : resimageAttributes) {
                 mapOfElementsAndTheirAttributes.put("resimage", resimageAttribute.toString());
             }
-
-
             return mapOfElementsAndTheirAttributes;
         } catch (Exception e) {
             System.err.println("jhgf.\n" + e);
         }
 
+        return null;
+    }
 
+    private ListMultimap<String, String> getEverythingOfChildren() {
+        try {
+            ListMultimap<String, String> childrenEvian = childrenEvian = ArrayListMultimap.create();
+
+            List<FSDLElements.layerButtonAttributes> layers = Arrays.asList(FSDLElements.layerButtonAttributes.values());
+            List<FSDLElements.textAttributes> textAttributes = Arrays.asList(FSDLElements.textAttributes.values());
+            List<FSDLElements.fontAttributes> fontAttributes = Arrays.asList(FSDLElements.fontAttributes.values());
+            List<FSDLElements.filterAttributes> filterAttributes = Arrays.asList(FSDLElements.filterAttributes.values());
+            List<FSDLElements.reliefAttributes> reliefAttributes = Arrays.asList(FSDLElements.reliefAttributes.values());
+            List<FSDLElements.mergeAttributes> mergeAttributes = Arrays.asList(FSDLElements.mergeAttributes.values());
+            List<FSDLElements.shadowAttributes> shadowAttributes = Arrays.asList(FSDLElements.shadowAttributes.values());
+
+
+            for (FSDLElements.layerButtonAttributes layer : layers) {
+                childrenEvian.put("layer", layer.toString());
+            }
+            for (FSDLElements.textAttributes textAttribute : textAttributes) {
+                childrenEvian.put("text", textAttribute.toString());
+            }
+            for (FSDLElements.fontAttributes fontAttribute : fontAttributes) {
+                childrenEvian.put("font", fontAttribute.toString());
+            }
+            for (FSDLElements.filterAttributes filterAttribute : filterAttributes) {
+                childrenEvian.put("filter", filterAttribute.toString());
+            }
+            for (FSDLElements.reliefAttributes reliefAttribute : reliefAttributes) {
+                childrenEvian.put("relief", reliefAttribute.toString());
+            }
+            for (FSDLElements.mergeAttributes mergeAttribute : mergeAttributes) {
+                childrenEvian.put("merge", mergeAttribute.toString());
+            }
+            for (FSDLElements.shadowAttributes shadowAttribute : shadowAttributes) {
+                childrenEvian.put("shadow", shadowAttribute.toString());
+            }
+
+            return childrenEvian;
+        } catch (Exception e) {
+            System.err.println("NO ONE CARES.\n" + e);
+        }
         return null;
     }
 
 
-    private void parseChildren(Element element) {
-        switch (element.getNodeName()) {
-            case "button":
-                List<String> layers = new ArrayList<>();
+    private boolean isNotTextOrComment(Node node) {
+        return node.getNodeType() != Node.TEXT_NODE && node.getNodeType() != Node.COMMENT_NODE;
+    }
 
-        }
+    private String capitalizeFirstLetter(String moak) {
+        return Character.toUpperCase(moak.charAt(0)) + moak.substring(1);
     }
 }
 
