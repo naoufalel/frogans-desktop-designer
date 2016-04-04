@@ -117,7 +117,8 @@ public class FsdlParser {
             //AlanWalker.forEach(e -> System.out.println("test: " + e));
             AlanWalker.forEach(e->{
                 if(e instanceof LayerFSDL){
-                    System.out.println("hola");
+                    LayerFSDL layerFSDL = (LayerFSDL) e;
+                    System.out.println(layerFSDL.getLayerid());
                 }
             });
 
