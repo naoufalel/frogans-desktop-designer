@@ -184,7 +184,7 @@ public class FrogansApp extends Application {
     public void loadAFile(File file) {
         try {
             fsdlParser = new FsdlParser(file);
-            mainTags = fsdlParser.parseFsdlFile();
+            //mainTags = fsdlParser.parseFsdlFile();
 
             //setReminderFilePath(file);
             primaryStage.setTitle("Frogans Designer - " + file.getName());

@@ -111,10 +111,15 @@ public class FsdlParser {
                         }
                     }
                     AlanWalker.add(obj);
-                    System.out.println(parseChildren(element));
+                    //System.out.println(parseChildren(element));
                 }
             }
             //AlanWalker.forEach(e -> System.out.println("test: " + e));
+            AlanWalker.forEach(e->{
+                if(e instanceof LayerFSDL){
+                    System.out.println("hola");
+                }
+            });
 
         } catch (Exception e) {
             System.err.println("Problem in function of parsing.\n" + e);
