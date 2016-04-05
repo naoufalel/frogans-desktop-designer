@@ -115,7 +115,6 @@ public class FsdlParser {
                     }
                     obj = parseChildren(element,obj);
                     AlanWalker.add(obj);
-
                 }
             }
             //AlanWalker.forEach(e -> System.out.println("test: " + e));
@@ -125,9 +124,10 @@ public class FsdlParser {
 //                    System.out.println(layerFSDL.getLayerid());
 //                }
                 if(e instanceof ButtonFSDL){
-                     ((ButtonFSDL) e).getLayersButton().forEach(ee->{
-                        System.out.println(ee.getLayerid());
-                    });
+                    System.out.println((ButtonFSDL) e);
+//                     ((ButtonFSDL) e).getLayersButton().forEach(ee->{
+//                        System.out.println(ee.getLayerid());
+//                    });
                 }
             });
 
@@ -150,7 +150,6 @@ public class FsdlParser {
                             Object obj2 = getObjectWhenChild(paramString, (Element) node);
                             weDemBoys.getLayersButton().add((LayerFSDL) obj2);
                         }
-
                     }
                     return weDemBoys;
                 //TODO
