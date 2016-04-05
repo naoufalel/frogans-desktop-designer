@@ -18,8 +18,11 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
+
+import static com.frogans.designer.Utils.Tools.capitalizeFirstLetter;
 
 /**
  * Created by Naoufal EL BANTLI on 3/19/2016.
@@ -68,7 +71,7 @@ public class FsdlParser {
             return "";
     }
 
- 
+
     private NodeList getNodeListFromRoot() {
         try {
             DocumentBuilderFactory factory =
@@ -110,15 +113,21 @@ public class FsdlParser {
                             m.invoke(obj, checkAttributeifNull(element, entry.getValue()));
                         }
                     }
+                    obj = parseChildren(element,obj);
                     AlanWalker.add(obj);
-                    //System.out.println(parseChildren(element));
+
                 }
             }
             //AlanWalker.forEach(e -> System.out.println("test: " + e));
-            AlanWalker.forEach(e->{
-                if(e instanceof LayerFSDL){
-                    LayerFSDL layerFSDL = (LayerFSDL) e;
-                    System.out.println(layerFSDL.getLayerid());
+            AlanWalker.forEach(e -> {
+//                if (e instanceof LayerFSDL) {
+//                    LayerFSDL layerFSDL = (LayerFSDL) e;
+//                    System.out.println(layerFSDL.getLayerid());
+//                }
+                if(e instanceof ButtonFSDL){
+                     ((ButtonFSDL) e).getLayersButton().forEach(ee->{
+                        System.out.println(ee.getLayerid());
+                    });
                 }
             });
 
@@ -127,35 +136,47 @@ public class FsdlParser {
         }
     }
 
-    private List<Object> parseChildren(Element element) {
-        List<Object> MorganFreeman = new ArrayList<>();
+    private Object parseChildren(Element element, Object obj) {
         Class[] paramString = new Class[1];
         paramString[0] = String.class;
         try {
             switch (element.getNodeName()) {
                 case "button":
+                    ButtonFSDL weDemBoys = (ButtonFSDL) obj;
                     NodeList nodeList = element.getChildNodes();
                     for (int i = 0; i < nodeList.getLength(); i++) {
                         Node node = nodeList.item(i);
                         if (isNotTextOrComment(node)) {
-                            Element element1 = (Element) node;
-                            String temp = capitalizeFirstLetter(element1.getNodeName());
-                            Class<?> clz = Class.forName("com.frogans.designer.model.Elements." + temp + "FSDL");
-                            Object obj2 = clz.newInstance();
-                            for (Map.Entry<String, String> entry : getEverythingOfChildren().entries()) {
-                                if (entry.getKey().equals(element1.getNodeName())) {
-                                    Method m = clz.getDeclaredMethod("set" + entry.getValue(), paramString);
-                                    m.invoke(obj2, checkAttributeifNull(element1, entry.getValue()));
-                                }
-                            }
-                            MorganFreeman.add(obj2);
+                            Object obj2 = getObjectWhenChild(paramString, (Element) node);
+                            weDemBoys.getLayersButton().add((LayerFSDL) obj2);
                         }
 
                     }
+                    return weDemBoys;
+                //case "restext":
             }
-            return MorganFreeman;
+
         } catch (Exception e) {
             System.err.println("WHO CAARRRES ??\n" + e);
+        }
+        return null;
+    }
+
+    private Object getObjectWhenChild(Class[] paramString, Element node) {
+        try {
+            Element element = node;
+            String temp = capitalizeFirstLetter(element.getNodeName());
+            Class<?> clz = Class.forName("com.frogans.designer.model.Elements." + temp + "FSDL");
+            Object obj = clz.newInstance();
+            for (Map.Entry<String, String> entry : getEverythingOfChildren().entries()) {
+                if (entry.getKey().equals(element.getNodeName())) {
+                    Method m = clz.getDeclaredMethod("set" + entry.getValue(), paramString);
+                    m.invoke(obj, checkAttributeifNull(element, entry.getValue()));
+                }
+            }
+            return obj;
+        } catch (Exception e) {
+            System.err.println("IRRELEVANT.\n"+e);
         }
         return null;
     }
@@ -273,9 +294,7 @@ public class FsdlParser {
         return node.getNodeType() != Node.TEXT_NODE && node.getNodeType() != Node.COMMENT_NODE;
     }
 
-    private String capitalizeFirstLetter(String moak) {
-        return Character.toUpperCase(moak.charAt(0)) + moak.substring(1);
-    }
+
 }
 
 
