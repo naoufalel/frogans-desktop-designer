@@ -93,11 +93,11 @@ public class FsdlParser {
     /**
      *
      */
-    public void finalParse() {
+    public ObservableList<Object> finalParse() {
         try {
             Class[] paramString = new Class[1];
             paramString[0] = String.class;
-            List<Object> AlanWalker = new ArrayList<>();
+            ObservableList<Object> AlanWalker = FXCollections.observableArrayList();
 
             NodeList nodeList = getNodeListFromRoot();
             for (int i = 0; i < nodeList.getLength(); i++) {
@@ -113,27 +113,27 @@ public class FsdlParser {
                             m.invoke(obj, checkAttributeifNull(element, entry.getValue()));
                         }
                     }
-                    obj = parseChildren(element,obj);
+                    obj = parseChildren(element, obj);
                     AlanWalker.add(obj);
                 }
             }
-            //AlanWalker.forEach(e -> System.out.println("test: " + e));
             AlanWalker.forEach(e -> {
-//                if (e instanceof LayerFSDL) {
-//                    LayerFSDL layerFSDL = (LayerFSDL) e;
-//                    System.out.println(layerFSDL.getLayerid());
-//                }
-                if(e instanceof ButtonFSDL){
+                if (e instanceof ButtonFSDL) {
                     System.out.println((ButtonFSDL) e);
 //                     ((ButtonFSDL) e).getLayersButton().forEach(ee->{
 //                        System.out.println(ee.getLayerid());
 //                    });
                 }
             });
-
+//
+//                if(AlanWalker==null){
+//                    AlanWalker.add("Sorry");
+//                }
+            return AlanWalker;
         } catch (Exception e) {
             System.err.println("Problem in function of parsing.\n" + e);
         }
+        return null;
     }
 
     private Object parseChildren(Element element, Object obj) {
@@ -154,6 +154,8 @@ public class FsdlParser {
                     return weDemBoys;
                 //TODO
                 //case "restext":
+                default:
+                    return obj;
             }
 
         } catch (Exception e) {
@@ -176,13 +178,14 @@ public class FsdlParser {
             }
             return obj;
         } catch (Exception e) {
-            System.err.println("IRRELEVANT.\n"+e);
+            System.err.println("IRRELEVANT.\n" + e);
         }
         return null;
     }
 
     /**
      * Converts all the enums to one Map (using Guava)
+     *
      * @return
      */
     private ListMultimap<String, String> getEverything() {

@@ -1,6 +1,9 @@
 package com.frogans.designer.view;
 
 import com.frogans.designer.FrogansApp;
+import com.frogans.designer.model.Elements.ButtonFSDL;
+import com.frogans.designer.model.Elements.FileFSDL;
+import com.frogans.designer.model.Elements.LayerFSDL;
 import com.frogans.designer.view.PropertiesLayout.LayerLayoutController;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -51,8 +54,8 @@ public class DesignerLayoutController {
     private TreeTableView<String> treeTableHierarchy;
     @FXML
     private TreeTableColumn<String, String> elementID;
-    @FXML
-    private TreeTableColumn<String, String> elementType;
+//    @FXML
+//    private TreeTableColumn<String, String> elementType;
 
     TreeItem<String> root = new TreeItem<>("frogans-fsdl");
 
@@ -66,6 +69,14 @@ public class DesignerLayoutController {
     @FXML
     TextField tf = new TextField();
 
+    public TreeTableView<String> getTreeHierarchy() {
+        return treeTableHierarchy;
+    }
+
+    public void setTreeHierarchy(TreeTableView<String> treeHierarchy) {
+        this.treeTableHierarchy = treeHierarchy;
+    }
+
     private final ObjectProperty<ListCell<String>> dragSource = new SimpleObjectProperty<>();
 
     private ObservableList<TreeItem<String>> temp = FXCollections.observableArrayList();
@@ -76,14 +87,6 @@ public class DesignerLayoutController {
             "Layer"
     );
 
-    public TreeTableView<String> getTreeHierarchy() {
-        return treeTableHierarchy;
-    }
-
-    public void setTreeHierarchy(TreeTableView<String> treeHierarchy) {
-        this.treeTableHierarchy = treeHierarchy;
-    }
-
     public DesignerLayoutController() {
 
     }
@@ -92,8 +95,8 @@ public class DesignerLayoutController {
     public void initialize() {
         accordion.setExpandedPane(titledPane);
         someTest();
-        elementID.setCellValueFactory((TreeTableColumn.CellDataFeatures<String,String> p)-> new ReadOnlyStringWrapper(p.getValue().getValue().toString()));
-        elementType.setCellValueFactory(p-> new ReadOnlyStringWrapper(p.getValue().getValue().toString()));
+        elementID.setCellValueFactory((TreeTableColumn.CellDataFeatures<String, String> p) -> new ReadOnlyStringWrapper(p.getValue().getValue().toString()));
+        //elementType.setCellValueFactory();
 
     }
 
@@ -108,8 +111,20 @@ public class DesignerLayoutController {
 //            temp = frogansApp.getMainTags();
         } else {
             root.setExpanded(true);
-            frogansApp.getMainTags().entrySet().forEach(e->{
-                root.getChildren().add(new TreeItem<>(e.getKey()));
+            frogansApp.getMainTags().forEach(e -> {
+                if(e instanceof LayerFSDL)
+                    root.getChildren().add(new TreeItem<>(((LayerFSDL) e).getLayerid()));
+                else if(e instanceof ButtonFSDL){
+                    TreeItem<String> ew= new TreeItem<String>(((ButtonFSDL) e).getButtonid());
+                    ew.setExpanded(true);
+                    ((ButtonFSDL)e).getLayersButton().forEach(y->{
+                        ew.getChildren().add(new TreeItem<>(y.getLayerid()));
+                    });
+                    root.getChildren().add(ew);
+                }
+                else if(e instanceof FileFSDL){
+                    root.getChildren().add(new TreeItem<>(((FileFSDL) e).getFileid()));
+                }
             });
 //            frogansApp.getMainTags().forEach(e -> {
 //                root.getChildren().add(e);

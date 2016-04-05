@@ -40,27 +40,24 @@ public class FrogansApp extends Application {
     FsdlParser fsdlParser;
     Timeline timeline;
 
-    public Timeline getTimeline() {
-        return timeline;
-    }
+    private ObservableList<Object> mainTags = FXCollections.observableArrayList();
 
-    private ObservableMap<String, String> mainTags = FXCollections.observableMap(new HashMap<>());
-
-    public ObservableMap<String, String> getMainTags() {
+    public ObservableList<Object> getMainTags() {
         return mainTags;
     }
 
-    public void setMainTags(ObservableMap<String, String> mainTags) {
+    public void setMainTags(ObservableList<Object> mainTags) {
         this.mainTags = mainTags;
     }
 
     public FsdlParser getFsdlParser() {
         return fsdlParser;
     }
-
-
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+    public Timeline getTimeline() {
+        return timeline;
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -87,21 +84,17 @@ public class FrogansApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        String filename = "C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.9.1-win32\\FrogansPlayer4Dev-noinstall-alpha0.9.1-win32\\test\\helloworld\\home.fsdl";
-        fsdlParser = new FsdlParser(new File(filename));
-//        fsdlParser.parseFsdlFile();
-//        this.primaryStage = primaryStage;
-//        primaryStage.setTitle("Frogans Designer");
-////        primaryStage.getIcons().add(new Image(FrogansApp.class.getResourceAsStream("/images/something.png")));
-//
-//        initRootLayout();
-//        showSplitContainers();
+//        String filename = "C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.9.1-win32\\FrogansPlayer4Dev-noinstall-alpha0.9.1-win32\\test\\helloworld\\home.fsdl";
+//        fsdlParser = new FsdlParser(new File(filename));
+        this.primaryStage = primaryStage;
+        primaryStage.setTitle("Frogans Designer");
+//        primaryStage.getIcons().add(new Image(FrogansApp.class.getResourceAsStream("/images/something.png")));
+
+        initRootLayout();
+        showSplitContainers();
 
 
-//        fsdlParser.layerParsing();
-        //fsdlParser.buttonParsing();
-//        fsdlParser.fileParsing();
-            fsdlParser.finalParse();
+//            fsdlParser.finalParse();
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -162,8 +155,6 @@ public class FrogansApp extends Application {
             );
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -184,7 +175,7 @@ public class FrogansApp extends Application {
     public void loadAFile(File file) {
         try {
             fsdlParser = new FsdlParser(file);
-            //mainTags = fsdlParser.parseFsdlFile();
+            mainTags = fsdlParser.finalParse();
 
             //setReminderFilePath(file);
             primaryStage.setTitle("Frogans Designer - " + file.getName());
