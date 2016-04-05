@@ -96,15 +96,13 @@ public class DesignerLayoutController {
         accordion.setExpandedPane(titledPane);
         someTest();
         elementID.setCellValueFactory((TreeTableColumn.CellDataFeatures<String, String> p) -> new ReadOnlyStringWrapper(p.getValue().getValue().toString()));
-        elementType.setCellValueFactory((TreeTableColumn.CellDataFeatures<String, String> p) ->{
+        elementType.setCellValueFactory((TreeTableColumn.CellDataFeatures<String, String> p) -> {
             ReadOnlyStringWrapper a = new ReadOnlyStringWrapper("");
-            if (p.getValue().getValue().contains("layer")){
+            if (p.getValue().getValue().contains("layer")) {
                 a.setValue("Layer");
-            }
-            else if (p.getValue().getValue().contains("button")){
+            } else if (p.getValue().getValue().contains("button")) {
                 a.setValue("Button");
-            }
-            else a.setValue("");
+            } else a.setValue("");
             return a;
         });
 
@@ -122,17 +120,16 @@ public class DesignerLayoutController {
         } else {
             root.setExpanded(true);
             frogansApp.getMainTags().forEach(e -> {
-                if(e instanceof LayerFSDL)
+                if (e instanceof LayerFSDL)
                     root.getChildren().add(new TreeItem<>(((LayerFSDL) e).getLayerid()));
-                else if(e instanceof ButtonFSDL){
-                    TreeItem<String> ew= new TreeItem<String>(((ButtonFSDL) e).getButtonid());
+                else if (e instanceof ButtonFSDL) {
+                    TreeItem<String> ew = new TreeItem<String>(((ButtonFSDL) e).getButtonid());
                     ew.setExpanded(true);
-                    ((ButtonFSDL)e).getLayersButton().forEach(y->{
+                    ((ButtonFSDL) e).getLayersButton().forEach(y -> {
                         ew.getChildren().add(new TreeItem<>(y.getLayerid()));
                     });
                     root.getChildren().add(ew);
-                }
-                else if(e instanceof FileFSDL){
+                } else if (e instanceof FileFSDL) {
                     root.getChildren().add(new TreeItem<>(((FileFSDL) e).getFileid()));
                 }
             });
