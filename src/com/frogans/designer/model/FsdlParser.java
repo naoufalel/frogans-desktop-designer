@@ -182,6 +182,10 @@ public class FsdlParser {
         return null;
     }
 
+    /**
+     * Converts all the enums to one Map (using Guava)
+     * @return
+     */
     private ListMultimap<String, String> getEverything() {
         try {
             ListMultimap<String, String> mapOfElementsAndTheirAttributes = ArrayListMultimap.create();
