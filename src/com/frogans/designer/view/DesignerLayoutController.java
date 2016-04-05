@@ -54,8 +54,8 @@ public class DesignerLayoutController {
     private TreeTableView<String> treeTableHierarchy;
     @FXML
     private TreeTableColumn<String, String> elementID;
-//    @FXML
-//    private TreeTableColumn<String, String> elementType;
+    @FXML
+    private TreeTableColumn<String, String> elementType;
 
     TreeItem<String> root = new TreeItem<>("frogans-fsdl");
 
@@ -96,7 +96,17 @@ public class DesignerLayoutController {
         accordion.setExpandedPane(titledPane);
         someTest();
         elementID.setCellValueFactory((TreeTableColumn.CellDataFeatures<String, String> p) -> new ReadOnlyStringWrapper(p.getValue().getValue().toString()));
-        //elementType.setCellValueFactory();
+        elementType.setCellValueFactory((TreeTableColumn.CellDataFeatures<String, String> p) ->{
+            ReadOnlyStringWrapper a = new ReadOnlyStringWrapper("");
+            if (p.getValue().getValue().contains("layer")){
+                a.setValue("Layer");
+            }
+            else if (p.getValue().getValue().contains("button")){
+                a.setValue("Button");
+            }
+            else a.setValue("");
+            return a;
+        });
 
     }
 
