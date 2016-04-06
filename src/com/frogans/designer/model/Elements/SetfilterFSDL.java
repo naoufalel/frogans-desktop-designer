@@ -2,11 +2,15 @@ package com.frogans.designer.model.Elements;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Created by Aladdin on 29-Mar-16.
  */
 public class SetfilterFSDL {
+
+    private ObservableList<FilterFSDL> filters = FXCollections.observableArrayList();
     private StringProperty filterid;
 
     public SetfilterFSDL() {
@@ -28,10 +32,19 @@ public class SetfilterFSDL {
         this.filterid.set(filterid);
     }
 
+    public ObservableList<FilterFSDL> getFilters() {
+        return filters;
+    }
+
+    public void setfilters(ObservableList<FilterFSDL> filters) {
+        this.filters = filters;
+    }
+
     @Override
     public String toString() {
         return "SetfilterFSDL{" +
-                "filterid=" + filterid +
+                "filters=" + filters +
+                ", filterid=" + filterid +
                 '}';
     }
 }

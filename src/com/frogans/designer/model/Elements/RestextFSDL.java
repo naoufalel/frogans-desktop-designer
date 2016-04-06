@@ -2,6 +2,8 @@ package com.frogans.designer.model.Elements;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.Arrays;
 
@@ -9,6 +11,8 @@ import java.util.Arrays;
  * Created by Aladdin on 29-Mar-16.
  */
 public class RestextFSDL {
+
+    private ObservableList<TextFSDL> texts = FXCollections.observableArrayList();
 
     private StringProperty resid;
     private StringProperty size;
@@ -149,6 +153,10 @@ public class RestextFSDL {
         this.vstyle.set(vstyle);
     }
 
+    public ObservableList<TextFSDL> getTexts() {return texts;}
+
+    public void settexts(ObservableList<TextFSDL> texts) {this.texts = texts;}
+
     @Override
     public String toString() {
         return "RestextFSDL{" +
@@ -159,6 +167,7 @@ public class RestextFSDL {
                 ", talign=" + talign +
                 ", linespace=" + linespace +
                 ", vstyle=" + vstyle +
+                ", texts=" + texts +
                 '}';
     }
 }

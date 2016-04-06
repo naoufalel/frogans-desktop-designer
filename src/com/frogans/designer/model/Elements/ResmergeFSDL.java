@@ -1,12 +1,17 @@
 package com.frogans.designer.model.Elements;
 
+import com.sun.scenario.effect.Merge;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Created by Aladdin on 29-Mar-16.
  */
 public class ResmergeFSDL {
+
+    private ObservableList<MergeFSDL> merges = FXCollections.observableArrayList();
 
     private StringProperty resid;
     private StringProperty size;
@@ -44,5 +49,13 @@ public class ResmergeFSDL {
 
     public void setsize(String size) {
         this.size.set(size);
+    }
+
+    public ObservableList<MergeFSDL> getMerges() {
+        return merges;
+    }
+
+    public void setmerges(ObservableList<MergeFSDL> merges) {
+        this.merges = merges;
     }
 }

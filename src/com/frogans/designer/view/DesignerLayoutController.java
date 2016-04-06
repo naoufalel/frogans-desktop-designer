@@ -1,9 +1,7 @@
 package com.frogans.designer.view;
 
 import com.frogans.designer.FrogansApp;
-import com.frogans.designer.model.Elements.ButtonFSDL;
-import com.frogans.designer.model.Elements.FileFSDL;
-import com.frogans.designer.model.Elements.LayerFSDL;
+import com.frogans.designer.model.Elements.*;
 import com.frogans.designer.view.PropertiesLayout.LayerLayoutController;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -131,6 +129,13 @@ public class DesignerLayoutController {
                     root.getChildren().add(ew);
                 } else if (e instanceof FileFSDL) {
                     root.getChildren().add(new TreeItem<>(((FileFSDL) e).getFileid()));
+                } else if (e instanceof ResmergeFSDL) {
+                    TreeItem<String> ew = new TreeItem<String>(((ResmergeFSDL) e).getResid());
+                    ew.setExpanded(true);
+                    ((ResmergeFSDL) e).getMerges().forEach(y -> {
+                        ew.getChildren().add(new TreeItem<>("merge"));
+                    });
+                    root.getChildren().add(ew);
                 }
             });
 //            frogansApp.getMainTags().forEach(e -> {
