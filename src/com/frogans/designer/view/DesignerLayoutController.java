@@ -103,9 +103,23 @@ public class DesignerLayoutController {
 
                 LayerLayoutController controller = loader.getController();
                 controller.setFrogansApp(frogansApp);
-                controller.getIdText().setText(((LayerFSDL) o).getLayerid());
-
-                controller.getLeapoutChoice().setValue(((LayerFSDL) o).getLeapout());
+                LayerFSDL l = (LayerFSDL) o;
+                controller.fillLayerLayout(
+                        l.getLayerid(),
+                        l.getLeapout(),
+                        l.getResref(),
+                        l.getFlip(),
+                        l.getFilterref(),
+                        l.getReliefref(),
+                        l.getBlur(),
+                        l.getOpacity(),
+                        l.getAngle(),
+                        l.getPos(),
+                        l.getAlign(),
+                        l.getCombine(),
+                        l.getShadowref(),
+                        l.getVisible()
+                );
             } catch (Exception e1) {
                 System.err.println("mloiuyhg.\n" + e1);
             }
