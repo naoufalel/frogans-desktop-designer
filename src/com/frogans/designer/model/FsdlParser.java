@@ -1,9 +1,7 @@
 package com.frogans.designer.model;
 
 
-import com.frogans.designer.model.Elements.ButtonFSDL;
-import com.frogans.designer.model.Elements.FileFSDL;
-import com.frogans.designer.model.Elements.LayerFSDL;
+import com.frogans.designer.model.Elements.*;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 import javafx.collections.FXCollections;
@@ -118,8 +116,8 @@ public class FsdlParser {
                 }
             }
             AlanWalker.forEach(e -> {
-                if (e instanceof ButtonFSDL) {
-                    System.out.println((ButtonFSDL) e);
+                if (e instanceof RestextFSDL) {
+                    System.out.println((RestextFSDL) e);
 //                     ((ButtonFSDL) e).getLayersButton().forEach(ee->{
 //                        System.out.println(ee.getLayerid());
 //                    });
@@ -142,19 +140,88 @@ public class FsdlParser {
         try {
             switch (element.getNodeName()) {
                 case "button":
-                    ButtonFSDL weDemBoys = (ButtonFSDL) obj;
+                    ButtonFSDL hola = (ButtonFSDL) obj;
                     NodeList nodeList = element.getChildNodes();
                     for (int i = 0; i < nodeList.getLength(); i++) {
                         Node node = nodeList.item(i);
                         if (isNotTextOrComment(node)) {
                             Object obj2 = getObjectWhenChild(paramString, (Element) node);
-                            weDemBoys.getLayersButton().add((LayerFSDL) obj2);
+                            hola.getLayersButton().add((LayerFSDL) obj2);
                         }
                     }
-                    return weDemBoys;
-                //TODO
-                //case "restext":
+                    return hola;
 
+                case "restext":
+                    RestextFSDL we = (RestextFSDL) obj;
+                    NodeList nodeList1 = element.getChildNodes();
+                    for (int i = 0; i < nodeList1.getLength(); i++) {
+                        Node node = nodeList1.item(i);
+                        if (isNotTextOrComment(node)) {
+                            Object obj2 = getObjectWhenChild(paramString, (Element) node);
+                            we.getTexts().add((TextFSDL) obj2);
+                        }
+                    }
+                    return we;
+
+                case "resmerge":
+                    ResmergeFSDL dem = (ResmergeFSDL) obj;
+                    NodeList nodeList2 = element.getChildNodes();
+                    for (int i = 0; i < nodeList2.getLength(); i++) {
+                        Node node = nodeList2.item(i);
+                        if (isNotTextOrComment(node)) {
+                            Object obj2 = getObjectWhenChild(paramString, (Element) node);
+                            dem.getMerges().add((MergeFSDL) obj2);
+                        }
+                    }
+                    return dem;
+
+                case "setfont":
+                    SetfontFSDL boyz = (SetfontFSDL) obj;
+                    NodeList nodeList3 = element.getChildNodes();
+                    for (int i = 0; i < nodeList3.getLength(); i++) {
+                        Node node = nodeList3.item(i);
+                        if (isNotTextOrComment(node)) {
+                            Object obj2 = getObjectWhenChild(paramString, (Element) node);
+                            boyz.getFonts().add((FontFSDL) obj2);
+                        }
+                    }
+                    return boyz;
+
+                case "setfilter":
+                    SetfilterFSDL lets = (SetfilterFSDL) obj;
+                    NodeList nodeList4 = element.getChildNodes();
+                    for (int i = 0; i < nodeList4.getLength(); i++) {
+                        Node node = nodeList4.item(i);
+                        if (isNotTextOrComment(node)) {
+                            Object obj2 = getObjectWhenChild(paramString, (Element) node);
+                            lets.getFilters().add((FilterFSDL) obj2);
+                        }
+                    }
+                    return lets;
+
+                case "setrelief":
+                    SetreliefFSDL make = (SetreliefFSDL) obj;
+                    NodeList nodeList5 = element.getChildNodes();
+                    for (int i = 0; i < nodeList5.getLength(); i++) {
+                        Node node = nodeList5.item(i);
+                        if (isNotTextOrComment(node)) {
+                            Object obj2 = getObjectWhenChild(paramString, (Element) node);
+                            make.getReliefs().add((ReliefFSDL) obj2);
+                        }
+                    }
+                    return make;
+
+                case "setshadow":
+                    SetshadowFSDL noise = (SetshadowFSDL) obj;
+                    NodeList nodeList6 = element.getChildNodes();
+                    for (int i = 0; i < nodeList6.getLength(); i++) {
+                        Node node = nodeList6.item(i);
+                        if (isNotTextOrComment(node)) {
+                            Object obj2 = getObjectWhenChild(paramString, (Element) node);
+                            noise.getShadows().add((ShadowFSDL) obj2);
+                        }
+                    }
+                    return noise;                
 
                 default:
                     return obj;

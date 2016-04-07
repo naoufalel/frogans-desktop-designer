@@ -2,11 +2,15 @@ package com.frogans.designer.model.Elements;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Created by Aladdin on 29-Mar-16.
  */
 public class SetshadowFSDL {
+
+    private ObservableList<ShadowFSDL> shadows = FXCollections.observableArrayList();
 
     private StringProperty shadowid;
 
@@ -29,10 +33,19 @@ public class SetshadowFSDL {
         this.shadowid.set(shadowid);
     }
 
+    public ObservableList<ShadowFSDL> getShadows() {
+        return shadows;
+    }
+
+    public void setshadows(ObservableList<ShadowFSDL> shadows) {
+        this.shadows = shadows;
+    }
+
     @Override
     public String toString() {
         return "SetshadowFSDL{" +
-                "shadowid=" + shadowid +
+                "shadows=" + shadows +
+                ", shadowid=" + shadowid +
                 '}';
     }
 }

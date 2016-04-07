@@ -93,8 +93,7 @@ public class FrogansApp extends Application {
         initRootLayout();
         showSplitContainers();
 
-
-//            fsdlParser.finalParse();
+       //  fsdlParser.finalParse();
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -138,14 +137,6 @@ public class FrogansApp extends Application {
             DesignerLayoutController controller = loader.getController();
             controller.setFrogansApp(this);
 
-            FXMLLoader loader2 = new FXMLLoader();
-            loader2.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/FileLayout.fxml"));
-            AnchorPane layerFuck = loader2.load();
-
-            controller.getPropertiesPane().setContent(layerFuck);
-
-            FileLayoutController controller1 = loader2.getController();
-            controller1.setFrogansApp(this);
 
             timeline = new Timeline(
                     new KeyFrame(

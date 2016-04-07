@@ -12,6 +12,8 @@ import java.util.Arrays;
  */
 public class RestextFSDL {
 
+    private ObservableList<TextFSDL> texts = FXCollections.observableArrayList();
+
     private StringProperty resid;
     private StringProperty size;
     private StringProperty orientation;
@@ -151,6 +153,10 @@ public class RestextFSDL {
         this.vstyle.set(vstyle);
     }
 
+    public ObservableList<TextFSDL> getTexts() {return texts;}
+
+    public void settexts(ObservableList<TextFSDL> texts) {this.texts = texts;}
+
     @Override
     public String toString() {
         return "RestextFSDL{" +
@@ -161,6 +167,7 @@ public class RestextFSDL {
                 ", talign=" + talign +
                 ", linespace=" + linespace +
                 ", vstyle=" + vstyle +
+                ", texts=" + texts +
                 '}';
     }
 }

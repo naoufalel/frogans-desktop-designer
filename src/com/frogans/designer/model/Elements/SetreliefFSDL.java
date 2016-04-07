@@ -2,12 +2,15 @@ package com.frogans.designer.model.Elements;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Created by Aladdin on 29-Mar-16.
  */
 public class SetreliefFSDL {
 
+    private ObservableList<ReliefFSDL> reliefs = FXCollections.observableArrayList();
     private StringProperty reliefid;
 
     public SetreliefFSDL() {
@@ -29,10 +32,19 @@ public class SetreliefFSDL {
         this.reliefid.set(reliefid);
     }
 
+    public ObservableList<ReliefFSDL> getReliefs() {
+        return reliefs;
+    }
+
+    public void setreliefs(ObservableList<ReliefFSDL> reliefs) {
+        this.reliefs = reliefs;
+    }
+
     @Override
     public String toString() {
         return "SetreliefFSDL{" +
-                "reliefid=" + reliefid +
+                "reliefs=" + reliefs +
+                ", reliefid=" + reliefid +
                 '}';
     }
 }

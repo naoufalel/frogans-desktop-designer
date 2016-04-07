@@ -3,27 +3,22 @@ package com.frogans.designer.view;
 import com.frogans.designer.FrogansApp;
 import com.frogans.designer.model.Elements.*;
 import com.frogans.designer.view.PropertiesLayout.LayerLayoutController;
-import com.sun.xml.internal.ws.server.ServerRtException;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleObjectProperty;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import javafx.fxml.FXML;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
+import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Callback;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
 
 /**
  * Created by Naoufal EL BANTLI on 3/19/2016.
@@ -96,57 +91,74 @@ public class DesignerLayoutController {
         accordion.setExpandedPane(titledPane);
         someTest();
         elementID.setCellValueFactory((TreeTableColumn.CellDataFeatures<Object, String> p) -> {
-            ReadOnlyStringWrapper a = new ReadOnlyStringWrapper("");
-            Object value = p.getValue().getValue();
-            if (value instanceof LayerFSDL) {
-                a.setValue(((LayerFSDL) value).getLayerid());
-            }
-
-            else if (value instanceof FileFSDL) {
-                a.setValue(((FileFSDL) value).getFileid());
-            }
-
-            else if (value instanceof ResdrawFSDL) {
-                a.setValue(((ResdrawFSDL) value).getResid());
-            }
-
-            else if (value instanceof SetreliefFSDL) {
-                a.setValue(((SetreliefFSDL) value).getReliefid());
-            }
-            else if (value instanceof SetfontFSDL) {
-                a.setValue(((SetfontFSDL) value).getFontid());
-            }
-
-            else if (value instanceof RestextFSDL) {
-                a.setValue(((RestextFSDL) value).getResid());
-            }
-
-            else if (value instanceof ResimageFSDL) {
-                a.setValue(((ResimageFSDL) value).getResid());
-            }
-
-            else if (value instanceof ButtonFSDL){
-                ((ButtonFSDL) value).getLayersButton().forEach(e->{
-                    p.getValue().getChildren().add(new TreeItem<>(e));
-                });
-                a = new ReadOnlyStringWrapper(((ButtonFSDL) value).getButtonid());
-            }
-
-
-
-            else a = new ReadOnlyStringWrapper(value.toString());
+            ReadOnlyStringWrapper a = showHierarchy(p);
             return a;
         });
         elementType.setCellValueFactory((TreeTableColumn.CellDataFeatures<Object, String> p) -> {
             ReadOnlyStringWrapper a = new ReadOnlyStringWrapper("");
-//            if (p.getValue().getValue().contains("layer")) {
-//                a.setValue("Layer");
-//            } else if (p.getValue().getValue().contains("button")) {
-//                a.setValue("Button");
-//            } else a.setValue("Abdelkabir zwine besaf");
             return a;
         });
 
+        treeTableHierarchy.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            int i = treeTableHierarchy.getSelectionModel().getSelectedIndex();
+
+            TreeItem<Object> a = treeTableHierarchy.getSelectionModel().getModelItem(i);
+            if(a.getValue() instanceof LayerFSDL){
+                try {
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/LayerLayout.fxml"));
+                    AnchorPane anchorPane = loader.load();
+
+                    this.getPropertiesPane().setContent(anchorPane);
+
+                    LayerLayoutController controller = loader.getController();
+                    controller.setFrogansApp(frogansApp);
+                } catch (Exception e1) {
+                    System.err.println("mloiuyhg.\n"+e1);
+                }
+            }else if(a.getValue() instanceof FileFSDL){
+                try {
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/FileLayout.fxml"));
+                    AnchorPane anchorPane = loader.load();
+
+                    this.getPropertiesPane().setContent(anchorPane);
+
+                    LayerLayoutController controller = loader.getController();
+                    controller.setFrogansApp(frogansApp);
+                } catch (Exception e1) {
+                    System.err.println("mloiuyhg.\n"+e1);
+                }
+            }
+            else System.out.println("hola");
+        });
+
+    }
+
+    private ReadOnlyStringWrapper showHierarchy(TreeTableColumn.CellDataFeatures<Object, String> p) {
+        ReadOnlyStringWrapper a = new ReadOnlyStringWrapper("");
+        Object value = p.getValue().getValue();
+        if (value instanceof LayerFSDL) {
+            a.setValue(((LayerFSDL) value).getLayerid());
+        } else if (value instanceof FileFSDL) {
+            a.setValue(((FileFSDL) value).getFileid());
+        } else if (value instanceof ResdrawFSDL) {
+            a.setValue(((ResdrawFSDL) value).getResid());
+        } else if (value instanceof SetreliefFSDL) {
+            a.setValue(((SetreliefFSDL) value).getReliefid());
+        } else if (value instanceof SetfontFSDL) {
+            a.setValue(((SetfontFSDL) value).getFontid());
+        } else if (value instanceof RestextFSDL) {
+            a.setValue(((RestextFSDL) value).getResid());
+        } else if (value instanceof ResimageFSDL) {
+            a.setValue(((ResimageFSDL) value).getResid());
+        } else if (value instanceof ButtonFSDL) {
+            ((ButtonFSDL) value).getLayersButton().forEach(e -> {
+                p.getValue().getChildren().add(new TreeItem<>(e));
+            });
+            a = new ReadOnlyStringWrapper(((ButtonFSDL) value).getButtonid());
+        } else a = new ReadOnlyStringWrapper(value.toString());
+        return a;
     }
 
 
@@ -163,7 +175,7 @@ public class DesignerLayoutController {
             frogansApp.getMainTags().forEach(e -> {
                 root.getChildren().add(new TreeItem<>(e));
             });
-           temp = frogansApp.getMainTags();
+            temp = frogansApp.getMainTags();
         }
 
         return root;

@@ -2,11 +2,16 @@ package com.frogans.designer.model.Elements;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.text.Font;
 
 /**
  * Created by Aladdin on 29-Mar-16.
  */
 public class SetfontFSDL {
+
+    private ObservableList<FontFSDL> fonts = FXCollections.observableArrayList();
     private StringProperty fontid;
 
     public SetfontFSDL() {
@@ -28,10 +33,19 @@ public class SetfontFSDL {
         this.fontid.set(fontid);
     }
 
+    public ObservableList<FontFSDL> getFonts() {
+        return fonts;
+    }
+
+    public void setfonts(ObservableList<FontFSDL> fonts) {
+        this.fonts = fonts;
+    }
+
     @Override
     public String toString() {
         return "SetfontFSDL{" +
-                "fontid=" + fontid +
+                "fonts=" + fonts +
+                ", fontid=" + fontid +
                 '}';
     }
 }
