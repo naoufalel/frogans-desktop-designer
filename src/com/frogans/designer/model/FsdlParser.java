@@ -117,7 +117,7 @@ public class FsdlParser {
             }
             AlanWalker.forEach(e -> {
                 if (e instanceof RestextFSDL) {
-                    System.out.println((RestextFSDL) e);
+                   // System.out.println((RestextFSDL) e);
 //                     ((ButtonFSDL) e).getLayersButton().forEach(ee->{
 //                        System.out.println(ee.getLayerid());
 //                    });

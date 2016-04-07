@@ -121,7 +121,7 @@ public class DesignerLayoutController {
                         l.getVisible()
                 );
             } catch (Exception e1) {
-                System.err.println("mloiuyhg.\n" + e1);
+                System.err.println("por favor.\n" + e1);
             }
         } else if (o instanceof FileFSDL) {
             try {
@@ -133,8 +133,15 @@ public class DesignerLayoutController {
 
                 FileLayoutController controller = loader.getController();
                 controller.setFrogansApp(frogansApp);
+                FileFSDL f = (FileFSDL) o ;
+                controller.fillFileLayout(
+                        f.getFileid(),
+                        f.getNature(),
+                        f.getName(),
+                        f.getCache()
+                );
             } catch (Exception e1) {
-                System.err.println("ppppp.\n" + e1);
+                System.err.println("tnin ltnin.\n" + e1);
             }
         } else System.out.println("hola");
     }
