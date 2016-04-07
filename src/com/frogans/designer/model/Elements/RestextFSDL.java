@@ -2,6 +2,8 @@ package com.frogans.designer.model.Elements;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.Arrays;
 

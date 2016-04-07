@@ -1,10 +1,9 @@
 package com.frogans.designer.view;
 
 import com.frogans.designer.FrogansApp;
-import com.frogans.designer.model.Elements.ButtonFSDL;
-import com.frogans.designer.model.Elements.FileFSDL;
-import com.frogans.designer.model.Elements.LayerFSDL;
+import com.frogans.designer.model.Elements.*;
 import com.frogans.designer.view.PropertiesLayout.LayerLayoutController;
+import com.sun.xml.internal.ws.server.ServerRtException;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleObjectProperty;
@@ -33,6 +32,7 @@ public class DesignerLayoutController {
 
     private FrogansApp frogansApp;
 
+
     public void setFrogansApp(FrogansApp frogansApp) {
         this.frogansApp = frogansApp;
         treeTableHierarchy.setRoot(createSubTree());
@@ -51,13 +51,13 @@ public class DesignerLayoutController {
     }
 
     @FXML
-    private TreeTableView<String> treeTableHierarchy;
+    private TreeTableView<Object> treeTableHierarchy;
     @FXML
-    private TreeTableColumn<String, String> elementID;
+    private TreeTableColumn<Object, String> elementID;
     @FXML
-    private TreeTableColumn<String, String> elementType;
+    private TreeTableColumn<Object, String> elementType;
 
-    TreeItem<String> root = new TreeItem<>("frogans-fsdl");
+    TreeItem<Object> root = new TreeItem<>("frogans-fsdl");
 
 
     @FXML
@@ -69,17 +69,17 @@ public class DesignerLayoutController {
     @FXML
     TextField tf = new TextField();
 
-    public TreeTableView<String> getTreeHierarchy() {
+    public TreeTableView<Object> getTreeTableHierarchy() {
         return treeTableHierarchy;
     }
 
-    public void setTreeHierarchy(TreeTableView<String> treeHierarchy) {
-        this.treeTableHierarchy = treeHierarchy;
+    public void setTreeTableHierarchy(TreeTableView<Object> treeTableHierarchy) {
+        this.treeTableHierarchy = treeTableHierarchy;
     }
 
     private final ObjectProperty<ListCell<String>> dragSource = new SimpleObjectProperty<>();
 
-    private ObservableList<TreeItem<String>> temp = FXCollections.observableArrayList();
+    private ObservableList<Object> temp = FXCollections.observableArrayList();
 
     private ObservableList<String> controlers = FXCollections.observableArrayList(
             "Button",
@@ -95,49 +95,75 @@ public class DesignerLayoutController {
     public void initialize() {
         accordion.setExpandedPane(titledPane);
         someTest();
-        elementID.setCellValueFactory((TreeTableColumn.CellDataFeatures<String, String> p) -> new ReadOnlyStringWrapper(p.getValue().getValue().toString()));
-        elementType.setCellValueFactory((TreeTableColumn.CellDataFeatures<String, String> p) -> {
+        elementID.setCellValueFactory((TreeTableColumn.CellDataFeatures<Object, String> p) -> {
             ReadOnlyStringWrapper a = new ReadOnlyStringWrapper("");
-            if (p.getValue().getValue().contains("layer")) {
-                a.setValue("Layer");
-            } else if (p.getValue().getValue().contains("button")) {
-                a.setValue("Button");
-            } else a.setValue("");
+            Object value = p.getValue().getValue();
+            if (value instanceof LayerFSDL) {
+                a.setValue(((LayerFSDL) value).getLayerid());
+            }
+
+            else if (value instanceof FileFSDL) {
+                a.setValue(((FileFSDL) value).getFileid());
+            }
+
+            else if (value instanceof ResdrawFSDL) {
+                a.setValue(((ResdrawFSDL) value).getResid());
+            }
+
+            else if (value instanceof SetreliefFSDL) {
+                a.setValue(((SetreliefFSDL) value).getReliefid());
+            }
+            else if (value instanceof SetfontFSDL) {
+                a.setValue(((SetfontFSDL) value).getFontid());
+            }
+
+            else if (value instanceof RestextFSDL) {
+                a.setValue(((RestextFSDL) value).getResid());
+            }
+
+            else if (value instanceof ResimageFSDL) {
+                a.setValue(((ResimageFSDL) value).getResid());
+            }
+
+            else if (value instanceof ButtonFSDL){
+                ((ButtonFSDL) value).getLayersButton().forEach(e->{
+                    p.getValue().getChildren().add(new TreeItem<>(e));
+                });
+                a = new ReadOnlyStringWrapper(((ButtonFSDL) value).getButtonid());
+            }
+
+
+
+            else a = new ReadOnlyStringWrapper(value.toString());
+            return a;
+        });
+        elementType.setCellValueFactory((TreeTableColumn.CellDataFeatures<Object, String> p) -> {
+            ReadOnlyStringWrapper a = new ReadOnlyStringWrapper("");
+//            if (p.getValue().getValue().contains("layer")) {
+//                a.setValue("Layer");
+//            } else if (p.getValue().getValue().contains("button")) {
+//                a.setValue("Button");
+//            } else a.setValue("Abdelkabir zwine besaf");
             return a;
         });
 
     }
 
 
-    public TreeItem<String> createSubTree() {
+    public TreeItem<Object> createSubTree() {
         if (!root.getChildren().isEmpty()) {
             root.getChildren().removeAll(temp);
-//            frogansApp.getMainTags().forEach(e -> {
-//                root.getChildren().add(e);
-//                e.setExpanded(false);
-//            });
-//            temp = frogansApp.getMainTags();
+            frogansApp.getMainTags().forEach(e -> {
+                root.getChildren().add(new TreeItem<>(e));
+                //e.setExpanded(false);
+            });
+            temp = frogansApp.getMainTags();
         } else {
             root.setExpanded(true);
             frogansApp.getMainTags().forEach(e -> {
-                if (e instanceof LayerFSDL)
-                    root.getChildren().add(new TreeItem<>(((LayerFSDL) e).getLayerid()));
-                else if (e instanceof ButtonFSDL) {
-                    TreeItem<String> ew = new TreeItem<String>(((ButtonFSDL) e).getButtonid());
-                    ew.setExpanded(true);
-                    ((ButtonFSDL) e).getLayersButton().forEach(y -> {
-                        ew.getChildren().add(new TreeItem<>(y.getLayerid()));
-                    });
-                    root.getChildren().add(ew);
-                } else if (e instanceof FileFSDL) {
-                    root.getChildren().add(new TreeItem<>(((FileFSDL) e).getFileid()));
-                }
+                root.getChildren().add(new TreeItem<>(e));
             });
-//            frogansApp.getMainTags().forEach(e -> {
-//                root.getChildren().add(e);
-//                e.setExpanded(false);
-//            });
-//            temp = frogansApp.getMainTags();
+           temp = frogansApp.getMainTags();
         }
 
         return root;
