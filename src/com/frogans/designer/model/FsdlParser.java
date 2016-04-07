@@ -221,7 +221,7 @@ public class FsdlParser {
                             noise.getShadows().add((ShadowFSDL) obj2);
                         }
                     }
-                    return noise;                
+                    return noise;
 
                 default:
                     return obj;

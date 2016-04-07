@@ -38,8 +38,8 @@
             <Label text="Blur" GridPane.rowIndex="6" />
             <Label text="Opacity" GridPane.rowIndex="8" />
             <Label text="Angle" GridPane.rowIndex="10" />
-            <TextField prefHeight="25.0" prefWidth="124.0" GridPane.columnIndex="1" />
-            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="idText" prefHeight="25.0" prefWidth="124.0" GridPane.columnIndex="1" />
+            <ChoiceBox fx:id="leapoutChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />

@@ -25,10 +25,11 @@ public class LayerFSDL {
     private StringProperty combineButton;
 
 
+
     private StringProperty[] leapoutArray = {
             new SimpleStringProperty("all"),
             new SimpleStringProperty("lead"),
-            new SimpleStringProperty("vigentte")
+            new SimpleStringProperty("vignette")
     };
     private StringProperty resref;
 
@@ -406,4 +407,52 @@ public class LayerFSDL {
                 '}';
     }
 
+
+    public StringProperty[] getLeapoutArray() {
+        return leapoutArray;
+    }
+
+    public void setLeapoutArray(StringProperty[] leapoutArray) {
+        this.leapoutArray = leapoutArray;
+    }
+
+    public StringProperty[] getCombineArray() {
+        return combineArray;
+    }
+
+    public void setCombineArray(StringProperty[] combineArray) {
+        this.combineArray = combineArray;
+    }
+
+    public StringProperty[] getCombineButtonArray() {
+        return combineButtonArray;
+    }
+
+    public void setCombineButtonArray(StringProperty[] combineButtonArray) {
+        this.combineButtonArray = combineButtonArray;
+    }
+
+    public StringProperty[] getFlipArray() {
+        return flipArray;
+    }
+
+    public void setFlipArray(StringProperty[] flipArray) {
+        this.flipArray = flipArray;
+    }
+
+    public StringProperty[] getAlignArray() {
+        return alignArray;
+    }
+
+    public void setAlignArray(StringProperty[] alignArray) {
+        this.alignArray = alignArray;
+    }
+
+    public StringProperty[] getVisibleArray() {
+        return visibleArray;
+    }
+
+    public void setVisibleArray(StringProperty[] visibleArray) {
+        this.visibleArray = visibleArray;
+    }
 }

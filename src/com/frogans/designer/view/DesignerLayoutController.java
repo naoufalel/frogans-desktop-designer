@@ -2,10 +2,9 @@ package com.frogans.designer.view;
 
 import com.frogans.designer.FrogansApp;
 import com.frogans.designer.model.Elements.*;
+import com.frogans.designer.view.PropertiesLayout.FileLayoutController;
 import com.frogans.designer.view.PropertiesLayout.LayerLayoutController;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +17,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.IOException;
 
 /**
  * Created by Naoufal EL BANTLI on 3/19/2016.
@@ -101,38 +99,43 @@ public class DesignerLayoutController {
 
         treeTableHierarchy.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             int i = treeTableHierarchy.getSelectionModel().getSelectedIndex();
-
             TreeItem<Object> a = treeTableHierarchy.getSelectionModel().getModelItem(i);
-            if(a.getValue() instanceof LayerFSDL){
-                try {
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/LayerLayout.fxml"));
-                    AnchorPane anchorPane = loader.load();
-
-                    this.getPropertiesPane().setContent(anchorPane);
-
-                    LayerLayoutController controller = loader.getController();
-                    controller.setFrogansApp(frogansApp);
-                } catch (Exception e1) {
-                    System.err.println("mloiuyhg.\n"+e1);
-                }
-            }else if(a.getValue() instanceof FileFSDL){
-                try {
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/FileLayout.fxml"));
-                    AnchorPane anchorPane = loader.load();
-
-                    this.getPropertiesPane().setContent(anchorPane);
-
-                    LayerLayoutController controller = loader.getController();
-                    controller.setFrogansApp(frogansApp);
-                } catch (Exception e1) {
-                    System.err.println("mloiuyhg.\n"+e1);
-                }
-            }
-            else System.out.println("hola");
+            showPropertiesFor(a.getValue());
         });
 
+    }
+
+    private void showPropertiesFor(Object o) {
+        if (o instanceof LayerFSDL) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/LayerLayout.fxml"));
+                AnchorPane anchorPane = loader.load();
+
+                this.getPropertiesPane().setContent(anchorPane);
+
+                LayerLayoutController controller = loader.getController();
+                controller.setFrogansApp(frogansApp);
+                controller.getIdText().setText(((LayerFSDL) o).getLayerid());
+
+                controller.getLeapoutChoice().setValue(((LayerFSDL) o).getLeapout());
+            } catch (Exception e1) {
+                System.err.println("mloiuyhg.\n" + e1);
+            }
+        } else if (o instanceof FileFSDL) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/FileLayout.fxml"));
+                AnchorPane anchorPane = loader.load();
+
+                this.getPropertiesPane().setContent(anchorPane);
+
+                FileLayoutController controller = loader.getController();
+                controller.setFrogansApp(frogansApp);
+            } catch (Exception e1) {
+                System.err.println("ppppp.\n" + e1);
+            }
+        } else System.out.println("hola");
     }
 
     private ReadOnlyStringWrapper showHierarchy(TreeTableColumn.CellDataFeatures<Object, String> p) {
