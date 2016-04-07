@@ -96,6 +96,18 @@ public class MergeFSDL {
         return flip.get();
     }
 
+    public StringProperty[] getFlipArray() {
+        return flipArray;
+    }
+
+    public StringProperty[] getAlignArray() {
+        return alignArray;
+    }
+
+    public StringProperty[] getCombineArray() {
+        return combineArray;
+    }
+
     public StringProperty flipProperty() {
         return flip;
     }
@@ -168,6 +180,8 @@ public class MergeFSDL {
         return shadowref.get();
     }
 
+
+
     public StringProperty shadowrefProperty() {
         return shadowref;
     }
@@ -215,6 +229,8 @@ public class MergeFSDL {
     public void setshadowref(String shadowref) {
         this.shadowref.set(shadowref);
     }
+
+
 
     @Override
     public String toString() {

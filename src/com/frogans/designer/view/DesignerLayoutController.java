@@ -4,6 +4,7 @@ import com.frogans.designer.FrogansApp;
 import com.frogans.designer.model.Elements.*;
 import com.frogans.designer.view.PropertiesLayout.FileLayoutController;
 import com.frogans.designer.view.PropertiesLayout.LayerLayoutController;
+import com.frogans.designer.view.PropertiesLayout.MergeLayoutController;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleObjectProperty;
@@ -124,21 +125,48 @@ public class DesignerLayoutController {
                 System.err.println("por favor.\n" + e1);
             }
         } else if (o instanceof FileFSDL) {
+                try {
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/FileLayout.fxml"));
+                    AnchorPane anchorPane = loader.load();
+
+                    this.getPropertiesPane().setContent(anchorPane);
+
+                    FileLayoutController controller = loader.getController();
+                    controller.setFrogansApp(frogansApp);
+                    FileFSDL f = (FileFSDL) o ;
+                    controller.fillFileLayout(
+                            f.getFileid(),
+                            f.getNature(),
+                            f.getName(),
+                            f.getCache()
+                    );
+            } catch (Exception e1) {
+                System.err.println("tnin ltnin.\n" + e1);
+            }
+        }else if (o instanceof MergeFSDL) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/FileLayout.fxml"));
+                loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/MergeLayout.fxml"));
                 AnchorPane anchorPane = loader.load();
 
                 this.getPropertiesPane().setContent(anchorPane);
 
-                FileLayoutController controller = loader.getController();
+                MergeLayoutController controller = loader.getController();
                 controller.setFrogansApp(frogansApp);
-                FileFSDL f = (FileFSDL) o ;
-                controller.fillFileLayout(
-                        f.getFileid(),
-                        f.getNature(),
-                        f.getName(),
-                        f.getCache()
+                MergeFSDL l = (MergeFSDL) o ;
+                controller.fillMergeLayout(
+                        l.getResref(),
+                        l.getFlip(),
+                        l.getFilterref(),
+                        l.getReliefref(),
+                        l.getBlur(),
+                        l.getOpacity(),
+                        l.getAngle(),
+                        l.getPos(),
+                        l.getAlign(),
+                        l.getCombine(),
+                        l.getShadowref()
                 );
             } catch (Exception e1) {
                 System.err.println("tnin ltnin.\n" + e1);
@@ -167,6 +195,12 @@ public class DesignerLayoutController {
                 a.setValue(((ResdrawFSDL) value).getResid());
             } else {
                 a.setValue("Resdraw");
+            }
+        } else if (value instanceof ResmergeFSDL) {
+            if (i == 0) {
+                a.setValue(((ResmergeFSDL) value).getResid());
+            } else {
+                a.setValue("Resmerge");
             }
         } else if (value instanceof SetreliefFSDL) {
             if (i == 0) {
