@@ -47,8 +47,9 @@ public class DesignerLayoutController {
     private ObservableList<Object> temp = FXCollections.observableArrayList();
     private ObservableList<String> controlers = FXCollections.observableArrayList(
             "Button",
-            "Textfield",
-            "Layer"
+            "ResText",
+            "Layer",
+            "Resimage"
     );
 
     public DesignerLayoutController() {

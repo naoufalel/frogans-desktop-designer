@@ -19,7 +19,7 @@
             </rowConstraints>
             <children>
                 <Label text="File ID" />
-                <TextField GridPane.columnIndex="1" />
+                <TextField fx:id="idText" GridPane.columnIndex="1" />
             </children>
         </GridPane>
         <Separator layoutX="14.0" layoutY="44.0" prefHeight="0.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0" />
@@ -41,7 +41,7 @@
                 <Label text="Cache" GridPane.rowIndex="2" />
                 <ChoiceBox fx:id="natureChoice" prefWidth="150.0" GridPane.columnIndex="1" />
                 <ChoiceBox fx:id="cacheChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="nameText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             </children>
         </GridPane>
     </children>

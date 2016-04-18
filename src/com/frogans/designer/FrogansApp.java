@@ -211,7 +211,7 @@ public class FrogansApp extends Application {
 ////            controller1.setFrogansApp(this);
 //
 //        }catch (Exception e){
-//            System.err.println("FUCK FROGANS.\n"+e);
+//            System.err.println("Damn.\n"+e);
 //        }
 //    }
 }
