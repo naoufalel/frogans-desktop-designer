@@ -135,7 +135,12 @@ public class ResdrawFSDL {
     public void setcolor(String color) {
         this.color.set(color);
     }
-
+    public StringProperty[] getStrokeArray() {
+        return strokeArray;
+    }
+    public StringProperty[] getFigureArray() {
+        return figureArray;
+    }
     @Override
     public String toString() {
         return "ResdrawFSDL{" +

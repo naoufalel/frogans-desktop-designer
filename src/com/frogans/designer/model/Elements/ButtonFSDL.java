@@ -15,8 +15,8 @@ public class ButtonFSDL {
     //mandatory shit
     private  StringProperty buttonid;
 
-    private StringProperty go_toValue;
-    private StringProperty[] go_to = {
+    private StringProperty go_to;
+    private StringProperty[] go_toArray = {
         new SimpleStringProperty("slide"),
         new SimpleStringProperty("frogans-site"),
         new SimpleStringProperty("website"), // for future use.
@@ -43,7 +43,7 @@ public class ButtonFSDL {
      */
     public ButtonFSDL(){
         this.buttonid = new SimpleStringProperty("");
-        this.go_toValue = new SimpleStringProperty("");
+        this.go_to = new SimpleStringProperty("");
         this.fileref = new SimpleStringProperty("");
         this.address = new SimpleStringProperty("");
         this.url = new SimpleStringProperty("");
@@ -54,21 +54,21 @@ public class ButtonFSDL {
      * Constructor of Button to call when parsing or modifying the xml through the interface
      * @param buttonid
      * @param fileref
-     * @param go_toValue
+     * @param go_to
      * @param address
      * @param url
      * @param email
      */
     public ButtonFSDL(StringProperty buttonid,
                       StringProperty fileref,
-                      StringProperty go_toValue,
+                      StringProperty go_to,
                       StringProperty address,
                       StringProperty url,
                       StringProperty email
     ) {
         this.buttonid = buttonid;
         this.fileref = fileref;
-        this.go_toValue = go_toValue;
+        this.go_to = go_to;
         this.address = address;
         this.url = url;
         this.email = email;
@@ -87,15 +87,15 @@ public class ButtonFSDL {
     }
 
     public String getGo_toValue() {
-        return go_toValue.get();
+        return go_to.get();
     }
 
     public StringProperty go_toValueProperty() {
-        return go_toValue;
+        return go_to;
     }
 
     public void setgo_to(String go_toValue) {
-        this.go_toValue.set(go_toValue);
+        this.go_to.set(go_toValue);
     }
 
     public String getFileref() {
@@ -158,12 +158,15 @@ public class ButtonFSDL {
     public String toString() {
         return "ButtonFSDL{" +
                 "buttonid=" + buttonid +
-                ", go_toValue=" + go_toValue +
+                ", go_toValue=" + go_to +
                 ", fileref=" + fileref +
                 ", address=" + address +
                 ", url=" + url +
                 ", email=" + email +
                 ", layersButton=" + layersButton +
                 '}';
+    }
+    public StringProperty[] getGo_toArray() {
+        return go_toArray;
     }
 }

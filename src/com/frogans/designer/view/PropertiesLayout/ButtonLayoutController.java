@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 
 public class ButtonLayoutController {
 
-    ButtonFSDL buttonFSDL = new ButtonFSDL();
+    ButtonFSDL ButtonFSDL = new ButtonFSDL();
     private FrogansApp frogansApp;
     @FXML
     private TextField idButton;
@@ -18,7 +18,6 @@ public class ButtonLayoutController {
     @FXML
     private TextField filerefText;
     @FXML
-
     private TextField addressText;
     @FXML
     private TextField urlText;
@@ -36,9 +35,9 @@ public class ButtonLayoutController {
     }
 
     private void fillType() {
-//        for (StringProperty stringProperty : buttonFSDL.getGo_toArray()) {
-//            typeChoice.getItems().add(stringProperty.get());
-//        }
+        for (StringProperty stringProperty : ButtonFSDL.getGo_toArray()) {
+            typeChoice.getItems().add(stringProperty.get());
+        }
     }
     public void fillButtonLayout(String buttonid,
                                  String fileref,
