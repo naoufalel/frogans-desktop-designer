@@ -200,6 +200,13 @@ public class FontFSDL {
         this.color.set(color);
     }
 
+
+    public StringProperty[] getUnderlineArray() {
+        return underlineArray;
+    }
+    public StringProperty[] getStrikeoutArray() {
+        return strikeoutArray;
+    }
     @Override
     public String toString() {
         return "FontFSDL{" +
