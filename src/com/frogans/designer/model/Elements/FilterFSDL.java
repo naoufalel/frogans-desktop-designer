@@ -110,6 +110,10 @@ public class FilterFSDL {
         this.color.set(color);
     }
 
+    public StringProperty[] getEffectArray() {
+        return effectArray;
+    }
+
     @Override
     public String toString() {
         return "FilterFSDL{" +

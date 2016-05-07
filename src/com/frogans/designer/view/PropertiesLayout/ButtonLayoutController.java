@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 
 public class ButtonLayoutController {
 
-    ButtonFSDL ButtonFSDL = new ButtonFSDL();
+    ButtonFSDL buttonFSDL = new ButtonFSDL();
     private FrogansApp frogansApp;
     @FXML
     private TextField idButton;
@@ -35,7 +35,7 @@ public class ButtonLayoutController {
     }
 
     private void fillType() {
-        for (StringProperty stringProperty : ButtonFSDL.getGo_toArray()) {
+        for (StringProperty stringProperty : buttonFSDL.getGo_toArray()) {
             typeChoice.getItems().add(stringProperty.get());
         }
     }
