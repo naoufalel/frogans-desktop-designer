@@ -167,6 +167,14 @@ public class ResimageFSDL {
         this.origin.set(origin);
     }
 
+    public StringProperty[] getSelectionArray() {
+        return selectionArray;
+    }
+    public StringProperty[] getAspectArray() {
+        return aspectArray;
+    }
+
+
     @Override
     public String toString() {
         return "ResimageFSDL{" +

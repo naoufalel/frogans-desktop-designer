@@ -40,7 +40,7 @@ public class FilterLayoutController {
         }
     }
 
-    public void fillButtonLayout(String effect,
+    public void fillFilterLayout(String effect,
                                  String level,
                                  String angle,
                                  String tolerance,

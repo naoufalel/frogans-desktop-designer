@@ -57,7 +57,7 @@ public class FontLayoutController {
         }
     }
 
-    public void fillLayerLayout(String scripts,
+    public void fillFontLayout(String scripts,
                                 String pfont,
                                 String height,
                                 String spacing,
@@ -78,6 +78,7 @@ public class FontLayoutController {
         xitalicText.setText(xitalic);
         underlineChoice.setValue(underline);
         strikeoutChoice.setValue(strikeout);
+        opacityText.setText(opacity);
         colorText.setText(color);
 
     }

@@ -25,7 +25,7 @@ public class NextLayoutController {
     public void initialize() {
     }
 
-    public void fillLayerLayout(String delay,
+    public void fillNextLayout(String delay,
                                 String fileref
 
     ) {

@@ -1,6 +1,7 @@
 package com.frogans.designer.view.PropertiesLayout;
 
 import com.frogans.designer.FrogansApp;
+import com.frogans.designer.Utils.Tools;
 import com.frogans.designer.model.Elements.ReliefFSDL;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -30,12 +31,12 @@ public class ReliefLayoutController {
     public void initialize() {
 
     }
-    public void fillLayerLayout(String rpos,
+    public void fillReliefLayout(String rpos,
                                 String color,
                                 String blur,
                                 String opacity
-    ) { rposXText.setText(rpos);
-        rposYText.setText(rpos);
+    ) { rposXText.setText(Tools.splitPosition(rpos).get(0));
+        rposYText.setText(Tools.splitPosition(rpos).get(1));
         colorText.setText(color);
         blurText.setText(blur);
         opacityText.setText(opacity);

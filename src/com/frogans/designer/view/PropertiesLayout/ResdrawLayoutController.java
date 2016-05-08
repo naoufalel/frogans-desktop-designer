@@ -64,9 +64,9 @@ public class ResdrawLayoutController {
         figureChoice.setValue(figure);
         strokeChoice.setValue(stroke);
         thickSlide.setValue(Tools.ifStringIsEmpty(thick));
-        roundXText.setText(round);// ici je ne sais pas comment faire avec les X et Y comme dans size
-        roundYText.setText(round);
-
+        roundXText.setText(Tools.splitPosition(round).get(0));
+        roundYText.setText(Tools.splitPosition(round).get(1));
+        colorText.setText(color);
     }
 
 }
