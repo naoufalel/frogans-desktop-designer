@@ -13,9 +13,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 
 
 /**
@@ -31,6 +33,11 @@ public class DesignerLayoutController {
     Canvas testCanvas = new Canvas();
     @FXML
     TextField tf = new TextField();
+
+    GraphicsContext gc;
+    double width;
+    double height;
+
     private FrogansApp frogansApp;
     @FXML
     private Accordion accordion;
@@ -44,6 +51,12 @@ public class DesignerLayoutController {
     private TreeTableColumn<Object, String> elementID;
     @FXML
     private TreeTableColumn<Object, String> elementType;
+    @FXML
+    private Slider testSlider;
+    @FXML
+    private Label textIt;
+
+
     private ObservableList<Object> temp = FXCollections.observableArrayList();
     private ObservableList<String> controlers = FXCollections.observableArrayList(
             "Button",
@@ -86,12 +99,39 @@ public class DesignerLayoutController {
             return a;
         });
 
+        gc = testCanvas.getGraphicsContext2D();
+        //gc.fillRect(80, 50, 20, 40);
+
+        testSlider.setMax(100);
+        testSlider.setMin(20);
+        testSlider.setMinorTickCount(10);
+        textIt.setText("20");
+        sliderListening();
+        updateCanvas();
+
         treeTableHierarchy.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             int i = treeTableHierarchy.getSelectionModel().getSelectedIndex();
             TreeItem<Object> a = treeTableHierarchy.getSelectionModel().getModelItem(i);
             showPropertiesFor(a.getValue());
         });
 
+    }
+
+
+    private void sliderListening() {
+        testSlider.valueProperty().addListener(((observable, oldValue, newValue) -> {
+            testCanvas.setWidth(newValue.intValue());
+            updateCanvas();
+            textIt.setText(Integer.toString(newValue.intValue()));
+        }));
+    }
+
+    private void updateCanvas() {
+        width = testCanvas.getWidth();
+        height = testCanvas.getHeight();
+        gc.clearRect(0, 0, width, height);
+        gc.setStroke(Color.BLACK);
+        gc.strokeRect(1, 1, width - 2, height - 2);
     }
 
     private void showPropertiesFor(Object o) {
@@ -126,26 +166,26 @@ public class DesignerLayoutController {
                 System.err.println("por favor.\n" + e1);
             }
         } else if (o instanceof FileFSDL) {
-                try {
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/FileLayout.fxml"));
-                    AnchorPane anchorPane = loader.load();
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/FileLayout.fxml"));
+                AnchorPane anchorPane = loader.load();
 
-                    this.getPropertiesPane().setContent(anchorPane);
+                this.getPropertiesPane().setContent(anchorPane);
 
-                    FileLayoutController controller = loader.getController();
-                    controller.setFrogansApp(frogansApp);
-                    FileFSDL f = (FileFSDL) o ;
-                    controller.fillFileLayout(
-                            f.getFileid(),
-                            f.getNature(),
-                            f.getName(),
-                            f.getCache()
-                    );
+                FileLayoutController controller = loader.getController();
+                controller.setFrogansApp(frogansApp);
+                FileFSDL f = (FileFSDL) o;
+                controller.fillFileLayout(
+                        f.getFileid(),
+                        f.getNature(),
+                        f.getName(),
+                        f.getCache()
+                );
             } catch (Exception e1) {
                 System.err.println("tnin ltnin.\n" + e1);
             }
-        }else if (o instanceof MergeFSDL) {
+        } else if (o instanceof MergeFSDL) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/MergeLayout.fxml"));
@@ -155,7 +195,7 @@ public class DesignerLayoutController {
 
                 MergeLayoutController controller = loader.getController();
                 controller.setFrogansApp(frogansApp);
-                MergeFSDL l = (MergeFSDL) o ;
+                MergeFSDL l = (MergeFSDL) o;
                 controller.fillMergeLayout(
                         l.getResref(),
                         l.getFlip(),
@@ -317,20 +357,20 @@ public class DesignerLayoutController {
                     event.consume();
                 });
 
-        testCanvas.addEventHandler(
-                DragEvent.DRAG_DROPPED,
-                event -> {
-                    Dragboard dragboard = event.getDragboard();
-                    if (event.getTransferMode() == TransferMode.COPY &&
-                            dragboard.hasString()) {
-//                        tf.setText(dragboard.getString());
-                        Button button = new Button(dragboard.toString());
-
-                        event.setDropCompleted(true);
-                    }
-                    event.consume();
-                }
-        );
+//        testCanvas.addEventHandler(
+//                DragEvent.DRAG_DROPPED,
+//                event -> {
+//                    Dragboard dragboard = event.getDragboard();
+//                    if (event.getTransferMode() == TransferMode.COPY &&
+//                            dragboard.hasString()) {
+////                        tf.setText(dragboard.getString());
+//                        Button button = new Button(dragboard.toString());
+//
+//                        event.setDropCompleted(true);
+//                    }
+//                    event.consume();
+//                }
+//        );
 
         tf.addEventHandler(
                 DragEvent.DRAG_OVER,

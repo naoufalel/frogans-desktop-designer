@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.canvas.*?>
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.*?>
-
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frogans.designer.view.DesignerLayoutController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8"
+            fx:controller="com.frogans.designer.view.DesignerLayoutController">
     <children>
         <SplitPane cache="true" dividerPositions="0.23647294589178355, 0.7675350701402806" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" SplitPane.resizableWithParent="false">
             <items>
@@ -72,9 +70,12 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="900.0">
                                     <children>
-                                        <TextField fx:id="tf" layoutX="58.0" layoutY="97.0" />
-                                        <Label layoutX="58.0" layoutY="71.0" text="Drag text below" />
-                                    </children></AnchorPane>
+                                        <Canvas fx:id="testCanvas" height="308.0" layoutX="69.0" layoutY="35.0"
+                                                width="394.0"/>
+                                        <Slider fx:id="testSlider" layoutX="75.0" layoutY="403.0"/>
+                                        <Label fx:id="textIt" layoutX="75.0" layoutY="432.0" text="a"/>
+                                    </children>
+                                </AnchorPane>
                             </content>
                         </ScrollPane>
                     </children></AnchorPane>

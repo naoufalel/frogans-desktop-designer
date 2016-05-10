@@ -41,17 +41,18 @@ public class FsdlParser {
 
     //Testing frogans lib
 
-    public void testFsdlLib() {
+    public void testFsdlLib() throws Exception {
         boolean result;
         UpilBuffer version = new UpilBuffer();
         result = Fsdl.libraryGetVersion(version);
 
         if (result) {
-            String s = new String(version.getValue());
+            String s = new String(version.getValue(), "UTF-8");
             System.out.println(s);
         }
-    }
 
+
+    }
 
 
     private String checkAttributeifNull(Element e, String s) {
@@ -131,7 +132,7 @@ public class FsdlParser {
             }
             AlanWalker.forEach(e -> {
                 if (e instanceof RestextFSDL) {
-                   // System.out.println((RestextFSDL) e);
+                    // System.out.println((RestextFSDL) e);
 //                     ((ButtonFSDL) e).getLayersButton().forEach(ee->{
 //                        System.out.println(ee.getLayerid());
 //                    });
