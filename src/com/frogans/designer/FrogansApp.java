@@ -2,21 +2,17 @@ package com.frogans.designer;
 
 import com.frogans.designer.model.FsdlParser;
 import com.frogans.designer.view.DesignerLayoutController;
-import com.frogans.designer.view.PropertiesLayout.FileLayoutController;
-import com.frogans.designer.view.PropertiesLayout.LayerLayoutController;
 import com.frogans.designer.view.RootController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TreeItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -24,7 +20,6 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.prefs.Preferences;
 
 /**
@@ -214,4 +209,5 @@ public class FrogansApp extends Application {
 //            System.err.println("Damn.\n"+e);
 //        }
 //    }
+
 }
