@@ -6,6 +6,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 import frogans.fsdl.Fsdl;
 import frogans.upil.UpilBuffer;
+import frogans.upil.UpilInteger32;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.w3c.dom.*;
@@ -14,6 +15,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.lang.reflect.Method;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +51,73 @@ public class FsdlParser {
         if (result) {
             String s = new String(version.getValue(), "UTF-8");
             System.out.println(s);
+        }
+
+        byte[] array = Files.readAllBytes(file.toPath());
+        //System.out.println("bitch is fucked: " + new String(array));
+        int documentEncoding = Fsdl.DocumentEncoding.UTF8;
+
+        int documentFsdlVersion = Fsdl.DocumentFsdlVersion.FSDL_3_0;
+
+        UpilBuffer documentContent = new UpilBuffer(array);
+        UpilInteger32 failureCode = new UpilInteger32(Fsdl.FAILURE_CODE_UNDEFINED);
+        int slideHandle = 0;
+
+        result = Fsdl.parsePerform(slideHandle, documentEncoding, documentFsdlVersion, documentContent, failureCode);
+        if (!result) {
+
+			/* Should never occur if the FSDL document is generated properly.
+             * parseGetXmlErrorInfo() and parseGetValidationErrorInfo() are called below for debug purposes */
+
+            String message;
+            message = "parsePerform() Failure: " + failureCode + '\n';
+
+            int code = failureCode.getValue();
+
+            if (code == Fsdl.FailureCodeParsePerform.XML_ERROR) {
+
+				/* call Fsdl.parseGetXmlErrorInfo() */
+
+                Fsdl.XmlErrorInfo xmlErrorInfo = new Fsdl.XmlErrorInfo();
+
+                failureCode = new UpilInteger32(Fsdl.FAILURE_CODE_UNDEFINED);
+
+                result = Fsdl.parseGetXmlErrorInfo(slideHandle, xmlErrorInfo, failureCode);
+                if (!result) {
+
+                    String s;
+                    s = "Fsdl.parseGetXmlErrorInfo() Failure: " + failureCode;
+                    System.out.println(s);
+
+
+                }
+
+                message += "XML Error: '" + new String(xmlErrorInfo.message.getValue()) + "'";
+
+            } else if (code == Fsdl.FailureCodeParsePerform.VALIDATION_ERROR) {
+
+				/* call Fsdl.parseGetValidationErrorInfo() */
+
+                Fsdl.ValidationErrorInfo validationErrorInfo = new Fsdl.ValidationErrorInfo();
+
+                failureCode = new UpilInteger32(Fsdl.FAILURE_CODE_UNDEFINED);
+
+                result = Fsdl.parseGetValidationErrorInfo(slideHandle, validationErrorInfo, failureCode);
+                if (!result) {
+
+                    String s;
+                    s = "Fsdl.parseGetValidationErrorInfo() Failure: " + failureCode;
+                    System.out.println(s);
+
+                }
+
+                message += "Validation Error: '" + new String(validationErrorInfo.message.getValue()) + "'";
+
+            }
+
+            System.out.println(message);
+            System.err.println(message);
+
         }
 
 
