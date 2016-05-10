@@ -35,30 +35,24 @@
  * @file
  */
 
-package frogans.fsdl;
+package com.frogans.designer.model.fsdl;
+
+import com.frogans.designer.model.upil.UpilBuffer;
 import frogans.upil.*;
 
 public class Fsdl {
-	static {
-		System.loadLibrary ("fsdl-alpha0.15.1");
-		System.loadLibrary ("fsdl4java-alpha0.15.1");
-
-	}
-
 	/**
 	 * Undefined failure code
 	 * <p>
 	 * Undefined failure code of a function.
 	 */
 	public static final int FAILURE_CODE_UNDEFINED = 100;
-
 	/**
 	 * Function succeeded failure code
 	 * <p>
 	 * Code returned when function succeeded.
 	 */
 	public static final int FAILURE_CODE_HAS_SUCCEEDED = 200;
-
 	/**
 	 * Range size of internal failure codes
 	 * <p>
@@ -66,6 +60,12 @@ public class Fsdl {
 	 * function.
 	 */
 	public static final int FAILURE_CODE_INTERNAL_RANGE_SIZE = 100;
+	/**
+	 * Undefined Frogans slide handle
+	 * <p>
+	 * Frogans slide handle is not defined.
+	 */
+	public static final int SLIDE_HANDLE_UNDEFINED = 100;
 
 	/**
 	 * Library section
@@ -77,6 +77,30 @@ public class Fsdl {
 	 */
 
 	/* Beginning of section: Library section */
+	/**
+	 * Maximum Frogans slide handle count
+	 * <p>
+	 * Maximum number of Frogans slide handles that can be created.
+	 */
+	public static final int SLIDE_HANDLE_COUNT_MAX = 1024;
+	/**
+	 * Maximum document size
+	 * <p>
+	 * Maximum size (in bytes) of an FSDL document.
+	 */
+	public static final int DOCUMENT_BYTE_COUNT_MAX = 65536;
+	/**
+	 * Maximum rollover count
+	 * <p>
+	 * Maximum number of rollovers in a Frogans slide.
+	 */
+	public static final int ROLLOVER_COUNT_MAX = 32;
+
+	static {
+		System.loadLibrary("fsdl-alpha0.15.1");
+		System.loadLibrary ("fsdl4java-alpha0.15.1");
+
+	}
 
 	/**
 	 * Get library version
@@ -93,7 +117,594 @@ public class Fsdl {
 		return fsdl_library_get_version (outLibraryVersion);
 	}
 
-	private static native boolean fsdl_library_get_version (UpilBuffer outLibraryVersion);
+	private static native boolean fsdl_library_get_version(UpilBuffer outLibraryVersion);
+
+	/**
+	 * Get library state
+	 * <p>
+	 * Gets the library state.
+	 *
+	 * @param outLibraryState        Library state<p> State of the library. See LibraryState.
+	 * @param outInitializationError Initialization error<p> Library initialization error. Applicable only if the library initialization has failed.
+	 * @param outFinalizationError   Finalization error<p> Library finalization error. Applicable only if the library finalization has failed.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean libraryGetState(UpilInteger32 outLibraryState,
+										  UpilInteger32 outInitializationError,
+										  UpilInteger32 outFinalizationError) {
+		return fsdl_library_get_state(outLibraryState, outInitializationError, outFinalizationError);
+	}
+
+	/** @} */
+	/* End of section: Library section */
+
+	/**
+	 * Frogans slide handle section
+	 * <p>
+	 * This section covers the management of the handle of a Frogans
+	 * slide.
+	 *
+	 * @name Frogans slide handle section
+	 * @{
+	 */
+
+	/* Beginning of section: Frogans slide handle section */
+	private static native boolean fsdl_library_get_state(UpilInteger32 outLibraryState,
+														 UpilInteger32 outInitializationError,
+														 UpilInteger32 outFinalizationError);
+
+	/**
+	 * Create Frogans slide handle
+	 * <p>
+	 * Creates a Frogans slide handle.
+	 *
+	 * @param inConfiguration Configuration<p> Frogans slide handle configuration.
+	 * @param outSlideHandle  Frogans slide handle<p> The created Frogans slide handle.
+	 * @param outFailureCode  Failure code<p> Failure code of the function.
+	 *                        If the function fails, the value equals one of the values
+	 *                        defined in FailureCodeSlideHandleCreate.
+	 *                        Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean slideHandleCreate(Configuration inConfiguration,
+											UpilInteger32 outSlideHandle,
+											UpilInteger32 outFailureCode) {
+		return fsdl_slide_handle_create(inConfiguration, outSlideHandle, outFailureCode);
+	}
+
+	private static native boolean fsdl_slide_handle_create(Configuration inConfiguration,
+														   UpilInteger32 outSlideHandle,
+														   UpilInteger32 outFailureCode);
+
+	/**
+	 * Destroy Frogans slide handle
+	 * <p>
+	 * Destroys a Frogans slide handle.
+	 *
+	 * @param inSlideHandle  Frogans slide handle<p> Frogans slide handle.
+	 * @param outFailureCode Failure code<p> Failure code of the function.
+	 *                       If the function fails, the value equals one of the values
+	 *                       defined in FailureCodeSlideHandleDestroy.
+	 *                       Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean slideHandleDestroy(int inSlideHandle,
+											 UpilInteger32 outFailureCode) {
+		return fsdl_slide_handle_destroy(inSlideHandle, outFailureCode);
+	}
+
+	private static native boolean fsdl_slide_handle_destroy(int inSlideHandle,
+															UpilInteger32 outFailureCode);
+
+	/**
+	 * Clear Frogans slide handle
+	 * <p>
+	 * Clears a Frogans slide handle.
+	 *
+	 * @param inSlideHandle  Frogans slide handle<p> Frogans slide handle.
+	 * @param outFailureCode Failure code<p> Failure code of the function.
+	 *                       If the function fails, the value equals one of the values
+	 *                       defined in FailureCodeSlideHandleClear.
+	 *                       Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean slideHandleClear(int inSlideHandle,
+										   UpilInteger32 outFailureCode) {
+		return fsdl_slide_handle_clear(inSlideHandle, outFailureCode);
+	}
+
+	private static native boolean fsdl_slide_handle_clear(int inSlideHandle,
+														  UpilInteger32 outFailureCode);
+
+	/**
+	 * Is Frogans slide handle
+	 * <p>
+	 * Indicates whether the handle is a Frogans slide handle.
+	 *
+	 * @param inSlideHandle  Frogans slide handle<p> Frogans slide handle.
+	 * @param outFailureCode Failure code<p> Failure code of the function.
+	 *                       If the function fails, the value equals one of the values
+	 *                       defined in FailureCodeSlideHandleIs.
+	 *                       Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the handle is a Frogans slide handle,
+	 * false if the function fails.
+	 */
+	public static boolean slideHandleIs(int inSlideHandle,
+										UpilInteger32 outFailureCode) {
+		return fsdl_slide_handle_is(inSlideHandle, outFailureCode);
+	}
+
+	private static native boolean fsdl_slide_handle_is(int inSlideHandle,
+													   UpilInteger32 outFailureCode);
+
+	/**
+	 * Perform parse
+	 * <p>
+	 * Performs the parsing of an FSDL document.
+	 *
+	 * @param inSlideHandle         Frogans slide handle<p> Frogans slide handle.
+	 * @param inDocumentEncoding    Document encoding<p> Document character encoding; see DocumentEncoding.
+	 * @param inDocumentFsdlVersion Document FSDL version<p> FSDL version of the document; see DocumentFsdlVersion.
+	 * @param inDocumentContent     Document content<p> Content of the document to parse.
+	 * @param outFailureCode        Failure code<p> Failure code of the function.
+	 *                              If the function fails, the value equals one of the values
+	 *                              defined in FailureCodeParsePerform.
+	 *                              Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean parsePerform(int inSlideHandle,
+									   int inDocumentEncoding,
+									   int inDocumentFsdlVersion,
+									   UpilBuffer inDocumentContent,
+									   UpilInteger32 outFailureCode) {
+		return fsdl_parse_perform(inSlideHandle, inDocumentEncoding, inDocumentFsdlVersion, inDocumentContent, outFailureCode);
+	}
+
+	private static native boolean fsdl_parse_perform(int inSlideHandle,
+													 int inDocumentEncoding,
+													 int inDocumentFsdlVersion,
+													 UpilBuffer inDocumentContent,
+													 UpilInteger32 outFailureCode);
+
+	/**
+	 * Get XML error info
+	 * <p>
+	 * Gets information about the XML error.
+	 *
+	 * @param inSlideHandle   Frogans slide handle<p> Frogans slide handle.
+	 * @param outXmlErrorInfo XML error info<p> XML error information.
+	 * @param outFailureCode  Failure code<p> Failure code of the function.
+	 *                        If the function fails, the value equals one of the values
+	 *                        defined in FailureCodeParseGetXmlErrorInfo.
+	 *                        Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean parseGetXmlErrorInfo(int inSlideHandle,
+											   XmlErrorInfo outXmlErrorInfo,
+											   UpilInteger32 outFailureCode) {
+		return fsdl_parse_get_xml_error_info(inSlideHandle, outXmlErrorInfo, outFailureCode);
+	}
+
+	private static native boolean fsdl_parse_get_xml_error_info(int inSlideHandle,
+																XmlErrorInfo outXmlErrorInfo,
+																UpilInteger32 outFailureCode);
+
+	/**
+	 * Get validation error info
+	 * <p>
+	 * Gets information about the validation error.
+	 *
+	 * @param inSlideHandle          Frogans slide handle<p> Frogans slide handle.
+	 * @param outValidationErrorInfo Validation error info<p> Information about the validation error.
+	 * @param outFailureCode         Failure code<p> Failure code of the function.
+	 *                               If the function fails, the value equals one of the values
+	 *                               defined in FailureCodeParseGetValidationErrorInfo.
+	 *                               Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean parseGetValidationErrorInfo(int inSlideHandle,
+													  ValidationErrorInfo outValidationErrorInfo,
+													  UpilInteger32 outFailureCode) {
+		return fsdl_parse_get_validation_error_info(inSlideHandle, outValidationErrorInfo, outFailureCode);
+	}
+
+	private static native boolean fsdl_parse_get_validation_error_info(int inSlideHandle,
+																	   ValidationErrorInfo outValidationErrorInfo,
+																	   UpilInteger32 outFailureCode);
+
+	/**
+	 * Get auxiliary file count
+	 * <p>
+	 * Gets the count of auxiliary files.
+	 *
+	 * @param inSlideHandle         Frogans slide handle<p> Frogans slide handle.
+	 * @param outAuxiliaryFileCount Auxiliary file count<p> Count of auxiliary files.
+	 * @param outFailureCode        Failure code<p> Failure code of the function.
+	 *                              If the function fails, the value equals one of the values
+	 *                              defined in FailureCodeParseGetAuxiliaryFileCount.
+	 *                              Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean parseGetAuxiliaryFileCount(int inSlideHandle,
+													 UpilInteger32 outAuxiliaryFileCount,
+													 UpilInteger32 outFailureCode) {
+		return fsdl_parse_get_auxiliary_file_count(inSlideHandle, outAuxiliaryFileCount, outFailureCode);
+	}
+
+	private static native boolean fsdl_parse_get_auxiliary_file_count(int inSlideHandle,
+																	  UpilInteger32 outAuxiliaryFileCount,
+																	  UpilInteger32 outFailureCode);
+
+	/**
+	 * Get auxiliary file identifier
+	 * <p>
+	 * Gets the identifier of an auxiliary file.
+	 *
+	 * @param inSlideHandle     Frogans slide handle<p> Frogans slide handle.
+	 * @param inIndex           Index<p> Index of the auxiliary file, starting at index 0.
+	 * @param outFileIdentifier File identifier<p> Identifier of the auxiliairy file.
+	 * @param outFailureCode    Failure code<p> Failure code of the function.
+	 *                          If the function fails, the value equals one of the values
+	 *                          defined in FailureCodeParseGetAuxiliaryFileIdentifier.
+	 *                          Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean parseGetAuxiliaryFileIdentifier(int inSlideHandle,
+														  int inIndex,
+														  UpilBuffer outFileIdentifier,
+														  UpilInteger32 outFailureCode) {
+		return fsdl_parse_get_auxiliary_file_identifier(inSlideHandle, inIndex, outFileIdentifier, outFailureCode);
+	}
+
+	/** @} */
+	/* End of section: Frogans slide handle section */
+
+	/**
+	 * Parsing section
+	 * <p>
+	 * This section covers the parsing of the FSDL document of a Frogans
+	 * slide.
+	 *
+	 * @name Parsing section
+	 * @{
+	 */
+
+	/* Beginning of section: Parsing section */
+	private static native boolean fsdl_parse_get_auxiliary_file_identifier(int inSlideHandle,
+																		   int inIndex,
+																		   UpilBuffer outFileIdentifier,
+																		   UpilInteger32 outFailureCode);
+
+	/**
+	 * Get file info
+	 * <p>
+	 * Gets information about a file.
+	 *
+	 * @param inSlideHandle    Frogans slide handle<p> Frogans slide handle.
+	 * @param inFileIdentifier File identifier<p> Identifier of the file.
+	 * @param outFileInfo      File info<p> Information about the file.
+	 * @param outFailureCode   Failure code<p> Failure code of the function.
+	 *                         If the function fails, the value equals one of the values
+	 *                         defined in FailureCodeParseGetFileInfo.
+	 *                         Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean parseGetFileInfo(int inSlideHandle,
+										   UpilBuffer inFileIdentifier,
+										   FileInfo outFileInfo,
+										   UpilInteger32 outFailureCode) {
+		return fsdl_parse_get_file_info(inSlideHandle, inFileIdentifier, outFileInfo, outFailureCode);
+	}
+
+	private static native boolean fsdl_parse_get_file_info(int inSlideHandle,
+														   UpilBuffer inFileIdentifier,
+														   FileInfo outFileInfo,
+														   UpilInteger32 outFailureCode);
+
+	/**
+	 * Get resource count
+	 * <p>
+	 * Gets the count of prepared resources defined in the FSDL
+	 * document.
+	 *
+	 * @param inSlideHandle    Frogans slide handle<p> Frogans slide handle.
+	 * @param outResourceCount Resource count<p> Count of prepared resources.
+	 * @param outFailureCode   Failure code<p> Failure code of the function.
+	 *                         If the function fails, the value equals one of the values
+	 *                         defined in FailureCodeParseGetResourceCount.
+	 *                         Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean parseGetResourceCount(int inSlideHandle,
+												UpilInteger32 outResourceCount,
+												UpilInteger32 outFailureCode) {
+		return fsdl_parse_get_resource_count(inSlideHandle, outResourceCount, outFailureCode);
+	}
+
+	private static native boolean fsdl_parse_get_resource_count(int inSlideHandle,
+																UpilInteger32 outResourceCount,
+																UpilInteger32 outFailureCode);
+
+	/**
+	 * Get resource identifier
+	 * <p>
+	 * Gets the identifier of a prepared resource.
+	 *
+	 * @param inSlideHandle         Frogans slide handle<p> Frogans slide handle.
+	 * @param inIndex               Index<p> Index of the prepared resource, starting at index 0.
+	 * @param outResourceIdentifier Resource identifier<p> Identifier of the prepared resource.
+	 * @param outFailureCode        Failure code<p> Failure code of the function.
+	 *                              If the function fails, the value equals one of the values
+	 *                              defined in FailureCodeParseGetResourceIdentifier.
+	 *                              Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean parseGetResourceIdentifier(int inSlideHandle,
+													 int inIndex,
+													 UpilBuffer outResourceIdentifier,
+													 UpilInteger32 outFailureCode) {
+		return fsdl_parse_get_resource_identifier(inSlideHandle, inIndex, outResourceIdentifier, outFailureCode);
+	}
+
+	private static native boolean fsdl_parse_get_resource_identifier(int inSlideHandle,
+																	 int inIndex,
+																	 UpilBuffer outResourceIdentifier,
+																	 UpilInteger32 outFailureCode);
+
+	/**
+	 * Get layer count
+	 * <p>
+	 * Gets the count of layer elements defined in the FSDL document.
+	 *
+	 * @param inSlideHandle  Frogans slide handle<p> Frogans slide handle.
+	 * @param outLayerCount  Layer count<p> Count of layers.
+	 * @param outFailureCode Failure code<p> Failure code of the function.
+	 *                       If the function fails, the value equals one of the values
+	 *                       defined in FailureCodeParseGetLayerCount.
+	 *                       Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean parseGetLayerCount(int inSlideHandle,
+											 UpilInteger32 outLayerCount,
+											 UpilInteger32 outFailureCode) {
+		return fsdl_parse_get_layer_count(inSlideHandle, outLayerCount, outFailureCode);
+	}
+
+	private static native boolean fsdl_parse_get_layer_count(int inSlideHandle,
+															 UpilInteger32 outLayerCount,
+															 UpilInteger32 outFailureCode);
+
+	/**
+	 * Get layer identifier
+	 * <p>
+	 * Gets the identifier of the layer.
+	 *
+	 * @param inSlideHandle      Frogans slide handle<p> Frogans slide handle.
+	 * @param inIndex            Index<p> Index of the layer, starting at index 0.
+	 * @param outLayerIdentifier Layer identifier<p> Identifier of the layer.
+	 * @param outFailureCode     Failure code<p> Failure code of the function.
+	 *                           If the function fails, the value equals one of the values
+	 *                           defined in FailureCodeParseGetLayerIdentifier.
+	 *                           Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean parseGetLayerIdentifier(int inSlideHandle,
+												  int inIndex,
+												  UpilBuffer outLayerIdentifier,
+												  UpilInteger32 outFailureCode) {
+		return fsdl_parse_get_layer_identifier(inSlideHandle, inIndex, outLayerIdentifier, outFailureCode);
+	}
+
+	private static native boolean fsdl_parse_get_layer_identifier(int inSlideHandle,
+																  int inIndex,
+																  UpilBuffer outLayerIdentifier,
+																  UpilInteger32 outFailureCode);
+
+	/**
+	 * Get button count
+	 * <p>
+	 * Gets the count of buttons defined in the FSDL document.
+	 *
+	 * @param inSlideHandle  Frogans slide handle<p> Frogans slide handle.
+	 * @param outButtonCount Button count<p> Count of buttons.
+	 * @param outFailureCode Failure code<p> Failure code of the function.
+	 *                       If the function fails, the value equals one of the values
+	 *                       defined in FailureCodeParseGetButtonCount.
+	 *                       Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean parseGetButtonCount(int inSlideHandle,
+											  UpilInteger32 outButtonCount,
+											  UpilInteger32 outFailureCode) {
+		return fsdl_parse_get_button_count(inSlideHandle, outButtonCount, outFailureCode);
+	}
+
+	private static native boolean fsdl_parse_get_button_count(int inSlideHandle,
+															  UpilInteger32 outButtonCount,
+															  UpilInteger32 outFailureCode);
+
+	/**
+	 * Get button identifier
+	 * <p>
+	 * Gets the identifier of a button.
+	 *
+	 * @param inSlideHandle       Frogans slide handle<p> Frogans slide handle.
+	 * @param inIndex             Index<p> Index of the button, starting at index 0.
+	 * @param outButtonIdentifier Button identifier<p> Identifier of the button.
+	 * @param outFailureCode      Failure code<p> Failure code of the function.
+	 *                            If the function fails, the value equals one of the values
+	 *                            defined in FailureCodeParseGetButtonIdentifier.
+	 *                            Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean parseGetButtonIdentifier(int inSlideHandle,
+												   int inIndex,
+												   UpilBuffer outButtonIdentifier,
+												   UpilInteger32 outFailureCode) {
+		return fsdl_parse_get_button_identifier(inSlideHandle, inIndex, outButtonIdentifier, outFailureCode);
+	}
+
+	private static native boolean fsdl_parse_get_button_identifier(int inSlideHandle,
+																   int inIndex,
+																   UpilBuffer outButtonIdentifier,
+																   UpilInteger32 outFailureCode);
+
+	/**
+	 * Hold auxiliary file content
+	 * <p>
+	 * Holds the content of an auxiliary file.
+	 *
+	 * @param inSlideHandle    Frogans slide handle<p> Frogans slide handle.
+	 * @param inFileIdentifier File identifier<p> Identifier of the auxiliairy file.
+	 * @param inContent        Content<p> Content of the auxiliary file.
+	 * @param outFailureCode   Failure code<p> Failure code of the function.
+	 *                         If the function fails, the value equals one of the values
+	 *                         defined in FailureCodeHoldAuxiliaryFileContent.
+	 *                         Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean holdAuxiliaryFileContent(int inSlideHandle,
+												   UpilBuffer inFileIdentifier,
+												   UpilBuffer inContent,
+												   UpilInteger32 outFailureCode) {
+		return fsdl_hold_auxiliary_file_content(inSlideHandle, inFileIdentifier, inContent, outFailureCode);
+	}
+
+	private static native boolean fsdl_hold_auxiliary_file_content(int inSlideHandle,
+																   UpilBuffer inFileIdentifier,
+																   UpilBuffer inContent,
+																   UpilInteger32 outFailureCode);
+
+	/**
+	 * Perform render
+	 * <p>
+	 * Performs the rendering of an FSDL document, according to
+	 * RenderMode.
+	 *
+	 * @param inSlideHandle  Frogans slide handle<p> Frogans slide handle.
+	 * @param inRenderMode   Rendering mode<p> Rendering mode.
+	 * @param outFailureCode Failure code<p> Failure code of the function.
+	 *                       If the function fails, the value equals one of the values
+	 *                       defined in FailureCodeRenderPerform.
+	 *                       Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean renderPerform(int inSlideHandle,
+										int inRenderMode,
+										UpilInteger32 outFailureCode) {
+		return fsdl_render_perform(inSlideHandle, inRenderMode, outFailureCode);
+	}
+
+	private static native boolean fsdl_render_perform(int inSlideHandle,
+													  int inRenderMode,
+													  UpilInteger32 outFailureCode);
+
+	/**
+	 * Get rendering canvas
+	 * <p>
+	 * Gets the lead and vignette representations of the Frogans slide.
+	 *
+	 * @param inSlideHandle             Frogans slide handle<p> Frogans slide handle.
+	 * @param outLeadRepresentation     Lead representation<p> Lead representation of the Frogans slide.
+	 * @param outVignetteRepresentation Vignette representation<p> Vignette representation of the Frogans slide.
+	 * @param outFailureCode            Failure code<p> Failure code of the function.
+	 *                                  If the function fails, the value equals one of the values
+	 *                                  defined in FailureCodeRenderGetRenderingCanvas.
+	 *                                  Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean renderGetRenderingCanvas(int inSlideHandle,
+												   Composition outLeadRepresentation,
+												   Composition outVignetteRepresentation,
+												   UpilInteger32 outFailureCode) {
+		return fsdl_render_get_rendering_canvas(inSlideHandle, outLeadRepresentation, outVignetteRepresentation, outFailureCode);
+	}
+
+	private static native boolean fsdl_render_get_rendering_canvas(int inSlideHandle,
+																   Composition outLeadRepresentation,
+																   Composition outVignetteRepresentation,
+																   UpilInteger32 outFailureCode);
+
+	/**
+	 * Get prepared resource
+	 * <p>
+	 * Gets the rendered image corresponding to a prepared resource.
+	 *
+	 * @param inSlideHandle        Frogans slide handle<p> Frogans slide handle.
+	 * @param inResourceIdentifier Resource identifier<p> Identifier of the prepared resource.
+	 * @param outResource          Resource<p> Rendered image of the prepared resource.
+	 * @param outFailureCode       Failure code<p> Failure code of the function.
+	 *                             If the function fails, the value equals one of the values
+	 *                             defined in FailureCodeRenderGetPreparedResource.
+	 *                             Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean renderGetPreparedResource(int inSlideHandle,
+													UpilBuffer inResourceIdentifier,
+													Image outResource,
+													UpilInteger32 outFailureCode) {
+		return fsdl_render_get_prepared_resource(inSlideHandle, inResourceIdentifier, outResource, outFailureCode);
+	}
+
+	private static native boolean fsdl_render_get_prepared_resource(int inSlideHandle,
+																	UpilBuffer inResourceIdentifier,
+																	Image outResource,
+																	UpilInteger32 outFailureCode);
+
+	/**
+	 * Get layer
+	 * <p>
+	 * Gets the rendered image corresponding to a layer.
+	 *
+	 * @param inSlideHandle     Frogans slide handle<p> Frogans slide handle.
+	 * @param inLayerIdentifier Layer identifier<p> Identifier of the layer.
+	 * @param outX              X coordinate<p> X coordinate, in pixels, of the rendered image of the layer
+	 *                          from the top/left corner of the rendering canvas.
+	 * @param outY              Y coordinate<p> Y coordinate, in pixels, of the rendered image of the layer
+	 *                          from the top/left corner of the rendering canvas.
+	 * @param outLayer          Layer<p> Image of the layer.
+	 * @param outFailureCode    Failure code<p> Failure code of the function.
+	 *                          If the function fails, the value equals one of the values
+	 *                          defined in FailureCodeRenderGetLayer.
+	 *                          Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
+	 * @return Returns true if the function succeeds, false if the
+	 * function fails.
+	 */
+	public static boolean renderGetLayer(int inSlideHandle,
+										 UpilBuffer inLayerIdentifier,
+										 UpilInteger32 outX,
+										 UpilInteger32 outY,
+										 Image outLayer,
+										 UpilInteger32 outFailureCode) {
+		return fsdl_render_get_layer(inSlideHandle, inLayerIdentifier, outX, outY, outLayer, outFailureCode);
+	}
+
+	private static native boolean fsdl_render_get_layer(int inSlideHandle,
+														UpilBuffer inLayerIdentifier,
+														UpilInteger32 outX,
+														UpilInteger32 outY,
+														Image outLayer,
+														UpilInteger32 outFailureCode);
 
 	/**
 	 * Library States
@@ -212,56 +823,6 @@ public class Fsdl {
 		public static final int INTERNAL_RANGE_BEGIN = 1031000;
 
 	}
-
-	/**
-	 * Get library state
-	 * <p>
-	 * Gets the library state.
-	 *
-	 * @param outLibraryState			Library state<p> State of the library. See LibraryState.
-	 * @param outInitializationError	Initialization error<p> Library initialization error. Applicable only if the library initialization has failed.
-	 * @param outFinalizationError		Finalization error<p> Library finalization error. Applicable only if the library finalization has failed.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean libraryGetState (UpilInteger32 outLibraryState,
-										   UpilInteger32 outInitializationError,
-										   UpilInteger32 outFinalizationError) {
-		return fsdl_library_get_state (outLibraryState, outInitializationError, outFinalizationError);
-	}
-
-	private static native boolean fsdl_library_get_state (UpilInteger32 outLibraryState,
-														  UpilInteger32 outInitializationError,
-														  UpilInteger32 outFinalizationError);
-
-	/** @} */
-	/* End of section: Library section */
-
-	/**
-	 * Frogans slide handle section
-	 * <p>
-	 * This section covers the management of the handle of a Frogans
-	 * slide.
-	 *
-	 * @name Frogans slide handle section
-	 * @{
-	 */
-
-	/* Beginning of section: Frogans slide handle section */
-
-	/**
-	 * Undefined Frogans slide handle
-	 * <p>
-	 * Frogans slide handle is not defined.
-	 */
-	public static final int SLIDE_HANDLE_UNDEFINED = 100;
-
-	/**
-	 * Maximum Frogans slide handle count
-	 * <p>
-	 * Maximum number of Frogans slide handles that can be created.
-	 */
-	public static final int SLIDE_HANDLE_COUNT_MAX = 1024;
 
 	/**
 	 * String character encoding
@@ -568,30 +1129,6 @@ public class Fsdl {
 	}
 
 	/**
-	 * Create Frogans slide handle
-	 * <p>
-	 * Creates a Frogans slide handle.
-	 *
-	 * @param inConfiguration	Configuration<p> Frogans slide handle configuration.
-	 * @param outSlideHandle	Frogans slide handle<p> The created Frogans slide handle.
-	 * @param outFailureCode	Failure code<p> Failure code of the function.
-	 *							If the function fails, the value equals one of the values
-	 *							defined in FailureCodeSlideHandleCreate.
-	 *							Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean slideHandleCreate (Configuration inConfiguration,
-											 UpilInteger32 outSlideHandle,
-											 UpilInteger32 outFailureCode) {
-		return fsdl_slide_handle_create (inConfiguration, outSlideHandle, outFailureCode);
-	}
-
-	private static native boolean fsdl_slide_handle_create (Configuration inConfiguration,
-															UpilInteger32 outSlideHandle,
-															UpilInteger32 outFailureCode);
-
-	/**
 	 * Failure codes
 	 * <p>
 	 * Failure codes returned by the
@@ -621,27 +1158,6 @@ public class Fsdl {
 		public static final int INTERNAL_RANGE_BEGIN = 2052000;
 
 	}
-
-	/**
-	 * Destroy Frogans slide handle
-	 * <p>
-	 * Destroys a Frogans slide handle.
-	 *
-	 * @param inSlideHandle		Frogans slide handle<p> Frogans slide handle.
-	 * @param outFailureCode	Failure code<p> Failure code of the function.
-	 *							If the function fails, the value equals one of the values
-	 *							defined in FailureCodeSlideHandleDestroy.
-	 *							Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean slideHandleDestroy (int inSlideHandle,
-											  UpilInteger32 outFailureCode) {
-		return fsdl_slide_handle_destroy (inSlideHandle, outFailureCode);
-	}
-
-	private static native boolean fsdl_slide_handle_destroy (int inSlideHandle,
-															 UpilInteger32 outFailureCode);
 
 	/**
 	 * Failure codes
@@ -675,27 +1191,6 @@ public class Fsdl {
 	}
 
 	/**
-	 * Clear Frogans slide handle
-	 * <p>
-	 * Clears a Frogans slide handle.
-	 *
-	 * @param inSlideHandle		Frogans slide handle<p> Frogans slide handle.
-	 * @param outFailureCode	Failure code<p> Failure code of the function.
-	 *							If the function fails, the value equals one of the values
-	 *							defined in FailureCodeSlideHandleClear.
-	 *							Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean slideHandleClear (int inSlideHandle,
-											UpilInteger32 outFailureCode) {
-		return fsdl_slide_handle_clear (inSlideHandle, outFailureCode);
-	}
-
-	private static native boolean fsdl_slide_handle_clear (int inSlideHandle,
-														   UpilInteger32 outFailureCode);
-
-	/**
 	 * Failure codes
 	 * <p>
 	 * Failure codes returned by the
@@ -725,42 +1220,6 @@ public class Fsdl {
 		public static final int INTERNAL_RANGE_BEGIN = 2072000;
 
 	}
-
-	/**
-	 * Is Frogans slide handle
-	 * <p>
-	 * Indicates whether the handle is a Frogans slide handle.
-	 *
-	 * @param inSlideHandle		Frogans slide handle<p> Frogans slide handle.
-	 * @param outFailureCode	Failure code<p> Failure code of the function.
-	 *							If the function fails, the value equals one of the values
-	 *							defined in FailureCodeSlideHandleIs.
-	 *							Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the handle is a Frogans slide handle,
-	 * false if the function fails.
-	 */
-	public static boolean slideHandleIs (int inSlideHandle,
-										 UpilInteger32 outFailureCode) {
-		return fsdl_slide_handle_is (inSlideHandle, outFailureCode);
-	}
-
-	private static native boolean fsdl_slide_handle_is (int inSlideHandle,
-														UpilInteger32 outFailureCode);
-
-	/** @} */
-	/* End of section: Frogans slide handle section */
-
-	/**
-	 * Parsing section
-	 * <p>
-	 * This section covers the parsing of the FSDL document of a Frogans
-	 * slide.
-	 *
-	 * @name Parsing section
-	 * @{
-	 */
-
-	/* Beginning of section: Parsing section */
 
 	/**
 	 * Document encoding
@@ -800,13 +1259,6 @@ public class Fsdl {
 		public static final int FSDL_3_0 = 3020001;
 
 	}
-
-	/**
-	 * Maximum document size
-	 * <p>
-	 * Maximum size (in bytes) of an FSDL document.
-	 */
-	public static final int DOCUMENT_BYTE_COUNT_MAX = 65536;
 
 	/**
 	 * Failure codes
@@ -903,36 +1355,6 @@ public class Fsdl {
 	}
 
 	/**
-	 * Perform parse
-	 * <p>
-	 * Performs the parsing of an FSDL document.
-	 *
-	 * @param inSlideHandle				Frogans slide handle<p> Frogans slide handle.
-	 * @param inDocumentEncoding		Document encoding<p> Document character encoding; see DocumentEncoding.
-	 * @param inDocumentFsdlVersion		Document FSDL version<p> FSDL version of the document; see DocumentFsdlVersion.
-	 * @param inDocumentContent			Document content<p> Content of the document to parse.
-	 * @param outFailureCode			Failure code<p> Failure code of the function.
-	 *									If the function fails, the value equals one of the values
-	 *									defined in FailureCodeParsePerform.
-	 *									Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean parsePerform (int inSlideHandle,
-										int inDocumentEncoding,
-										int inDocumentFsdlVersion,
-										UpilBuffer inDocumentContent,
-										UpilInteger32 outFailureCode) {
-		return fsdl_parse_perform (inSlideHandle, inDocumentEncoding, inDocumentFsdlVersion, inDocumentContent, outFailureCode);
-	}
-
-	private static native boolean fsdl_parse_perform (int inSlideHandle,
-													  int inDocumentEncoding,
-													  int inDocumentFsdlVersion,
-													  UpilBuffer inDocumentContent,
-													  UpilInteger32 outFailureCode);
-
-	/**
 	 * XML error info
 	 * <p>
 	 * XML error information.
@@ -1006,30 +1428,6 @@ public class Fsdl {
 		public static final int INTERNAL_RANGE_BEGIN = 3042000;
 
 	}
-
-	/**
-	 * Get XML error info
-	 * <p>
-	 * Gets information about the XML error.
-	 *
-	 * @param inSlideHandle		Frogans slide handle<p> Frogans slide handle.
-	 * @param outXmlErrorInfo	XML error info<p> XML error information.
-	 * @param outFailureCode	Failure code<p> Failure code of the function.
-	 *							If the function fails, the value equals one of the values
-	 *							defined in FailureCodeParseGetXmlErrorInfo.
-	 *							Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean parseGetXmlErrorInfo (int inSlideHandle,
-												XmlErrorInfo outXmlErrorInfo,
-												UpilInteger32 outFailureCode) {
-		return fsdl_parse_get_xml_error_info (inSlideHandle, outXmlErrorInfo, outFailureCode);
-	}
-
-	private static native boolean fsdl_parse_get_xml_error_info (int inSlideHandle,
-																 XmlErrorInfo outXmlErrorInfo,
-																 UpilInteger32 outFailureCode);
 
 	/**
 	 * Validation error info
@@ -1106,29 +1504,20 @@ public class Fsdl {
 
 	}
 
-	/**
-	 * Get validation error info
-	 * <p>
-	 * Gets information about the validation error.
-	 *
-	 * @param inSlideHandle				Frogans slide handle<p> Frogans slide handle.
-	 * @param outValidationErrorInfo	Validation error info<p> Information about the validation error.
-	 * @param outFailureCode			Failure code<p> Failure code of the function.
-	 *									If the function fails, the value equals one of the values
-	 *									defined in FailureCodeParseGetValidationErrorInfo.
-	 *									Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean parseGetValidationErrorInfo (int inSlideHandle,
-													   ValidationErrorInfo outValidationErrorInfo,
-													   UpilInteger32 outFailureCode) {
-		return fsdl_parse_get_validation_error_info (inSlideHandle, outValidationErrorInfo, outFailureCode);
-	}
+	/** @} */
+	/* End of section: Parsing section */
 
-	private static native boolean fsdl_parse_get_validation_error_info (int inSlideHandle,
-																		ValidationErrorInfo outValidationErrorInfo,
-																		UpilInteger32 outFailureCode);
+	/**
+	 * Auxiliary file holding section
+	 * <p>
+	 * This section covers the holding of the auxiliary files of a
+	 * Frogans slide.
+	 *
+	 * @name Auxiliary file holding section
+	 * @{
+	 */
+
+	/* Beginning of section: Auxiliary file holding section */
 
 	/**
 	 * Failure codes
@@ -1189,30 +1578,6 @@ public class Fsdl {
 		public static final int INTERNAL_RANGE_BEGIN = 3062000;
 
 	}
-
-	/**
-	 * Get auxiliary file count
-	 * <p>
-	 * Gets the count of auxiliary files.
-	 *
-	 * @param inSlideHandle				Frogans slide handle<p> Frogans slide handle.
-	 * @param outAuxiliaryFileCount		Auxiliary file count<p> Count of auxiliary files.
-	 * @param outFailureCode			Failure code<p> Failure code of the function.
-	 *									If the function fails, the value equals one of the values
-	 *									defined in FailureCodeParseGetAuxiliaryFileCount.
-	 *									Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean parseGetAuxiliaryFileCount (int inSlideHandle,
-													  UpilInteger32 outAuxiliaryFileCount,
-													  UpilInteger32 outFailureCode) {
-		return fsdl_parse_get_auxiliary_file_count (inSlideHandle, outAuxiliaryFileCount, outFailureCode);
-	}
-
-	private static native boolean fsdl_parse_get_auxiliary_file_count (int inSlideHandle,
-																	   UpilInteger32 outAuxiliaryFileCount,
-																	   UpilInteger32 outFailureCode);
 
 	/**
 	 * Failure codes
@@ -1282,33 +1647,6 @@ public class Fsdl {
 	}
 
 	/**
-	 * Get auxiliary file identifier
-	 * <p>
-	 * Gets the identifier of an auxiliary file.
-	 *
-	 * @param inSlideHandle			Frogans slide handle<p> Frogans slide handle.
-	 * @param inIndex				Index<p> Index of the auxiliary file, starting at index 0.
-	 * @param outFileIdentifier		File identifier<p> Identifier of the auxiliairy file.
-	 * @param outFailureCode		Failure code<p> Failure code of the function.
-	 *								If the function fails, the value equals one of the values
-	 *								defined in FailureCodeParseGetAuxiliaryFileIdentifier.
-	 *								Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean parseGetAuxiliaryFileIdentifier (int inSlideHandle,
-														   int inIndex,
-														   UpilBuffer outFileIdentifier,
-														   UpilInteger32 outFailureCode) {
-		return fsdl_parse_get_auxiliary_file_identifier (inSlideHandle, inIndex, outFileIdentifier, outFailureCode);
-	}
-
-	private static native boolean fsdl_parse_get_auxiliary_file_identifier (int inSlideHandle,
-																			int inIndex,
-																			UpilBuffer outFileIdentifier,
-																			UpilInteger32 outFailureCode);
-
-	/**
 	 * File nature
 	 * <p>
 	 * Nature of the file.
@@ -1349,6 +1687,20 @@ public class Fsdl {
 		public static final int EMBEDDED = 3080003;
 
 	}
+
+	/** @} */
+	/* End of section: Auxiliary file holding section */
+
+	/**
+	 * Rendering section
+	 * <p>
+	 * This section covers the rendering of a Frogans slide.
+	 *
+	 * @name Rendering section
+	 * @{
+	 */
+
+	/* Beginning of section: Rendering section */
 
 	/**
 	 * File info
@@ -1448,33 +1800,6 @@ public class Fsdl {
 	}
 
 	/**
-	 * Get file info
-	 * <p>
-	 * Gets information about a file.
-	 *
-	 * @param inSlideHandle		Frogans slide handle<p> Frogans slide handle.
-	 * @param inFileIdentifier	File identifier<p> Identifier of the file.
-	 * @param outFileInfo		File info<p> Information about the file.
-	 * @param outFailureCode	Failure code<p> Failure code of the function.
-	 *							If the function fails, the value equals one of the values
-	 *							defined in FailureCodeParseGetFileInfo.
-	 *							Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean parseGetFileInfo (int inSlideHandle,
-											UpilBuffer inFileIdentifier,
-											FileInfo outFileInfo,
-											UpilInteger32 outFailureCode) {
-		return fsdl_parse_get_file_info (inSlideHandle, inFileIdentifier, outFileInfo, outFailureCode);
-	}
-
-	private static native boolean fsdl_parse_get_file_info (int inSlideHandle,
-															UpilBuffer inFileIdentifier,
-															FileInfo outFileInfo,
-															UpilInteger32 outFailureCode);
-
-	/**
 	 * Failure codes
 	 * <p>
 	 * Failure codes returned by the
@@ -1533,31 +1858,6 @@ public class Fsdl {
 		public static final int INTERNAL_RANGE_BEGIN = 3102000;
 
 	}
-
-	/**
-	 * Get resource count
-	 * <p>
-	 * Gets the count of prepared resources defined in the FSDL
-	 * document.
-	 *
-	 * @param inSlideHandle		Frogans slide handle<p> Frogans slide handle.
-	 * @param outResourceCount	Resource count<p> Count of prepared resources.
-	 * @param outFailureCode	Failure code<p> Failure code of the function.
-	 *							If the function fails, the value equals one of the values
-	 *							defined in FailureCodeParseGetResourceCount.
-	 *							Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean parseGetResourceCount (int inSlideHandle,
-												 UpilInteger32 outResourceCount,
-												 UpilInteger32 outFailureCode) {
-		return fsdl_parse_get_resource_count (inSlideHandle, outResourceCount, outFailureCode);
-	}
-
-	private static native boolean fsdl_parse_get_resource_count (int inSlideHandle,
-																 UpilInteger32 outResourceCount,
-																 UpilInteger32 outFailureCode);
 
 	/**
 	 * Failure codes
@@ -1627,33 +1927,6 @@ public class Fsdl {
 	}
 
 	/**
-	 * Get resource identifier
-	 * <p>
-	 * Gets the identifier of a prepared resource.
-	 *
-	 * @param inSlideHandle				Frogans slide handle<p> Frogans slide handle.
-	 * @param inIndex					Index<p> Index of the prepared resource, starting at index 0.
-	 * @param outResourceIdentifier		Resource identifier<p> Identifier of the prepared resource.
-	 * @param outFailureCode			Failure code<p> Failure code of the function.
-	 *									If the function fails, the value equals one of the values
-	 *									defined in FailureCodeParseGetResourceIdentifier.
-	 *									Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean parseGetResourceIdentifier (int inSlideHandle,
-													  int inIndex,
-													  UpilBuffer outResourceIdentifier,
-													  UpilInteger32 outFailureCode) {
-		return fsdl_parse_get_resource_identifier (inSlideHandle, inIndex, outResourceIdentifier, outFailureCode);
-	}
-
-	private static native boolean fsdl_parse_get_resource_identifier (int inSlideHandle,
-																	  int inIndex,
-																	  UpilBuffer outResourceIdentifier,
-																	  UpilInteger32 outFailureCode);
-
-	/**
 	 * Failure codes
 	 * <p>
 	 * Failure codes returned by the
@@ -1712,30 +1985,6 @@ public class Fsdl {
 		public static final int INTERNAL_RANGE_BEGIN = 3122000;
 
 	}
-
-	/**
-	 * Get layer count
-	 * <p>
-	 * Gets the count of layer elements defined in the FSDL document.
-	 *
-	 * @param inSlideHandle		Frogans slide handle<p> Frogans slide handle.
-	 * @param outLayerCount		Layer count<p> Count of layers.
-	 * @param outFailureCode	Failure code<p> Failure code of the function.
-	 *							If the function fails, the value equals one of the values
-	 *							defined in FailureCodeParseGetLayerCount.
-	 *							Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean parseGetLayerCount (int inSlideHandle,
-											  UpilInteger32 outLayerCount,
-											  UpilInteger32 outFailureCode) {
-		return fsdl_parse_get_layer_count (inSlideHandle, outLayerCount, outFailureCode);
-	}
-
-	private static native boolean fsdl_parse_get_layer_count (int inSlideHandle,
-															  UpilInteger32 outLayerCount,
-															  UpilInteger32 outFailureCode);
 
 	/**
 	 * Failure codes
@@ -1805,33 +2054,6 @@ public class Fsdl {
 	}
 
 	/**
-	 * Get layer identifier
-	 * <p>
-	 * Gets the identifier of the layer.
-	 *
-	 * @param inSlideHandle			Frogans slide handle<p> Frogans slide handle.
-	 * @param inIndex				Index<p> Index of the layer, starting at index 0.
-	 * @param outLayerIdentifier	Layer identifier<p> Identifier of the layer.
-	 * @param outFailureCode		Failure code<p> Failure code of the function.
-	 *								If the function fails, the value equals one of the values
-	 *								defined in FailureCodeParseGetLayerIdentifier.
-	 *								Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean parseGetLayerIdentifier (int inSlideHandle,
-												   int inIndex,
-												   UpilBuffer outLayerIdentifier,
-												   UpilInteger32 outFailureCode) {
-		return fsdl_parse_get_layer_identifier (inSlideHandle, inIndex, outLayerIdentifier, outFailureCode);
-	}
-
-	private static native boolean fsdl_parse_get_layer_identifier (int inSlideHandle,
-																   int inIndex,
-																   UpilBuffer outLayerIdentifier,
-																   UpilInteger32 outFailureCode);
-
-	/**
 	 * Failure codes
 	 * <p>
 	 * Failure codes returned by the
@@ -1890,30 +2112,6 @@ public class Fsdl {
 		public static final int INTERNAL_RANGE_BEGIN = 3142000;
 
 	}
-
-	/**
-	 * Get button count
-	 * <p>
-	 * Gets the count of buttons defined in the FSDL document.
-	 *
-	 * @param inSlideHandle		Frogans slide handle<p> Frogans slide handle.
-	 * @param outButtonCount	Button count<p> Count of buttons.
-	 * @param outFailureCode	Failure code<p> Failure code of the function.
-	 *							If the function fails, the value equals one of the values
-	 *							defined in FailureCodeParseGetButtonCount.
-	 *							Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean parseGetButtonCount (int inSlideHandle,
-											   UpilInteger32 outButtonCount,
-											   UpilInteger32 outFailureCode) {
-		return fsdl_parse_get_button_count (inSlideHandle, outButtonCount, outFailureCode);
-	}
-
-	private static native boolean fsdl_parse_get_button_count (int inSlideHandle,
-															   UpilInteger32 outButtonCount,
-															   UpilInteger32 outFailureCode);
 
 	/**
 	 * Failure codes
@@ -1983,48 +2181,6 @@ public class Fsdl {
 	}
 
 	/**
-	 * Get button identifier
-	 * <p>
-	 * Gets the identifier of a button.
-	 *
-	 * @param inSlideHandle			Frogans slide handle<p> Frogans slide handle.
-	 * @param inIndex				Index<p> Index of the button, starting at index 0.
-	 * @param outButtonIdentifier	Button identifier<p> Identifier of the button.
-	 * @param outFailureCode		Failure code<p> Failure code of the function.
-	 *								If the function fails, the value equals one of the values
-	 *								defined in FailureCodeParseGetButtonIdentifier.
-	 *								Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean parseGetButtonIdentifier (int inSlideHandle,
-													int inIndex,
-													UpilBuffer outButtonIdentifier,
-													UpilInteger32 outFailureCode) {
-		return fsdl_parse_get_button_identifier (inSlideHandle, inIndex, outButtonIdentifier, outFailureCode);
-	}
-
-	private static native boolean fsdl_parse_get_button_identifier (int inSlideHandle,
-																	int inIndex,
-																	UpilBuffer outButtonIdentifier,
-																	UpilInteger32 outFailureCode);
-
-	/** @} */
-	/* End of section: Parsing section */
-
-	/**
-	 * Auxiliary file holding section
-	 * <p>
-	 * This section covers the holding of the auxiliary files of a
-	 * Frogans slide.
-	 *
-	 * @name Auxiliary file holding section
-	 * @{
-	 */
-
-	/* Beginning of section: Auxiliary file holding section */
-
-	/**
 	 * Failure codes
 	 * <p>
 	 * Failure codes returned by the
@@ -2083,47 +2239,6 @@ public class Fsdl {
 		public static final int INTERNAL_RANGE_BEGIN = 4012000;
 
 	}
-
-	/**
-	 * Hold auxiliary file content
-	 * <p>
-	 * Holds the content of an auxiliary file.
-	 *
-	 * @param inSlideHandle		Frogans slide handle<p> Frogans slide handle.
-	 * @param inFileIdentifier	File identifier<p> Identifier of the auxiliairy file.
-	 * @param inContent			Content<p> Content of the auxiliary file.
-	 * @param outFailureCode	Failure code<p> Failure code of the function.
-	 *							If the function fails, the value equals one of the values
-	 *							defined in FailureCodeHoldAuxiliaryFileContent.
-	 *							Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean holdAuxiliaryFileContent (int inSlideHandle,
-													UpilBuffer inFileIdentifier,
-													UpilBuffer inContent,
-													UpilInteger32 outFailureCode) {
-		return fsdl_hold_auxiliary_file_content (inSlideHandle, inFileIdentifier, inContent, outFailureCode);
-	}
-
-	private static native boolean fsdl_hold_auxiliary_file_content (int inSlideHandle,
-																	UpilBuffer inFileIdentifier,
-																	UpilBuffer inContent,
-																	UpilInteger32 outFailureCode);
-
-	/** @} */
-	/* End of section: Auxiliary file holding section */
-
-	/**
-	 * Rendering section
-	 * <p>
-	 * This section covers the rendering of a Frogans slide.
-	 *
-	 * @name Rendering section
-	 * @{
-	 */
-
-	/* Beginning of section: Rendering section */
 
 	/**
 	 * Rendering mode
@@ -2236,31 +2351,6 @@ public class Fsdl {
 	}
 
 	/**
-	 * Perform render
-	 * <p>
-	 * Performs the rendering of an FSDL document, according to
-	 * RenderMode.
-	 *
-	 * @param inSlideHandle		Frogans slide handle<p> Frogans slide handle.
-	 * @param inRenderMode		Rendering mode<p> Rendering mode.
-	 * @param outFailureCode	Failure code<p> Failure code of the function.
-	 *							If the function fails, the value equals one of the values
-	 *							defined in FailureCodeRenderPerform.
-	 *							Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean renderPerform (int inSlideHandle,
-										 int inRenderMode,
-										 UpilInteger32 outFailureCode) {
-		return fsdl_render_perform (inSlideHandle, inRenderMode, outFailureCode);
-	}
-
-	private static native boolean fsdl_render_perform (int inSlideHandle,
-													   int inRenderMode,
-													   UpilInteger32 outFailureCode);
-
-	/**
 	 * Image
 	 * <p>
 	 * Rendered image.
@@ -2331,13 +2421,6 @@ public class Fsdl {
 	public static class Rollovers {
 		public Rollover[] items;
 	}
-
-	/**
-	 * Maximum rollover count
-	 * <p>
-	 * Maximum number of rollovers in a Frogans slide.
-	 */
-	public static final int ROLLOVER_COUNT_MAX = 32;
 
 	/**
 	 * Composition
@@ -2432,33 +2515,6 @@ public class Fsdl {
 	}
 
 	/**
-	 * Get rendering canvas
-	 * <p>
-	 * Gets the lead and vignette representations of the Frogans slide.
-	 *
-	 * @param inSlideHandle					Frogans slide handle<p> Frogans slide handle.
-	 * @param outLeadRepresentation			Lead representation<p> Lead representation of the Frogans slide.
-	 * @param outVignetteRepresentation		Vignette representation<p> Vignette representation of the Frogans slide.
-	 * @param outFailureCode				Failure code<p> Failure code of the function.
-	 *										If the function fails, the value equals one of the values
-	 *										defined in FailureCodeRenderGetRenderingCanvas.
-	 *										Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean renderGetRenderingCanvas (int inSlideHandle,
-													Composition outLeadRepresentation,
-													Composition outVignetteRepresentation,
-													UpilInteger32 outFailureCode) {
-		return fsdl_render_get_rendering_canvas (inSlideHandle, outLeadRepresentation, outVignetteRepresentation, outFailureCode);
-	}
-
-	private static native boolean fsdl_render_get_rendering_canvas (int inSlideHandle,
-																	Composition outLeadRepresentation,
-																	Composition outVignetteRepresentation,
-																	UpilInteger32 outFailureCode);
-
-	/**
 	 * Failure codes
 	 * <p>
 	 * Failure codes returned by the
@@ -2540,33 +2596,6 @@ public class Fsdl {
 	}
 
 	/**
-	 * Get prepared resource
-	 * <p>
-	 * Gets the rendered image corresponding to a prepared resource.
-	 *
-	 * @param inSlideHandle			Frogans slide handle<p> Frogans slide handle.
-	 * @param inResourceIdentifier	Resource identifier<p> Identifier of the prepared resource.
-	 * @param outResource			Resource<p> Rendered image of the prepared resource.
-	 * @param outFailureCode		Failure code<p> Failure code of the function.
-	 *								If the function fails, the value equals one of the values
-	 *								defined in FailureCodeRenderGetPreparedResource.
-	 *								Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean renderGetPreparedResource (int inSlideHandle,
-													 UpilBuffer inResourceIdentifier,
-													 Image outResource,
-													 UpilInteger32 outFailureCode) {
-		return fsdl_render_get_prepared_resource (inSlideHandle, inResourceIdentifier, outResource, outFailureCode);
-	}
-
-	private static native boolean fsdl_render_get_prepared_resource (int inSlideHandle,
-																	 UpilBuffer inResourceIdentifier,
-																	 Image outResource,
-																	 UpilInteger32 outFailureCode);
-
-	/**
 	 * Failure codes
 	 * <p>
 	 * Failure codes returned by the
@@ -2646,41 +2675,6 @@ public class Fsdl {
 		public static final int INTERNAL_RANGE_BEGIN = 5052000;
 
 	}
-
-	/**
-	 * Get layer
-	 * <p>
-	 * Gets the rendered image corresponding to a layer.
-	 *
-	 * @param inSlideHandle			Frogans slide handle<p> Frogans slide handle.
-	 * @param inLayerIdentifier		Layer identifier<p> Identifier of the layer.
-	 * @param outX					X coordinate<p> X coordinate, in pixels, of the rendered image of the layer
-	 *								from the top/left corner of the rendering canvas.
-	 * @param outY					Y coordinate<p> Y coordinate, in pixels, of the rendered image of the layer
-	 *								from the top/left corner of the rendering canvas.
-	 * @param outLayer				Layer<p> Image of the layer.
-	 * @param outFailureCode		Failure code<p> Failure code of the function.
-	 *								If the function fails, the value equals one of the values
-	 *								defined in FailureCodeRenderGetLayer.
-	 *								Otherwise, the value equals FAILURE_CODE_HAS_SUCCEEDED.
-	 * @return Returns true if the function succeeds, false if the
-	 * function fails.
-	 */
-	public static boolean renderGetLayer (int inSlideHandle,
-										  UpilBuffer inLayerIdentifier,
-										  UpilInteger32 outX,
-										  UpilInteger32 outY,
-										  Image outLayer,
-										  UpilInteger32 outFailureCode) {
-		return fsdl_render_get_layer (inSlideHandle, inLayerIdentifier, outX, outY, outLayer, outFailureCode);
-	}
-
-	private static native boolean fsdl_render_get_layer (int inSlideHandle,
-														 UpilBuffer inLayerIdentifier,
-														 UpilInteger32 outX,
-														 UpilInteger32 outY,
-														 Image outLayer,
-														 UpilInteger32 outFailureCode);
 
 	/** @} */
 	/* End of section: Rendering section */

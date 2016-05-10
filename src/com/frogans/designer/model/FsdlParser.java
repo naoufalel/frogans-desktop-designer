@@ -6,24 +6,28 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import org.w3c.dom.*;
-
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 import static com.frogans.designer.Utils.Tools.capitalizeFirstLetter;
+
 
 /**
  * Created by Naoufal EL BANTLI on 3/19/2016.
  */
 public class FsdlParser {
     private File file;
+
+    public FsdlParser(File file) {
+        this.file = file;
+    }
 
     public File getFile() {
         return file;
@@ -33,13 +37,12 @@ public class FsdlParser {
         this.file = file;
     }
 
-    public FsdlParser(File file) {
-        this.file = file;
-    }
-
     //Testing frogans lib
 
-    
+    public void testFsdlLib() {
+        boolean result;
+
+    }
 
 
 

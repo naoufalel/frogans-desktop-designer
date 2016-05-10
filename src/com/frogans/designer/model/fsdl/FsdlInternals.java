@@ -35,9 +35,13 @@
  * @file
  */
 
-package frogans.fsdl;
-import java.io.*;
-import frogans.upil.*;
+package com.frogans.designer.model.fsdl;
+
+import com.frogans.designer.model.upil.UpilBufferInternals;
+
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
 
 public class FsdlInternals {
 
