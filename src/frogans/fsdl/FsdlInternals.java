@@ -35,9 +35,9 @@
  * @file
  */
 
-package com.frogans.designer.model.fsdl;
+package frogans.fsdl;
 
-import com.frogans.designer.model.upil.UpilBufferInternals;
+import frogans.upil.UpilBufferInternals;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;

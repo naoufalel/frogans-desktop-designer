@@ -14,7 +14,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class FsdlParserTest {
 
-    String filename ="C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.7.1-win32\\test\\helloworld\\home.fsdl";
+    String filename = "C:\\Users\\naouf\\Downloads\\Frogans\\FrogansPlayer4Dev-noinstall-alpha0.7.1-win32\\test\\helloworld\\home.frogans.fsdl";
     FsdlParser fsdlParser = new FsdlParser(new File(filename));
 
     @org.junit.Test

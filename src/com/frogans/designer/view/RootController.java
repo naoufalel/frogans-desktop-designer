@@ -14,12 +14,12 @@ public class RootController {
     private FrogansApp frogansApp;
 
 
-    public void setFrogansApp(FrogansApp frogansApp) {
-        this.frogansApp = frogansApp;
-    }
-
     public RootController() {
 
+    }
+
+    public void setFrogansApp(FrogansApp frogansApp) {
+        this.frogansApp = frogansApp;
     }
 
     @FXML
@@ -39,7 +39,7 @@ public class RootController {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Open FSDL File");
             FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(
-                    "FSDL files(*.fsdl)", "*.fsdl"
+                    "FSDL files(*.frogans.fsdl)", "*.frogans.fsdl"
             );
 
 //            fileChooser.setInitialDirectory(new File(System.getProperty("user.home"))
@@ -49,8 +49,8 @@ public class RootController {
             File file = fileChooser.showOpenDialog(frogansApp.getPrimaryStage());
             if (file != null) {
                 // Make sure it has the correct extension
-                if (!file.getPath().endsWith(".fsdl")) {
-                    file = new File(file.getPath() + ".fsdl");
+                if (!file.getPath().endsWith(".frogans.fsdl")) {
+                    file = new File(file.getPath() + ".frogans.fsdl");
                 }
                 frogansApp.loadAFile(file);
             }

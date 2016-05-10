@@ -9,7 +9,7 @@
  * @file
  */
 
-package com.frogans.designer.model.upil;
+package frogans.upil;
 import java.util.Arrays;
 
 public class UpilBuffer {

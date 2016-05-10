@@ -4,6 +4,8 @@ package com.frogans.designer.model;
 import com.frogans.designer.model.Elements.*;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
+import frogans.fsdl.Fsdl;
+import frogans.upil.UpilBuffer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.w3c.dom.*;
@@ -41,7 +43,13 @@ public class FsdlParser {
 
     public void testFsdlLib() {
         boolean result;
+        UpilBuffer version = new UpilBuffer();
+        result = Fsdl.libraryGetVersion(version);
 
+        if (result) {
+            String s = new String(version.getValue());
+            System.out.println(s);
+        }
     }
 
 

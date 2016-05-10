@@ -35,10 +35,10 @@
  * @file
  */
 
-package com.frogans.designer.model.fsdl;
+package frogans.fsdl;
 
-import com.frogans.designer.model.upil.UpilBuffer;
-import frogans.upil.*;
+import frogans.upil.UpilBuffer;
+import frogans.upil.UpilInteger32;
 
 public class Fsdl {
 	/**
@@ -1046,7 +1046,7 @@ public class Fsdl {
 		 * Fonts file directory
 		 * <p>
 		 * Directory that contains the FSDL fonts file
-		 * ("fsdl-fonts.dat").
+		 * ("frogans.fsdl-fonts.dat").
 		 */
 		public UpilBuffer fontsFileDirectory;
 

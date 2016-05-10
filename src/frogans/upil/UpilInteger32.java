@@ -1,5 +1,5 @@
 /**
- * UPIL Boolean Basic Type For Java
+ * UPIL Interer32 Basic Type For Java
  *
  * @version		alpha0.15.1
  * @status		Alpha release
@@ -9,24 +9,24 @@
  * @file
  */
 
-package com.frogans.designer.model.upil;
+package frogans.upil;
 
-public class UpilBoolean {
+public class UpilInteger32 {
 
-	private boolean value;
+	private int value;
 
-	public UpilBoolean() {
+	public UpilInteger32() {
 	}
 
-	public UpilBoolean(boolean value) {
+	public UpilInteger32(int value) {
 		this.value = value;
 	}
 
-	public boolean getValue() {
+	public int getValue() {
 		return this.value;
 	}
 
-	public void setValue(boolean value) {
+	public void setValue(int value) {
 		this.value = value;
 	}
 

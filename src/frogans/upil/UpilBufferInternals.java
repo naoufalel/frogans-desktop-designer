@@ -9,7 +9,7 @@
  * @file
  */
 
-package com.frogans.designer.model.upil;
+package frogans.upil;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;

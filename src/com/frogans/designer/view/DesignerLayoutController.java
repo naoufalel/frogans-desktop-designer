@@ -24,7 +24,7 @@ import javafx.scene.layout.AnchorPane;
 public class DesignerLayoutController {
 
     private final ObjectProperty<ListCell<String>> dragSource = new SimpleObjectProperty<>();
-    TreeItem<Object> root = new TreeItem<>("frogans-fsdl");
+    TreeItem<Object> root = new TreeItem<>("frogans-frogans.fsdl");
     @FXML
     ListView<String> listControlers;
     @FXML
