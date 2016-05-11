@@ -196,6 +196,22 @@ public class RespathFSDL {
         this.color.set(color);
     }
 
+
+    public StringProperty[] getCropArray() {
+        return cropArray;
+    }
+    public StringProperty[] getStrokeArray() {
+        return strokeArray;
+    }
+    public StringProperty[] getCloseArray() {
+        return closeArray;
+    }
+    public StringProperty[] getFillArray() {
+        return fillArray;
+    }
+    public StringProperty[] getSpreadArray() {
+        return spreadArray;
+    }
     @Override
     public String toString() {
         return "RespathFSDL{" +

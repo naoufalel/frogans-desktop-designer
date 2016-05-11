@@ -157,6 +157,16 @@ public class RestextFSDL {
 
     public void settexts(ObservableList<TextFSDL> texts) {this.texts = texts;}
 
+    public StringProperty[] getOrientationArray() {
+        return orientationArray;
+    }
+    public StringProperty[] getTalignArray() {
+        return talignArray;
+    }
+    public StringProperty[] getVstyleArray() {
+        return vstyleArray;
+    }
+
     @Override
     public String toString() {
         return "RestextFSDL{" +

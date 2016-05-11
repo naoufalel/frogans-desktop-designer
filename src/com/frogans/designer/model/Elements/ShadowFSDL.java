@@ -102,6 +102,10 @@ public class ShadowFSDL {
         this.combine.set(combine);
     }
 
+    public StringProperty[] getCombineArray() {
+        return combineArray;
+    }
+
     @Override
     public String toString() {
         return "ShadowFSDL{" +
