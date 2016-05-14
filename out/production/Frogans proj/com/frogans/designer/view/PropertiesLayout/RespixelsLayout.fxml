@@ -4,8 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frogans.designer.view.PropertiesLayout.RespixelsLayoutController">
    <children>
       <GridPane layoutY="95.0" prefHeight="100.0" prefWidth="200.0">
         <columnConstraints>
@@ -21,9 +20,9 @@
             <Label text=" Columns:" />
             <Label text=" Rows:" GridPane.rowIndex="1" />
             <Label text=" Pix:" GridPane.rowIndex="2" />
-            <Slider max="16.0" GridPane.columnIndex="1" />
-            <Slider max="16.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Slider fx:id="columnsSlide" max="16.0" GridPane.columnIndex="1" />
+            <Slider fx:id="rowsSlide" max="16.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ChoiceBox fx:id="pixChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <GridPane layoutY="243.0" prefHeight="89.0" prefWidth="200.0">
@@ -38,8 +37,8 @@
          <children>
             <Label text=" Color:" />
             <Label text=" Alpha:" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="colorText" GridPane.columnIndex="1" />
+            <TextField fx:id="alphaText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <GridPane layoutY="49.0" prefHeight="37.0" prefWidth="200.0">
@@ -55,8 +54,8 @@
          <children>
             <Label text=" Size:" />
             <Label prefHeight="17.0" prefWidth="18.0" text="  ," GridPane.columnIndex="2" />
-            <TextField prefHeight="25.0" prefWidth="38.0" promptText="w" GridPane.columnIndex="1" />
-            <TextField promptText="h" GridPane.columnIndex="3" />
+            <TextField fx:id="sizeWText" prefHeight="25.0" prefWidth="38.0" promptText="w" GridPane.columnIndex="1" />
+            <TextField fx:id="sizeHText" promptText="h" GridPane.columnIndex="3" />
          </children>
       </GridPane>
       <GridPane layoutY="15.0" prefHeight="25.0" prefWidth="200.0">
@@ -69,7 +68,7 @@
         </rowConstraints>
          <children>
             <Label text=" Resid:" />
-            <TextField GridPane.columnIndex="1" />
+            <TextField fx:id="residText" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </children>
