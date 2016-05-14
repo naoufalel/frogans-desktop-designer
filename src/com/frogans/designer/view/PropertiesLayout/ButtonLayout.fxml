@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frogans.designer.view.PropertiesLayout.ButtonLayoutController">
     <children>
         <Separator layoutX="7.0" layoutY="29.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0" />
         <GridPane layoutY="23.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
@@ -20,7 +20,7 @@
             </rowConstraints>
             <children>
                 <Label text="button ID" />
-                <TextField GridPane.columnIndex="1" />
+                <TextField fx:id="idButton" GridPane.columnIndex="1" />
             </children>
         </GridPane>
         <Label layoutX="156.0" layoutY="58.0" text="Type" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0" />
@@ -35,7 +35,7 @@
             </rowConstraints>
             <children>
                 <Label text="Go to" />
-                <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" />
+                <ChoiceBox fx:id="typeChoice" prefWidth="150.0" GridPane.columnIndex="1" />
             </children>
         </GridPane>
         <Separator layoutX="14.0" layoutY="267.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0" />
@@ -57,10 +57,10 @@
                 <Label text="Address" GridPane.rowIndex="1" />
                 <Label text="URL" GridPane.rowIndex="2" />
                 <Label text="Email" GridPane.rowIndex="3" />
-                <TextField GridPane.columnIndex="1" />
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <TextField fx:id="filerefText" GridPane.columnIndex="1" />
+                <TextField fx:id="addressText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="urlText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="emailText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             </children>
         </GridPane>
     </children></AnchorPane>

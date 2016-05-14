@@ -34,6 +34,10 @@ public class ResdrawLayoutController {
     @FXML
     private TextField colorText;
 
+    public void setFrogansApp(FrogansApp frogansApp) {
+        this.frogansApp = frogansApp;
+    }
+
     @FXML
     public void initialize(){
         fillStroke();
