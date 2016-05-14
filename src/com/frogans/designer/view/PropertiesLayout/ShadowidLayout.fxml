@@ -4,8 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frogans.designer.view.PropertiesLayout.ShadowidLayoutController">
    <children>
       <GridPane layoutY="8.0">
         <columnConstraints>
@@ -17,7 +16,7 @@
         </rowConstraints>
          <children>
             <Label text=" Shadowid:" />
-            <TextField GridPane.columnIndex="1" />
+            <TextField fx:id="shadowidText" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </children>

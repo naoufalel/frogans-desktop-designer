@@ -317,7 +317,252 @@ public class DesignerLayoutController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else System.out.println("hola");
+        }else if(o instanceof ResimageFSDL){
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/ResimageLayout.fxml"));
+                AnchorPane anchorPane = loader.load();
+
+                this.getPropertiesPane().setContent(anchorPane);
+                ResimageLayoutController controller = loader.getController();
+                controller.setFrogansApp(frogansApp);
+                ResimageFSDL l = (ResimageFSDL) o;
+                controller.fillResimageLayout(
+                        l.getResid(),
+                        l.getSize(),
+                        l.getFileref(),
+                        l.getSelection(),
+                        l.getBounds(),
+                        l.getAspect(),
+                        l.getAdjust(),
+                        l.getOrigin()
+                );
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else if(o instanceof RestextFSDL){
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/RestextLayout.fxml"));
+                AnchorPane anchorPane = loader.load();
+
+                this.getPropertiesPane().setContent(anchorPane);
+                RestextLayoutController controller = loader.getController();
+                controller.setFrogansApp(frogansApp);
+                RestextFSDL l = (RestextFSDL) o;
+                controller.fillRestextLayout(
+                        l.getResid(),
+                        l.getSize(),
+                        l.getFontref(),
+                        l.getTalign(),
+                        l.getLinespace(),
+                        l.getVstyle(),
+                        l.getOrientation()
+                );
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else if(o instanceof RespathFSDL) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/RespathLayout.fxml"));
+                AnchorPane anchorPane = loader.load();
+
+                this.getPropertiesPane().setContent(anchorPane);
+                RespathLayoutController controller = loader.getController();
+                controller.setFrogansApp(frogansApp);
+                RespathFSDL l = (RespathFSDL) o;
+                controller.fillRespathLayout(
+                        l.getResid(),
+                        l.getSize(),
+                        l.getCrop(),
+                        l.getCorners(),
+                        l.getStroke(),
+                        l.getThick(),
+                        l.getClose(),
+                        l.getFill(),
+                        l.getColor(),
+                        l.getSpread()
+                );
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else if(o instanceof ResmergeFSDL){
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/ResmergeLayout.fxml"));
+                AnchorPane anchorPane = loader.load();
+
+                this.getPropertiesPane().setContent(anchorPane);
+                ResmergeLayoutController controller = loader.getController();
+                controller.setFrogansApp(frogansApp);
+                ResmergeFSDL l = (ResmergeFSDL) o;
+                controller.fillResmergeLayout(
+                        l.getResid(),
+                        l.getSize()
+                );
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else if(o instanceof SetfilterFSDL){
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/SetfilerLayout.fxml"));
+                AnchorPane anchorPane = loader.load();
+
+                this.getPropertiesPane().setContent(anchorPane);
+                SetfilterLayoutController controller = loader.getController();
+                controller.setFrogansApp(frogansApp);
+                SetfilterFSDL l = (SetfilterFSDL) o;
+                controller.fillSetfilterLayout(
+                        l.getFilterid()
+                );
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else if(o instanceof ReliefFSDL){
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/ReliefLayout.fxml"));
+                AnchorPane anchorPane = loader.load();
+
+                this.getPropertiesPane().setContent(anchorPane);
+                ReliefLayoutController controller = loader.getController();
+                controller.setFrogansApp(frogansApp);
+                ReliefFSDL l = (ReliefFSDL) o;
+                controller.fillReliefLayout(
+                        l.getRpos(),
+                        l.getColor(),
+                        l.getBlur(),
+                        l.getOpacity()
+                );
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else if(o instanceof NextFSDL){
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/NextLayout.fxml"));
+                AnchorPane anchorPane = loader.load();
+
+                this.getPropertiesPane().setContent(anchorPane);
+                NextLayoutController controller = loader.getController();
+                controller.setFrogansApp(frogansApp);
+                NextFSDL l = (NextFSDL) o;
+                controller.fillNextLayout(
+                        l.getDelay(),
+                        l.getFileref()
+                );
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else if (o instanceof RespixelsFSDL){
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/RespixelsLayout.fxml"));
+                AnchorPane anchorPane = loader.load();
+
+                this.getPropertiesPane().setContent(anchorPane);
+                RespixelsLayoutController controller = loader.getController();
+                controller.setFrogansApp(frogansApp);
+                RespixelsFSDL l = (RespixelsFSDL) o;
+                controller.fillRespixelsLayout(
+                        l.getResid(),
+                        l.getSize(),
+                        l.getColumns(),
+                        l.getRows(),
+                        l.getPix(),
+                        l.getColor(),
+                        l.getAlpha()
+                );
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else if(o instanceof SetfontFSDL){
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/SetfontLayout.fxml"));
+                AnchorPane anchorPane = loader.load();
+
+                this.getPropertiesPane().setContent(anchorPane);
+                SetfontLayoutController controller = loader.getController();
+                controller.setFrogansApp(frogansApp);
+                SetfontFSDL l = (SetfontFSDL) o;
+                controller.fillSetfontLayout(
+                        l.getFontid()
+                );
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }else if(o instanceof TextFSDL){
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/TextLayout.fxml"));
+                AnchorPane anchorPane = loader.load();
+
+                this.getPropertiesPane().setContent(anchorPane);
+                TextLayoutController controller = loader.getController();
+                controller.setFrogansApp(frogansApp);
+                TextFSDL l = (TextFSDL) o;
+                controller.fillTextLayout(
+                        l.getFontref(),
+                        l.getTalign(),
+                        l.getLinespace(),
+                        l.getVstyle(),
+                        l.getJoin()
+                );
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }else if(o instanceof ShadowFSDL){
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/ShadowLayout.fxml"));
+                AnchorPane anchorPane = loader.load();
+
+                this.getPropertiesPane().setContent(anchorPane);
+                ShadowLayoutController controller = loader.getController();
+                controller.setFrogansApp(frogansApp);
+                ShadowFSDL l = (ShadowFSDL) o;
+                controller.fillShadowLayout(
+                        l.getRpos(),
+                        l.getColor(),
+                        l.getBlur(),
+                        l.getOpacity(),
+                        l.getCombine()
+                );
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }else if(o instanceof SetshadowFSDL){
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/ShadowidLayout.fxml"));
+                AnchorPane anchorPane = loader.load();
+
+                this.getPropertiesPane().setContent(anchorPane);
+                ShadowidLayoutController controller = loader.getController();
+                controller.setFrogansApp(frogansApp);
+                SetshadowFSDL l = (SetshadowFSDL) o;
+                controller.fillShadowidLayout(
+                        l.getShadowid()
+                );
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }else System.out.println("hola");
     }
 
     private ReadOnlyStringWrapper showHierarchy(int i, TreeTableColumn.CellDataFeatures<Object, String> p) {
@@ -360,7 +605,13 @@ public class DesignerLayoutController {
             } else {
                 a.setValue("SetFont");
             }
-        } else if (value instanceof RestextFSDL) {
+        } else if (value instanceof SetshadowFSDL) {
+            if (i == 0) {
+                a.setValue(((SetshadowFSDL) value).getShadowid());
+            } else {
+                a.setValue("Setshadow");
+            }
+        }else if (value instanceof RestextFSDL) {
             if (i == 0) {
                 a.setValue(((RestextFSDL) value).getResid());
             } else {
