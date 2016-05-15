@@ -155,23 +155,11 @@ public class FsdlParser {
 
         renderingStuffTest();
 
-        failureCode = new UpilInteger32(Fsdl.FAILURE_CODE_UNDEFINED);
-
-        result = Fsdl.renderGetRenderingCanvas(slideHandle, leadRepresentation, vignetteRepresentation, failureCode);
-        if (!result) {
-
-            String s;
-            s = "Fsdl.renderGetRenderingCanvas() Failure: " + failureCode;
-            System.out.println(s);
-            throw new ToolException(s);
-        }
-
-        System.out.println("Fsdl.renderGetRenderingCanvas() OK");
 
     }
 
     private void renderingStuffTest() throws ToolException {
-        byte[] fsdlDocumentBytes = new byte[16400];
+        byte[] fsdlDocumentBytes = new byte[16384];
         try {
             fsdlDocumentBytes = Files.readAllBytes(file.toPath());
         } catch (IOException e) {
@@ -279,6 +267,19 @@ public class FsdlParser {
         }
 
         System.out.println("Fsdl.renderPerform() OK");
+
+        failureCode = new UpilInteger32(Fsdl.FAILURE_CODE_UNDEFINED);
+
+        result = Fsdl.renderGetRenderingCanvas(slideHandle, leadRepresentation, vignetteRepresentation, failureCode);
+        if (!result) {
+
+            String s;
+            s = "Fsdl.renderGetRenderingCanvas() Failure: " + failureCode;
+            System.out.println(s);
+            throw new ToolException(s);
+        }
+
+        System.out.println("Fsdl.renderGetRenderingCanvas() OK");
 
     }
 
