@@ -793,8 +793,9 @@ public class DesignerLayoutController {
                             rect.setHeight(100);
                             rect.setWidth(100);
                             rect.setFill(Color.BLACK);
-                            rect.setTranslateX(event.getX() - rect.getWidth());
-                            rect.setTranslateY(event.getY() + rect.getHeight());
+                            rect.addEventHandler(MouseEvent.MOUSE_ENTERED, event1 -> {
+                                System.out.println(rect.getWidth());
+                            });
                             DragResizeMod.makeResizable(rect, null);
                             testPane.getChildren().add(rect);
                         } else {
@@ -809,6 +810,5 @@ public class DesignerLayoutController {
                     event.consume();
                 }
         );
-
     }
 }

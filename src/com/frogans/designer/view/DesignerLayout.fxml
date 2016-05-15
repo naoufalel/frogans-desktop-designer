@@ -80,17 +80,8 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="900.0">
                                     <children>
-                                        <Pane fx:id="testPane" layoutX="26.0" layoutY="81.0" prefHeight="260.0"
-                                              prefWidth="452.0"/>
-                                        <AnchorPane prefHeight="45.0" prefWidth="505.0" AnchorPane.bottomAnchor="960.0"
-                                                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                                    AnchorPane.topAnchor="0.0">
-                                            <children>
-                                                <Label layoutX="14.0" layoutY="12.0" text="Lead Representation"/>
-                                            </children>
-                                        </AnchorPane>
-                                        <Separator layoutX="67.0" layoutY="39.0" AnchorPane.leftAnchor="0.0"
-                                                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0"/>
+                                        <Pane fx:id="testPane" layoutX="24.0" layoutY="58.0" prefHeight="283.0"
+                                              prefWidth="454.0"/>
                                     </children>
                                 </AnchorPane>
                             </content>
