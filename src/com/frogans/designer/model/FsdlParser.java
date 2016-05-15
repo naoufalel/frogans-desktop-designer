@@ -127,7 +127,7 @@ public class FsdlParser {
         configuration.maskFormat = Fsdl.MaskFormat.ENCODED_PNG;
         UpilBuffer buffer = new UpilBuffer();
         try {
-            buffer.setValue(new String("./frogans/fonts").getBytes("UTF-8"));
+            buffer.setValue(new String("./src/frogans/fonts").getBytes("UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -141,7 +141,7 @@ public class FsdlParser {
             String s;
             s = "Fsdl.slideHandleCreate() Failure: " + failureCode;
             System.out.println(s);
-//            throw new ToolException(s);
+            throw new ToolException(s);
         }
 
         slideHandle = handle.getValue();
@@ -178,7 +178,7 @@ public class FsdlParser {
             String s;
             s = "Fsdl.slideHandleClear() Failure: " + failureCode;
             System.out.println(s);
-//            throw new ToolException(s);
+            throw new ToolException(s);
         }
 
         System.out.println("Fsdl.slideHandleClear() OK");
@@ -217,7 +217,7 @@ public class FsdlParser {
                     String s;
                     s = "Fsdl.parseGetXmlErrorInfo() Failure: " + failureCode;
                     System.out.println(s);
-                    //throw new ToolException(s);
+                    throw new ToolException(s);
 
                 }
 
@@ -237,7 +237,7 @@ public class FsdlParser {
                     String s;
                     s = "Fsdl.parseGetValidationErrorInfo() Failure: " + failureCode;
                     System.out.println(s);
-                    //throw new ToolException(s);
+                    throw new ToolException(s);
 
                 }
 
@@ -247,7 +247,7 @@ public class FsdlParser {
 
             System.out.println(message);
 
-            //throw new ToolException(message);
+            throw new ToolException(message);
         }
 
         System.out.println("Fsdl.parsePerform() OK");
@@ -262,7 +262,7 @@ public class FsdlParser {
             String s;
             s = "Fsdl.renderPerform() Failure: " + failureCode;
             System.out.println(s);
-//            throw new ToolException(s);
+            throw new ToolException(s);
         }
 
         System.out.println("Fsdl.renderPerform() OK");
