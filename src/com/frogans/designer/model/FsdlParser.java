@@ -155,6 +155,19 @@ public class FsdlParser {
 
         renderingStuffTest();
 
+        failureCode = new UpilInteger32(Fsdl.FAILURE_CODE_UNDEFINED);
+
+        result = Fsdl.renderGetRenderingCanvas(slideHandle, leadRepresentation, vignetteRepresentation, failureCode);
+        if (!result) {
+
+            String s;
+            s = "Fsdl.renderGetRenderingCanvas() Failure: " + failureCode;
+            System.out.println(s);
+            throw new ToolException(s);
+        }
+
+        System.out.println("Fsdl.renderGetRenderingCanvas() OK");
+
     }
 
     private void renderingStuffTest() throws ToolException {
