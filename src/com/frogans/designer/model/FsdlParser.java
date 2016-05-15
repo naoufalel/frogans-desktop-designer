@@ -19,6 +19,7 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -48,8 +49,11 @@ public class FsdlParser {
 
     //Testing frogans lib
 
-    public void testFsdlLib() throws ToolException {
+    public HashMap<Boolean, String> runFsdlLib() throws ToolException {
+        HashMap<Boolean, String> messages = new HashMap<>();
         boolean result;
+        String validMessageForLib = "";
+        String errorMessageForLib = "";
 
         UpilInteger32 libraryState = new UpilInteger32(Fsdl.LibraryState.UNDEFINED);
         UpilInteger32 initializationError = new UpilInteger32(Fsdl.LibraryInitializationError.UNDEFINED);
@@ -57,10 +61,9 @@ public class FsdlParser {
 
         result = Fsdl.libraryGetState(libraryState, initializationError, finalizationError);
         if (!result) {
-            String s;
-            s = "Fsdl.libraryGetState() Failure (no failure code available)";
-            System.out.println(s);
-            throw new ToolException(s);
+            errorMessageForLib += "Fsdl.libraryGetState() Failure (no failure code available)";
+//            System.out.println(s);
+            throw new ToolException(errorMessageForLib);
         }
 
         String stateString = "unrecognized";
@@ -116,6 +119,10 @@ public class FsdlParser {
                 " - state = '" + stateString + "'" +
                 " - initializationError = '" + initializationErrorString + "'" +
                 " - finalizationError = '" + finalizationErrorString + "'");
+        validMessageForLib += "Fsdl.libraryGetState() OK" +
+                " - state = '" + stateString + "'" +
+                " - initializationError = '" + initializationErrorString + "'" +
+                " - finalizationError = '" + finalizationErrorString + "'";
 
         UpilInteger32 failureCode;
 
@@ -127,9 +134,9 @@ public class FsdlParser {
         configuration.maskFormat = Fsdl.MaskFormat.ENCODED_PNG;
         UpilBuffer buffer = new UpilBuffer();
         try {
-            buffer.setValue(new String("./src/frogans/fonts").getBytes("UTF-8"));
+            buffer.setValue(("./src/frogans/fonts").getBytes("UTF-8"));
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            errorMessageForLib += "There is a problem in the fonts file.\n" + e;
         }
         configuration.fontsFileDirectory = buffer;
 
@@ -138,31 +145,44 @@ public class FsdlParser {
         result = Fsdl.slideHandleCreate(configuration, handle, failureCode);
         if (!result) {
 
-            String s;
-            s = "Fsdl.slideHandleCreate() Failure: " + failureCode;
-            System.out.println(s);
-            throw new ToolException(s);
+            errorMessageForLib += "Fsdl.slideHandleCreate() Failure: " + failureCode;
+            System.out.println(errorMessageForLib);
+            throw new ToolException(errorMessageForLib);
         }
 
         slideHandle = handle.getValue();
 
         System.out.println("Fsdl.slideHandleCreate() OK");
+        validMessageForLib += "Fsdl.slideHandleCreate() OK";
 
 		/* create lead and vignette representations */
 
         leadRepresentation = new Fsdl.Composition();
         vignetteRepresentation = new Fsdl.Composition();
 
-        renderingStuffTest();
+        renderingAndValidatingWithoutDisplaying();
 
+        messages.put(true, validMessageForLib);
+        messages.put(false, errorMessageForLib);
+
+        return messages;
     }
 
-    private void renderingStuffTest() throws ToolException {
-        byte[] fsdlDocumentBytes = new byte[16400];
+    public String isEverythingOK() throws ToolException {
+        if (runFsdlLib().get(true).isEmpty()) {
+            return runFsdlLib().get(false);
+        } else
+            return runFsdlLib().get(true);
+    }
+
+    private String renderingAndValidatingWithoutDisplaying() throws ToolException {
+        String validMessage = "";
+        String errorMessage = "";
+        byte[] fsdlDocumentBytes = new byte[16384];
         try {
             fsdlDocumentBytes = Files.readAllBytes(file.toPath());
         } catch (IOException e) {
-            e.printStackTrace();
+            errorMessage += "There was a problem:\n" + e;
         }
 
         UpilInteger32 failureCode;
@@ -174,14 +194,12 @@ public class FsdlParser {
 
         result = Fsdl.slideHandleClear(slideHandle, failureCode);
         if (!result) {
-
-            String s;
-            s = "Fsdl.slideHandleClear() Failure: " + failureCode;
-            System.out.println(s);
-            throw new ToolException(s);
+            errorMessage += "Fsdl.slideHandleClear() Failure: " + failureCode;
+            System.out.println(errorMessage);
+            throw new ToolException(errorMessage);
         }
-
         System.out.println("Fsdl.slideHandleClear() OK");
+        validMessage += "Fsdl.slideHandleClear() OK";
 
 
         int documentEncoding = Fsdl.DocumentEncoding.UTF8;
@@ -198,8 +216,7 @@ public class FsdlParser {
 			/* Should never occur if the FSDL document is generated properly.
              * parseGetXmlErrorInfo() and parseGetValidationErrorInfo() are called below for debug purposes */
 
-            String message;
-            message = "parsePerform() Failure: " + failureCode + '\n';
+            errorMessage += "parsePerform() Failure: " + failureCode + '\n';
 
             int code = failureCode.getValue();
 
@@ -214,14 +231,13 @@ public class FsdlParser {
                 result = Fsdl.parseGetXmlErrorInfo(slideHandle, xmlErrorInfo, failureCode);
                 if (!result) {
 
-                    String s;
-                    s = "Fsdl.parseGetXmlErrorInfo() Failure: " + failureCode;
-                    System.out.println(s);
-                    throw new ToolException(s);
+                    errorMessage += "Fsdl.parseGetXmlErrorInfo() Failure: " + failureCode;
+                    System.out.println(errorMessage);
+                    throw new ToolException(errorMessage);
 
                 }
 
-                message += "XML Error: '" + new String(xmlErrorInfo.message.getValue()) + "'";
+                errorMessage += "XML Error: '" + new String(xmlErrorInfo.message.getValue()) + "'";
 
             } else if (code == Fsdl.FailureCodeParsePerform.VALIDATION_ERROR) {
 
@@ -234,23 +250,24 @@ public class FsdlParser {
                 result = Fsdl.parseGetValidationErrorInfo(slideHandle, validationErrorInfo, failureCode);
                 if (!result) {
 
-                    String s;
-                    s = "Fsdl.parseGetValidationErrorInfo() Failure: " + failureCode;
-                    System.out.println(s);
-                    throw new ToolException(s);
+                    errorMessage += "Fsdl.parseGetValidationErrorInfo() Failure: " + failureCode;
+                    System.out.println(errorMessage);
+                    throw new ToolException(errorMessage);
 
                 }
 
-                message += "Validation Error: '" + new String(validationErrorInfo.message.getValue()) + "'";
+                errorMessage += "Validation Error: '" + new String(validationErrorInfo.message.getValue()) + "'";
 
             }
 
-            System.out.println(message);
+            System.out.println(errorMessage);
 
-            throw new ToolException(message);
+            throw new ToolException(errorMessage);
+
         }
 
         System.out.println("Fsdl.parsePerform() OK");
+        validMessage += "Fsdl.parsePerform() OK";
 
         int renderMode = Fsdl.RenderMode.RENDERING_CANVAS;
 
@@ -259,14 +276,28 @@ public class FsdlParser {
         result = Fsdl.renderPerform(slideHandle, renderMode, failureCode);
         if (!result) {
 
+            errorMessage += "Fsdl.renderPerform() Failure: " + failureCode;
+            System.out.println(errorMessage);
+            throw new ToolException(errorMessage);
+        }
+
+        System.out.println("Fsdl.renderPerform() OK");
+        validMessage += "Fsdl.renderPerform() OK";
+
+        failureCode = new UpilInteger32(Fsdl.FAILURE_CODE_UNDEFINED);
+
+        result = Fsdl.renderGetRenderingCanvas(slideHandle, leadRepresentation, vignetteRepresentation, failureCode);
+        if (!result) {
+
             String s;
-            s = "Fsdl.renderPerform() Failure: " + failureCode;
+            s = "Fsdl.renderGetRenderingCanvas() Failure: " + failureCode;
             System.out.println(s);
             throw new ToolException(s);
         }
 
-        System.out.println("Fsdl.renderPerform() OK");
+        System.out.println("Fsdl.renderGetRenderingCanvas() OK");
 
+        return null;
     }
 
 

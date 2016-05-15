@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8"
-            fx:controller="com.frogans.designer.view.DesignerLayoutController">
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frogans.designer.view.DesignerLayoutController">
     <children>
         <SplitPane cache="true" dividerPositions="0.23647294589178355, 0.7675350701402806" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" SplitPane.resizableWithParent="false">
             <items>
@@ -17,7 +19,7 @@
                                     <children>
                                         <Accordion fx:id="accordion" prefHeight="276.0" prefWidth="221.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <panes>
-                                                <TitledPane fx:id="titledPane" text="Controls">
+                                                <TitledPane text="Controls">
                                                     <content>
                                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                             <children>
@@ -34,9 +36,13 @@
                                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                                     </content>
                                                 </TitledPane>
-                                                <TitledPane text="Shapes">
+                                                <TitledPane fx:id="titledPane" text="Shapes">
                                                     <content>
-                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                            <children>
+                                                                <ListView fx:id="listShapes" layoutX="15.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                            </children>
+                                                        </AnchorPane>
                                                     </content>
                                                 </TitledPane>
                                             </panes>
@@ -70,14 +76,16 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="900.0">
                                     <children>
-                                        <Canvas fx:id="testCanvas" height="308.0" layoutX="69.0" layoutY="35.0"
-                                                width="394.0"/>
-                                        <Slider fx:id="testSlider" layoutX="75.0" layoutY="403.0"/>
-                                        <Label fx:id="textIt" layoutX="75.0" layoutY="432.0" text="a"/>
+                                        <Pane fx:id="testPane" layoutX="24.0" layoutY="58.0" prefHeight="283.0" prefWidth="454.0" />
                                     </children>
                                 </AnchorPane>
                             </content>
                         </ScrollPane>
+                  <AnchorPane fx:id="anchorPaneForMessagesAbove" layoutY="673.0" prefHeight="25.0" prefWidth="524.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <Label fx:id="showingValidParseMessages" layoutX="12.0" layoutY="4.0" style="-fx-text-fill: white;" text="Open a file or start by creating a new one." />
+                     </children>
+                  </AnchorPane>
                     </children></AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" SplitPane.resizableWithParent="false">
                     <children>
