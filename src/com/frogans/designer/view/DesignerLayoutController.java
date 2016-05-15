@@ -734,7 +734,6 @@ public class DesignerLayoutController {
             };
             cell.setOnDragDetected(event -> {
                 if (!cell.isEmpty()) {
-
                     Dragboard db = cell.startDragAndDrop(TransferMode.ANY);
                     ClipboardContent cc = new ClipboardContent();
                     cc.putString(cell.getItem());
@@ -782,8 +781,6 @@ public class DesignerLayoutController {
                 });
 
 
-
-
         testPane.addEventHandler(
                 DragEvent.DRAG_DROPPED,
                 event -> {
@@ -791,14 +788,18 @@ public class DesignerLayoutController {
                     if (event.getTransferMode() == TransferMode.COPY &&
                             dragboard.hasString()) {
 //                        tf.setText(dragboard.getString());
-                        dragboard.getDragView();
-
-                        Rectangle rect = new Rectangle();
-                        rect.setHeight(100);
-                        rect.setWidth(100);
-                        rect.setFill(Color.BLACK);
-                        DragResizeMod.makeResizable(rect, null);
-                        testPane.getChildren().add(rect);
+                        if (dragboard.getString().equals("Rectangle")) {
+                            Rectangle rect = new Rectangle();
+                            rect.setHeight(100);
+                            rect.setWidth(100);
+                            rect.setFill(Color.BLACK);
+                            rect.setTranslateX(event.getX() - rect.getWidth());
+                            rect.setTranslateY(event.getY() + rect.getHeight());
+                            DragResizeMod.makeResizable(rect, null);
+                            testPane.getChildren().add(rect);
+                        } else {
+                            System.out.println("TFOOOOOOOOOOOO");
+                        }
 
 //                        gc.fillRect(event.getX(),event.getY(),50,50);
 //                        Button button = new Button(dragboard.toString());
