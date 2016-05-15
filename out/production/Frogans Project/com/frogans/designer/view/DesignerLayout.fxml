@@ -76,7 +76,7 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="900.0">
                            <children>
-                              <Pane fx:id="testPane" layoutX="64.0" layoutY="45.0" prefHeight="322.0" prefWidth="371.0" />
+                              <Pane fx:id="testPane" layoutX="33.0" layoutY="46.0" prefHeight="260.0" prefWidth="452.0" />
                            </children>
                                 </AnchorPane>
                             </content>

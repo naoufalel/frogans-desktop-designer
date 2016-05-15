@@ -11,7 +11,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Cursor;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
@@ -735,7 +734,7 @@ public class DesignerLayoutController {
             };
             cell.setOnDragDetected(event -> {
                 if (!cell.isEmpty()) {
-                    this.frogansApp.getPrimaryStage().getScene().setCursor(Cursor.HAND);
+
                     Dragboard db = cell.startDragAndDrop(TransferMode.ANY);
                     ClipboardContent cc = new ClipboardContent();
                     cc.putString(cell.getItem());
@@ -744,13 +743,13 @@ public class DesignerLayoutController {
                 }
             });
             cell.setOnDragOver(event -> {
-                this.frogansApp.getPrimaryStage().getScene().setCursor(Cursor.CLOSED_HAND);
+                //this.frogansApp.getPrimaryStage().getScene().setCursor(Cursor.CLOSED_HAND);
                 Dragboard db = event.getDragboard();
                 if (db.hasString()) {
                     event.acceptTransferModes(TransferMode.ANY);
                 }
             });
-            cell.setOnDragDone(event -> System.out.println(event.getX()));
+//            cell.setOnDragDone(event -> System.out.println(event.getX()));
             cell.setOnDragDropped(event -> {
                 Dragboard db = event.getDragboard();
                 if (db.hasString() && dragSource.get() != null) {
@@ -783,11 +782,7 @@ public class DesignerLayoutController {
                 });
 
 
-        Rectangle rect = new Rectangle();
-        rect.setHeight(100);
-        rect.setWidth(100);
-        rect.setFill(Color.BLACK);
-        DragResizeMod.makeResizable(rect, null);
+
 
         testPane.addEventHandler(
                 DragEvent.DRAG_DROPPED,
@@ -796,8 +791,15 @@ public class DesignerLayoutController {
                     if (event.getTransferMode() == TransferMode.COPY &&
                             dragboard.hasString()) {
 //                        tf.setText(dragboard.getString());
+                        dragboard.getDragView();
 
+                        Rectangle rect = new Rectangle();
+                        rect.setHeight(100);
+                        rect.setWidth(100);
+                        rect.setFill(Color.BLACK);
+                        DragResizeMod.makeResizable(rect, null);
                         testPane.getChildren().add(rect);
+
 //                        gc.fillRect(event.getX(),event.getY(),50,50);
 //                        Button button = new Button(dragboard.toString());
 
@@ -806,5 +808,6 @@ public class DesignerLayoutController {
                     event.consume();
                 }
         );
+
     }
 }
