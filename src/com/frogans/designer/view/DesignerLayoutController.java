@@ -1,6 +1,7 @@
 package com.frogans.designer.view;
 
 import com.frogans.designer.FrogansApp;
+import com.frogans.designer.model.DragResizeMod;
 import com.frogans.designer.model.Elements.*;
 import com.frogans.designer.view.PropertiesLayout.*;
 import javafx.beans.property.ObjectProperty;
@@ -10,12 +11,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.canvas.Canvas;
+import javafx.scene.Cursor;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 
@@ -30,7 +33,9 @@ public class DesignerLayoutController {
     @FXML
     ListView<String> listControlers;
     @FXML
-    Canvas testCanvas = new Canvas();
+    ListView<String> listShapes;
+    @FXML
+    Pane testPane = new Pane();
     @FXML
     TextField tf = new TextField();
 
@@ -43,6 +48,8 @@ public class DesignerLayoutController {
     private Accordion accordion;
     @FXML
     private TitledPane titledPane;
+    @FXML
+    private TitledPane titledPane2;
     @FXML
     private TitledPane propertiesPane;
     @FXML
@@ -63,6 +70,11 @@ public class DesignerLayoutController {
             "ResText",
             "Layer",
             "Resimage"
+    );
+
+    private ObservableList<String> shapes = FXCollections.observableArrayList(
+            "Rectangle",
+            "Circle"
     );
 
     public DesignerLayoutController() {
@@ -89,7 +101,10 @@ public class DesignerLayoutController {
     @FXML
     public void initialize() {
         accordion.setExpandedPane(titledPane);
+
         someTest();
+
+
         elementID.setCellValueFactory((TreeTableColumn.CellDataFeatures<Object, String> p) -> {
             ReadOnlyStringWrapper a = showHierarchy(0, p);
             return a;
@@ -99,15 +114,15 @@ public class DesignerLayoutController {
             return a;
         });
 
-        gc = testCanvas.getGraphicsContext2D();
+//        gc = testCanvas.getGraphicsContext2D();
         //gc.fillRect(80, 50, 20, 40);
 
-        testSlider.setMax(100);
-        testSlider.setMin(20);
-        testSlider.setMinorTickCount(10);
-        textIt.setText("20");
-        sliderListening();
-        updateCanvas();
+//        testSlider.setMax(500);
+//        testSlider.setMin(20);
+//        testSlider.setMinorTickCount(10);
+//        textIt.setText("20");
+//        sliderListening();
+//        updateCanvas();
 
         treeTableHierarchy.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             int i = treeTableHierarchy.getSelectionModel().getSelectedIndex();
@@ -118,21 +133,21 @@ public class DesignerLayoutController {
     }
 
 
-    private void sliderListening() {
-        testSlider.valueProperty().addListener(((observable, oldValue, newValue) -> {
-            testCanvas.setWidth(newValue.intValue());
-            updateCanvas();
-            textIt.setText(Integer.toString(newValue.intValue()));
-        }));
-    }
-
-    private void updateCanvas() {
-        width = testCanvas.getWidth();
-        height = testCanvas.getHeight();
-        gc.clearRect(0, 0, width, height);
-        gc.setStroke(Color.BLACK);
-        gc.strokeRect(1, 1, width - 2, height - 2);
-    }
+//    private void sliderListening() {
+//        testSlider.valueProperty().addListener(((observable, oldValue, newValue) -> {
+//            testCanvas.setWidth(newValue.intValue());
+//            updateCanvas();
+//            textIt.setText(Integer.toString(newValue.intValue()));
+//        }));
+//    }
+//
+//    private void updateCanvas() {
+//        width = testCanvas.getWidth();
+//        height = testCanvas.getHeight();
+//        gc.clearRect(0, 0, width, height);
+//        gc.setStroke(Color.BLACK);
+//        gc.strokeRect(1, 1, width - 2, height - 2);
+//    }
 
     private void showPropertiesFor(Object o) {
         if (o instanceof LayerFSDL) {
@@ -212,7 +227,7 @@ public class DesignerLayoutController {
             } catch (Exception e1) {
                 System.err.println("tnin ltnin.\n" + e1);
             }
-        }else if(o instanceof ButtonFSDL){
+        } else if (o instanceof ButtonFSDL) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/ButtonLayout.fxml"));
@@ -233,7 +248,7 @@ public class DesignerLayoutController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else if(o instanceof FilterFSDL ){
+        } else if (o instanceof FilterFSDL) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/FilterLayout.fxml"));
@@ -253,7 +268,7 @@ public class DesignerLayoutController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else if(o instanceof FontFSDL){
+        } else if (o instanceof FontFSDL) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/FontLayout.fxml"));
@@ -279,7 +294,7 @@ public class DesignerLayoutController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else if(o instanceof ResdrawFSDL){
+        } else if (o instanceof ResdrawFSDL) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/ResdrawLayout.fxml"));
@@ -301,7 +316,7 @@ public class DesignerLayoutController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else if(o instanceof SetreliefFSDL){
+        } else if (o instanceof SetreliefFSDL) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/SetreliefLayout.fxml"));
@@ -317,7 +332,7 @@ public class DesignerLayoutController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else if(o instanceof ResimageFSDL){
+        } else if (o instanceof ResimageFSDL) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/ResimageLayout.fxml"));
@@ -340,7 +355,7 @@ public class DesignerLayoutController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if(o instanceof RestextFSDL){
+        } else if (o instanceof RestextFSDL) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/RestextLayout.fxml"));
@@ -363,7 +378,7 @@ public class DesignerLayoutController {
                 e.printStackTrace();
             }
 
-        } else if(o instanceof RespathFSDL) {
+        } else if (o instanceof RespathFSDL) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/RespathLayout.fxml"));
@@ -389,7 +404,7 @@ public class DesignerLayoutController {
                 e.printStackTrace();
             }
 
-        } else if(o instanceof ResmergeFSDL){
+        } else if (o instanceof ResmergeFSDL) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/ResmergeLayout.fxml"));
@@ -408,7 +423,7 @@ public class DesignerLayoutController {
                 e.printStackTrace();
             }
 
-        } else if(o instanceof SetfilterFSDL){
+        } else if (o instanceof SetfilterFSDL) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/SetfilerLayout.fxml"));
@@ -425,7 +440,7 @@ public class DesignerLayoutController {
                 e.printStackTrace();
             }
 
-        } else if(o instanceof ReliefFSDL){
+        } else if (o instanceof ReliefFSDL) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/ReliefLayout.fxml"));
@@ -445,7 +460,7 @@ public class DesignerLayoutController {
                 e.printStackTrace();
             }
 
-        } else if(o instanceof NextFSDL){
+        } else if (o instanceof NextFSDL) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/NextLayout.fxml"));
@@ -463,7 +478,7 @@ public class DesignerLayoutController {
                 e.printStackTrace();
             }
 
-        } else if (o instanceof RespixelsFSDL){
+        } else if (o instanceof RespixelsFSDL) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/RespixelsLayout.fxml"));
@@ -486,7 +501,7 @@ public class DesignerLayoutController {
                 e.printStackTrace();
             }
 
-        } else if(o instanceof SetfontFSDL){
+        } else if (o instanceof SetfontFSDL) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/SetfontLayout.fxml"));
@@ -503,7 +518,7 @@ public class DesignerLayoutController {
                 e.printStackTrace();
             }
 
-        }else if(o instanceof TextFSDL){
+        } else if (o instanceof TextFSDL) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/TextLayout.fxml"));
@@ -524,7 +539,7 @@ public class DesignerLayoutController {
                 e.printStackTrace();
             }
 
-        }else if(o instanceof ShadowFSDL){
+        } else if (o instanceof ShadowFSDL) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/ShadowLayout.fxml"));
@@ -545,7 +560,7 @@ public class DesignerLayoutController {
                 e.printStackTrace();
             }
 
-        }else if(o instanceof SetshadowFSDL){
+        } else if (o instanceof SetshadowFSDL) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/ShadowidLayout.fxml"));
@@ -562,7 +577,7 @@ public class DesignerLayoutController {
                 e.printStackTrace();
             }
 
-        }else System.out.println("hola");
+        } else System.out.println("hola");
     }
 
     private ReadOnlyStringWrapper showHierarchy(int i, TreeTableColumn.CellDataFeatures<Object, String> p) {
@@ -611,7 +626,7 @@ public class DesignerLayoutController {
             } else {
                 a.setValue("Setshadow");
             }
-        }else if (value instanceof RestextFSDL) {
+        } else if (value instanceof RestextFSDL) {
             if (i == 0) {
                 a.setValue(((RestextFSDL) value).getResid());
             } else {
@@ -660,6 +675,7 @@ public class DesignerLayoutController {
 
     private void someTest() {
         listControlers.setItems(controlers);
+
         listControlers.setCellFactory(param -> {
             ListCell<String> cell = new ListCell<String>() {
                 @Override
@@ -704,7 +720,60 @@ public class DesignerLayoutController {
 
             return cell;
         });
-        testCanvas.addEventHandler(
+
+
+        listShapes.setItems(shapes);
+
+        listShapes.setCellFactory(param -> {
+            ListCell<String> cell = new ListCell<String>() {
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    setText(item);
+                }
+
+            };
+            cell.setOnDragDetected(event -> {
+                if (!cell.isEmpty()) {
+                    this.frogansApp.getPrimaryStage().getScene().setCursor(Cursor.HAND);
+                    Dragboard db = cell.startDragAndDrop(TransferMode.ANY);
+                    ClipboardContent cc = new ClipboardContent();
+                    cc.putString(cell.getItem());
+                    db.setContent(cc);
+                    dragSource.set(cell);
+                }
+            });
+            cell.setOnDragOver(event -> {
+                this.frogansApp.getPrimaryStage().getScene().setCursor(Cursor.CLOSED_HAND);
+                Dragboard db = event.getDragboard();
+                if (db.hasString()) {
+                    event.acceptTransferModes(TransferMode.ANY);
+                }
+            });
+            cell.setOnDragDone(event -> System.out.println(event.getX()));
+            cell.setOnDragDropped(event -> {
+                Dragboard db = event.getDragboard();
+                if (db.hasString() && dragSource.get() != null) {
+                    // in this example you could just do
+                    // listView.getItems().add(db.getString());
+                    // but more generally:
+
+                    String dragSourceCell = dragSource.getName();
+
+//                    //tf.setText(dragSourceCell);
+
+                    event.setDropCompleted(true);
+                    dragSource.set(null);
+                } else {
+                    event.setDropCompleted(false);
+                }
+            });
+
+
+            return cell;
+        });
+
+        testPane.addEventHandler(
                 DragEvent.DRAG_OVER,
                 event -> {
                     if (event.getDragboard().hasString()) {
@@ -713,39 +782,29 @@ public class DesignerLayoutController {
                     event.consume();
                 });
 
-//        testCanvas.addEventHandler(
-//                DragEvent.DRAG_DROPPED,
-//                event -> {
-//                    Dragboard dragboard = event.getDragboard();
-//                    if (event.getTransferMode() == TransferMode.COPY &&
-//                            dragboard.hasString()) {
-////                        tf.setText(dragboard.getString());
-//                        Button button = new Button(dragboard.toString());
-//
-//                        event.setDropCompleted(true);
-//                    }
-//                    event.consume();
-//                }
-//        );
 
-        tf.addEventHandler(
-                DragEvent.DRAG_OVER,
-                event -> {
-                    if (event.getDragboard().hasString()) {
-                        event.acceptTransferModes(TransferMode.COPY);
-                    }
-                    event.consume();
-                });
-        tf.addEventHandler(
+        Rectangle rect = new Rectangle();
+        rect.setHeight(100);
+        rect.setWidth(100);
+        rect.setFill(Color.BLACK);
+        DragResizeMod.makeResizable(rect, null);
+
+        testPane.addEventHandler(
                 DragEvent.DRAG_DROPPED,
                 event -> {
                     Dragboard dragboard = event.getDragboard();
                     if (event.getTransferMode() == TransferMode.COPY &&
                             dragboard.hasString()) {
-                        tf.setText(dragboard.getString());
+//                        tf.setText(dragboard.getString());
+
+                        testPane.getChildren().add(rect);
+//                        gc.fillRect(event.getX(),event.getY(),50,50);
+//                        Button button = new Button(dragboard.toString());
+
                         event.setDropCompleted(true);
                     }
                     event.consume();
-                });
+                }
+        );
     }
 }
