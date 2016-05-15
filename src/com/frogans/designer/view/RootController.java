@@ -39,7 +39,7 @@ public class RootController {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Open FSDL File");
             FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter(
-                    "FSDL files(*.frogans.fsdl)", "*.frogans.fsdl"
+                    "FSDL files(*.fsdl)", "*.fsdl"
             );
 
 //            fileChooser.setInitialDirectory(new File(System.getProperty("user.home"))
