@@ -134,6 +134,9 @@ public class RespixelsFSDL {
         this.alpha.set(alpha);
     }
 
+    public StringProperty[] getPixArray() {
+        return pixArray;
+    }
     @Override
     public String toString() {
         return "RespixelsFSDL{" +

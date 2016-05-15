@@ -111,6 +111,16 @@ public class TextFSDL {
         this.join.set(join);
     }
 
+    public StringProperty[] getTalignArray() {
+        return talignArray;
+    }
+    public StringProperty[] getVstyleArray() {
+        return vstyleArray;
+    }
+    public StringProperty[] getJoinArray() {
+        return joinArray;
+    }
+
     @Override
     public String toString() {
         return "TextFSDL{" +

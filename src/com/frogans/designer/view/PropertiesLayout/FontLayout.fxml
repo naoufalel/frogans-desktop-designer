@@ -4,17 +4,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frogans.designer.view.PropertiesLayout.FontLayoutController">
    <children>
       <GridPane layoutX="3.0" layoutY="12.0" prefHeight="395.0" prefWidth="194.0">
          <children>
             <Label text=" Scripts:" />
             <Label text=" Pfont:" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="scriptsText" GridPane.columnIndex="1" />
+            <TextField fx:id="pfontText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="heightText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="spacingText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="stretchingText" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label text=" Height:" GridPane.rowIndex="2" />
             <Label text=" Spacing:" GridPane.rowIndex="3" />
@@ -25,12 +25,12 @@
             <Label text=" Strikeout:" GridPane.rowIndex="8" />
             <Label text=" Opacity:" GridPane.rowIndex="9" />
             <Label text=" Color:" GridPane.rowIndex="10" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" fx:id="xboldText" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" fx:id="xitalicText" />
+            <TextField fx:id="opacityText" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <TextField fx:id="colorText" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <ChoiceBox fx:id="underlineChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <ChoiceBox fx:id="strikeoutChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />

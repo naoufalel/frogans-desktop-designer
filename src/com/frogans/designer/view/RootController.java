@@ -49,8 +49,8 @@ public class RootController {
             File file = fileChooser.showOpenDialog(frogansApp.getPrimaryStage());
             if (file != null) {
                 // Make sure it has the correct extension
-                if (!file.getPath().endsWith(".frogans.fsdl")) {
-                    file = new File(file.getPath() + ".frogans.fsdl");
+                if (!file.getPath().endsWith(".fsdl")) {
+                    file = new File(file.getPath() + ".fsdl");
                 }
                 frogansApp.loadAFile(file);
             }

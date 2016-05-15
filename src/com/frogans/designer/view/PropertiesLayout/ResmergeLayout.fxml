@@ -4,8 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frogans.designer.view.PropertiesLayout.ResmergeLayoutController">
    <children>
       <GridPane layoutY="14.0" prefHeight="30.0" prefWidth="200.0">
         <columnConstraints>
@@ -17,7 +16,7 @@
         </rowConstraints>
          <children>
             <Label text=" Resid:" />
-            <TextField GridPane.columnIndex="1" />
+            <TextField fx:id="residText" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <GridPane layoutY="51.0" prefHeight="30.0" prefWidth="200.0">
@@ -32,8 +31,8 @@
         </rowConstraints>
          <children>
             <Label text=" Size:" />
-            <TextField promptText="w" GridPane.columnIndex="1" />
-            <TextField promptText="h" GridPane.columnIndex="3" />
+            <TextField fx:id="sizeWText" promptText="w" GridPane.columnIndex="1" />
+            <TextField fx:id="sizeHText" promptText="h" GridPane.columnIndex="3" />
             <Label prefHeight="17.0" prefWidth="32.0" text="  ," GridPane.columnIndex="2" />
          </children>
       </GridPane>

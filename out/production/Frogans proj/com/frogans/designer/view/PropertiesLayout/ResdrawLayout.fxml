@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frogans.designer.view.PropertiesLayout.ResdrawLayoutController">
     <children>
         <GridPane layoutY="14.0">
             <columnConstraints>
@@ -19,7 +19,7 @@
             </rowConstraints>
             <children>
                 <Label text="Res ID" />
-                <TextField prefHeight="25.0" prefWidth="115.0" GridPane.columnIndex="1" />
+                <TextField fx:id="resIdText" prefHeight="25.0" prefWidth="115.0" GridPane.columnIndex="1" />
             </children>
         </GridPane>
         <GridPane layoutY="44.0" prefHeight="30.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="44.0">
@@ -34,8 +34,8 @@
             </rowConstraints>
             <children>
                 <Label text="Size" />
-                <TextField GridPane.columnIndex="1" />
-                <TextField prefHeight="25.0" prefWidth="43.0" GridPane.columnIndex="3" />
+                <TextField fx:id="sizeXText" GridPane.columnIndex="1" />
+                <TextField fx:id="sizeYText" prefHeight="25.0" prefWidth="43.0" GridPane.columnIndex="3" />
                 <Label text="," GridPane.columnIndex="2" GridPane.halignment="CENTER">
                     <font>
                         <Font size="20.0" />
@@ -56,10 +56,10 @@
             <children>
                 <Label text="Figure" />
                 <Label text="Stroke" GridPane.rowIndex="1" />
-                <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" />
+                <ChoiceBox fx:id="strokeChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ChoiceBox fx:id="figureChoice" prefWidth="150.0" GridPane.columnIndex="1" />
             <Label text="Thick" GridPane.rowIndex="2" />
-            <Slider GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Slider fx:id="thickSlide" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             </children>
         </GridPane>
         <GridPane layoutY="164.0" prefHeight="30.0" prefWidth="200.0">
@@ -74,8 +74,8 @@
             </rowConstraints>
             <children>
                 <Label text="Round" />
-                <TextField GridPane.columnIndex="1" />
-                <TextField GridPane.columnIndex="3" />
+                <TextField fx:id="roundXText" GridPane.columnIndex="1" />
+                <TextField fx:id="roundYText" GridPane.columnIndex="3" />
                 <Label text="," GridPane.columnIndex="2" GridPane.halignment="CENTER">
                     <font>
                         <Font size="20.0" />
@@ -93,7 +93,7 @@
         </rowConstraints>
          <children>
             <Label text="Color" />
-            <TextField prefHeight="25.0" prefWidth="108.0" GridPane.columnIndex="1" />
+            <TextField fx:id="colorText" prefHeight="25.0" prefWidth="108.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
     </children></AnchorPane>
