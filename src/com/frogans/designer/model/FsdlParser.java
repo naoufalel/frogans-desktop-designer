@@ -14,6 +14,8 @@ import org.w3c.dom.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.util.Arrays;
@@ -28,6 +30,9 @@ import static com.frogans.designer.Utils.Tools.capitalizeFirstLetter;
  */
 public class FsdlParser {
     private File file;
+    private int slideHandle;
+    private Fsdl.Composition leadRepresentation;
+    private Fsdl.Composition vignetteRepresentation;
 
     public FsdlParser(File file) {
         this.file = file;
@@ -43,25 +48,149 @@ public class FsdlParser {
 
     //Testing frogans lib
 
-    public void testFsdlLib() throws Exception {
+    public void testFsdlLib() throws ToolException {
         boolean result;
-        UpilBuffer version = new UpilBuffer();
-        result = Fsdl.libraryGetVersion(version);
 
-        if (result) {
-            String s = new String(version.getValue(), "UTF-8");
+        UpilInteger32 libraryState = new UpilInteger32(Fsdl.LibraryState.UNDEFINED);
+        UpilInteger32 initializationError = new UpilInteger32(Fsdl.LibraryInitializationError.UNDEFINED);
+        UpilInteger32 finalizationError = new UpilInteger32(Fsdl.LibraryFinalizationError.UNDEFINED);
+
+        result = Fsdl.libraryGetState(libraryState, initializationError, finalizationError);
+        if (!result) {
+            String s;
+            s = "Fsdl.libraryGetState() Failure (no failure code available)";
             System.out.println(s);
+            throw new ToolException(s);
         }
 
-        byte[] array = Files.readAllBytes(file.toPath());
-        //System.out.println("bitch is fucked: " + new String(array));
+        String stateString = "unrecognized";
+        String initializationErrorString = "n/a";
+        String finalizationErrorString = "n/a";
+
+        if (libraryState.getValue() == Fsdl.LibraryState.UNDEFINED) {
+
+            stateString = "UNDEFINED";
+        } else if (libraryState.getValue() == Fsdl.LibraryState.NOT_INITIALIZED) {
+
+            stateString = "NOT_INITIALIZED";
+        } else if (libraryState.getValue() == Fsdl.LibraryState.INITIALIZATION_HAS_FAILED) {
+
+            stateString = "INITIALIZATION_HAS_FAILED";
+
+            if (initializationError.getValue() == Fsdl.LibraryInitializationError.UNDEFINED) {
+
+                initializationErrorString = "UNDEFINED";
+            } else if (initializationError.getValue() == Fsdl.LibraryInitializationError.NO_ERROR) {
+
+                initializationErrorString = "NO_ERROR";
+            } else if (initializationError.getValue() == Fsdl.LibraryInitializationError.INVALID_LIBRARY_VERSION) {
+
+                initializationErrorString = "INVALID_LIBRARY_VERSION";
+            } else {
+
+                initializationErrorString = "INTERNAL FAILURE (" + initializationError.getValue() + ")";
+            }
+        } else if (libraryState.getValue() == Fsdl.LibraryState.INITIALIZED) {
+
+            stateString = "INITIALIZED";
+        } else if (libraryState.getValue() == Fsdl.LibraryState.FINALIZATION_HAS_FAILED) {
+
+            stateString = "FINALIZATION_HAS_FAILED";
+
+            if (finalizationError.getValue() == Fsdl.LibraryFinalizationError.UNDEFINED) {
+
+                finalizationErrorString = "UNDEFINED";
+            } else if (finalizationError.getValue() == Fsdl.LibraryFinalizationError.NO_ERROR) {
+
+                finalizationErrorString = "NO_ERROR";
+            } else {
+
+                finalizationErrorString = "INTERNAL FAILURE (" + finalizationError.getValue() + ")";
+            }
+        } else if (libraryState.getValue() == Fsdl.LibraryState.FINALIZED) {
+
+            stateString = "FINALIZED";
+        }
+
+        System.out.println("Fsdl.libraryGetState() OK" +
+                " - state = '" + stateString + "'" +
+                " - initializationError = '" + initializationErrorString + "'" +
+                " - finalizationError = '" + finalizationErrorString + "'");
+
+        UpilInteger32 failureCode;
+
+        UpilInteger32 handle = new UpilInteger32(Fsdl.SLIDE_HANDLE_UNDEFINED);
+
+        Fsdl.Configuration configuration = new Fsdl.Configuration();
+        configuration.stringEncoding = Fsdl.StringEncoding.UTF8;
+        configuration.imageFormat = Fsdl.ImageFormat.ENCODED_PNG;
+        configuration.maskFormat = Fsdl.MaskFormat.ENCODED_PNG;
+        UpilBuffer buffer = new UpilBuffer();
+        try {
+            buffer.setValue(new String("./frogans/fonts").getBytes("UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        configuration.fontsFileDirectory = buffer;
+
+        failureCode = new UpilInteger32(Fsdl.FAILURE_CODE_UNDEFINED);
+
+        result = Fsdl.slideHandleCreate(configuration, handle, failureCode);
+        if (!result) {
+
+            String s;
+            s = "Fsdl.slideHandleCreate() Failure: " + failureCode;
+            System.out.println(s);
+//            throw new ToolException(s);
+        }
+
+        slideHandle = handle.getValue();
+
+        System.out.println("Fsdl.slideHandleCreate() OK");
+
+		/* create lead and vignette representations */
+
+        leadRepresentation = new Fsdl.Composition();
+        vignetteRepresentation = new Fsdl.Composition();
+
+        renderingStuffTest();
+
+    }
+
+    private void renderingStuffTest() throws ToolException {
+        byte[] fsdlDocumentBytes = new byte[16400];
+        try {
+            fsdlDocumentBytes = Files.readAllBytes(file.toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        UpilInteger32 failureCode;
+        boolean result;
+
+		/* call Fsdl.slideHandleClear() */
+
+        failureCode = new UpilInteger32(Fsdl.FAILURE_CODE_UNDEFINED);
+
+        result = Fsdl.slideHandleClear(slideHandle, failureCode);
+        if (!result) {
+
+            String s;
+            s = "Fsdl.slideHandleClear() Failure: " + failureCode;
+            System.out.println(s);
+//            throw new ToolException(s);
+        }
+
+        System.out.println("Fsdl.slideHandleClear() OK");
+
+
         int documentEncoding = Fsdl.DocumentEncoding.UTF8;
 
         int documentFsdlVersion = Fsdl.DocumentFsdlVersion.FSDL_3_0;
 
-        UpilBuffer documentContent = new UpilBuffer(array);
-        UpilInteger32 failureCode = new UpilInteger32(Fsdl.FAILURE_CODE_UNDEFINED);
-        int slideHandle = 0;
+        UpilBuffer documentContent = new UpilBuffer(fsdlDocumentBytes);
+
+        failureCode = new UpilInteger32(Fsdl.FAILURE_CODE_UNDEFINED);
 
         result = Fsdl.parsePerform(slideHandle, documentEncoding, documentFsdlVersion, documentContent, failureCode);
         if (!result) {
@@ -88,7 +217,7 @@ public class FsdlParser {
                     String s;
                     s = "Fsdl.parseGetXmlErrorInfo() Failure: " + failureCode;
                     System.out.println(s);
-
+                    //throw new ToolException(s);
 
                 }
 
@@ -108,6 +237,7 @@ public class FsdlParser {
                     String s;
                     s = "Fsdl.parseGetValidationErrorInfo() Failure: " + failureCode;
                     System.out.println(s);
+                    //throw new ToolException(s);
 
                 }
 
@@ -116,10 +246,26 @@ public class FsdlParser {
             }
 
             System.out.println(message);
-            System.err.println(message);
 
+            //throw new ToolException(message);
         }
 
+        System.out.println("Fsdl.parsePerform() OK");
+
+        int renderMode = Fsdl.RenderMode.RENDERING_CANVAS;
+
+        failureCode = new UpilInteger32(Fsdl.FAILURE_CODE_UNDEFINED);
+
+        result = Fsdl.renderPerform(slideHandle, renderMode, failureCode);
+        if (!result) {
+
+            String s;
+            s = "Fsdl.renderPerform() Failure: " + failureCode;
+            System.out.println(s);
+//            throw new ToolException(s);
+        }
+
+        System.out.println("Fsdl.renderPerform() OK");
 
     }
 

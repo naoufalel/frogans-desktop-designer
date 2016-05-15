@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frogans.designer.view.PropertiesLayout.MergeLayoutController">
     <children>
         <GridPane layoutY="14.0">
             <columnConstraints>
@@ -34,16 +34,16 @@
                 <Label text="Blur" GridPane.rowIndex="4" />
                 <Label text="Opacity" GridPane.rowIndex="6" />
                 <Label text="Angle" GridPane.rowIndex="8" />
-                <TextField GridPane.columnIndex="1" />
-                <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <Slider GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <Slider GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                <Slider GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                <Label text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                <Label text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-                <Label text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+                <TextField fx:id="resrefText" GridPane.columnIndex="1" />
+                <ChoiceBox fx:id="flipChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="filterrefText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="reliefrefText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Slider fx:id="blurSlide" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Slider fx:id="opacitySlide" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                <Slider fx:id="angleSlide" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                <Label fx:id="blurLabel" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                <Label fx:id="opacityLabel" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                <Label fx:id="angleLabel" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
             </children>
         </GridPane>
         <GridPane layoutY="314.0" prefHeight="44.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="314.0">
@@ -58,8 +58,8 @@
             </rowConstraints>
             <children>
                 <Label text="Position" />
-                <TextField prefHeight="25.0" prefWidth="28.0" promptText="x" GridPane.columnIndex="1" />
-                <TextField prefHeight="25.0" prefWidth="48.0" promptText="y" GridPane.columnIndex="3" />
+                <TextField fx:id="posXText" prefHeight="25.0" prefWidth="28.0" promptText="x" GridPane.columnIndex="1" />
+                <TextField fx:id="posYText" prefHeight="25.0" prefWidth="48.0" promptText="y" GridPane.columnIndex="3" />
                 <Label text="," GridPane.columnIndex="2">
                     <font>
                         <Font size="20.0" />
@@ -83,10 +83,10 @@
                 <Label text="Combine" GridPane.rowIndex="1" />
                 <Label text="Shadowref" GridPane.rowIndex="2" />
                 <Label text="Visible" GridPane.rowIndex="3" />
-                <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" />
-                <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <ChoiceBox fx:id="alignChoice" prefWidth="150.0" GridPane.columnIndex="1" />
+                <ChoiceBox fx:id="combineChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="shadowrefText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             </children>
         </GridPane>
     </children></AnchorPane>
