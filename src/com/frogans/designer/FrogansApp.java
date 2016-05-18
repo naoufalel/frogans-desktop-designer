@@ -21,6 +21,8 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.prefs.Preferences;
 
 /**
@@ -36,8 +38,18 @@ public class FrogansApp extends Application {
     private BorderPane rootLayout;
     private ObservableList<Object> mainTags = FXCollections.observableArrayList();
 
+    private Collection<String> messages = new ArrayList<>();
+
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public Collection<String> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(Collection<String> messages) {
+        this.messages = messages;
     }
 
     public ObservableList<Object> getMainTags() {
@@ -162,6 +174,7 @@ public class FrogansApp extends Application {
         try {
             fsdlParser = new FsdlParser(file);
             fsdlParser.runFsdlLib();
+            messages.add("Everything is OK. FSDL Lib OK, your file: " + file.getName() + " has no errors");
             mainTags = fsdlParser.finalParse();
 
             //setReminderFilePath(file);

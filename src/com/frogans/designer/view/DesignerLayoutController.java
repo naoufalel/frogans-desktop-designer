@@ -43,6 +43,7 @@ public class DesignerLayoutController {
     double height;
     @FXML
     AnchorPane anchorPaneForMessagesAbove;
+
     private FrogansApp frogansApp;
     @FXML
     private Accordion accordion;
@@ -60,6 +61,7 @@ public class DesignerLayoutController {
     private Slider testSlider;
     @FXML
     private Label showingValidParseMessages;
+
     private ObservableList<Object> temp = FXCollections.observableArrayList();
     private ObservableList<String> controlers = FXCollections.observableArrayList(
             "Button",
@@ -97,9 +99,7 @@ public class DesignerLayoutController {
     @FXML
     public void initialize() {
         accordion.setExpandedPane(titledPane);
-
         someTest();
-
 
         elementID.setCellValueFactory((TreeTableColumn.CellDataFeatures<Object, String> p) -> {
             ReadOnlyStringWrapper a = showHierarchy(0, p);
@@ -657,15 +657,23 @@ public class DesignerLayoutController {
                 //e.setExpanded(false);
             });
             temp = frogansApp.getMainTags();
+            showMessagesInBottomLabel();
         } else {
             root.setExpanded(true);
             frogansApp.getMainTags().forEach(e -> {
                 root.getChildren().add(new TreeItem<>(e));
             });
             temp = frogansApp.getMainTags();
+            showMessagesInBottomLabel();
         }
 
         return root;
+    }
+
+    private void showMessagesInBottomLabel() {
+        this.frogansApp.getMessages().stream().forEach(e -> {
+            showingValidParseMessages.setText(e);
+        });
     }
 
 

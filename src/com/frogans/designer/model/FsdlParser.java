@@ -130,6 +130,7 @@ public class FsdlParser {
             buffer.setValue(("./src/frogans/fonts").getBytes("UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
+            throw new ToolException(e + "\nProblem in the fonts file!");
         }
         configuration.fontsFileDirectory = buffer;
 
