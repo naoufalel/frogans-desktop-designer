@@ -41,14 +41,13 @@ public class DesignerLayoutController {
     GraphicsContext gc;
     double width;
     double height;
-
+    @FXML
+    AnchorPane anchorPaneForMessagesAbove;
     private FrogansApp frogansApp;
     @FXML
     private Accordion accordion;
     @FXML
     private TitledPane titledPane;
-    @FXML
-    private TitledPane titledPane2;
     @FXML
     private TitledPane propertiesPane;
     @FXML
@@ -60,9 +59,7 @@ public class DesignerLayoutController {
     @FXML
     private Slider testSlider;
     @FXML
-    private Label textIt;
-
-
+    private Label showingValidParseMessages;
     private ObservableList<Object> temp = FXCollections.observableArrayList();
     private ObservableList<String> controlers = FXCollections.observableArrayList(
             "Button",
@@ -119,7 +116,7 @@ public class DesignerLayoutController {
 //        testSlider.setMax(500);
 //        testSlider.setMin(20);
 //        testSlider.setMinorTickCount(10);
-//        textIt.setText("20");
+//        showingValidParseMessages.setText("20");
 //        sliderListening();
 //        updateCanvas();
 
@@ -136,7 +133,7 @@ public class DesignerLayoutController {
 //        testSlider.valueProperty().addListener(((observable, oldValue, newValue) -> {
 //            testCanvas.setWidth(newValue.intValue());
 //            updateCanvas();
-//            textIt.setText(Integer.toString(newValue.intValue()));
+//            showingValidParseMessages.setText(Integer.toString(newValue.intValue()));
 //        }));
 //    }
 //

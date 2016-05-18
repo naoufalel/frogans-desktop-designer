@@ -86,6 +86,15 @@
                                 </AnchorPane>
                             </content>
                         </ScrollPane>
+                        <AnchorPane fx:id="anchorPaneForMessagesAbove" layoutY="673.0" prefHeight="25.0"
+                                    prefWidth="524.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="0.0"
+                                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                            <children>
+                                <Label fx:id="showingValidParseMessages" layoutX="12.0" layoutY="4.0"
+                                       style="-fx-text-fill: white;"
+                                       text="Open a file or start by creating a new one."/>
+                            </children>
+                        </AnchorPane>
                     </children></AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" SplitPane.resizableWithParent="false">
                     <children>
