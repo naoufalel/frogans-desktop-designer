@@ -43,7 +43,10 @@ public class DesignerLayoutController {
     double height;
     @FXML
     AnchorPane anchorPaneForMessagesAbove;
+<<<<<<< HEAD
 
+=======
+>>>>>>> d25af4a49e5d556d454272cc1aab378c2eb59d9f
     private FrogansApp frogansApp;
     @FXML
     private Accordion accordion;
@@ -61,7 +64,10 @@ public class DesignerLayoutController {
     private Slider testSlider;
     @FXML
     private Label showingValidParseMessages;
+<<<<<<< HEAD
 
+=======
+>>>>>>> d25af4a49e5d556d454272cc1aab378c2eb59d9f
     private ObservableList<Object> temp = FXCollections.observableArrayList();
     private ObservableList<String> controlers = FXCollections.observableArrayList(
             "Button",
@@ -99,8 +105,13 @@ public class DesignerLayoutController {
     @FXML
     public void initialize() {
         accordion.setExpandedPane(titledPane);
+
         someTest();
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d25af4a49e5d556d454272cc1aab378c2eb59d9f
         elementID.setCellValueFactory((TreeTableColumn.CellDataFeatures<Object, String> p) -> {
             ReadOnlyStringWrapper a = showHierarchy(0, p);
             return a;
