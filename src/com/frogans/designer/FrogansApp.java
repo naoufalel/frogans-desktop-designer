@@ -1,6 +1,7 @@
 package com.frogans.designer;
 
 import com.frogans.designer.model.FsdlParser;
+import com.frogans.designer.model.ToolException;
 import com.frogans.designer.view.DesignerLayoutController;
 import com.frogans.designer.view.RootController;
 import javafx.animation.KeyFrame;
@@ -78,14 +79,14 @@ public class FrogansApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        String filename = "C:\\Users\\naouf\\Downloads\\FrogansPlayer4Dev-noinstall-alpha0.15.1-win32\\test\\helloworld\\home.fsdl";
-        fsdlParser = new FsdlParser(new File(filename));
-//        this.primaryStage = primaryStage;
-//        primaryStage.setTitle("Frogans Designer");
+//        String filename = "C:\\Users\\naouf\\Downloads\\FrogansPlayer4Dev-noinstall-alpha0.15.1-win32\\test\\helloworld\\home.fsdl";
+//        fsdlParser = new FsdlParser(new File(filename));
+        this.primaryStage = primaryStage;
+        primaryStage.setTitle("Frogans Designer");
 //        primaryStage.getIcons().add(new Image(FrogansApp.class.getResourceAsStream("/images/something.png")));
 
-//        initRootLayout();
-//        showSplitContainers();
+        initRootLayout();
+        showSplitContainers();
 
 
     }
@@ -157,19 +158,21 @@ public class FrogansApp extends Application {
         }
     }
 
-    public void loadAFile(File file) {
+    public void loadAFile(File file) throws ToolException {
         try {
             fsdlParser = new FsdlParser(file);
+            fsdlParser.runFsdlLib();
             mainTags = fsdlParser.finalParse();
 
             //setReminderFilePath(file);
             primaryStage.setTitle("Frogans Designer - " + file.getName());
             timeline.play();
-        } catch (Exception e) {
+        } catch (ToolException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Problem");
             alert.setHeaderText("Problem in opening a file");
-            alert.setContentText("There was a problem while opening " + file.getName() + ". Please check if the file exists");
+            //alert.setContentText("There was a problem while opening " + file.getName() + ". Please check if the file exists");
+            alert.setContentText(e.getMessage());
 
             alert.showAndWait();
             System.err.println("load a file.\n" + e);

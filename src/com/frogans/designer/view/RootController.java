@@ -1,6 +1,7 @@
 package com.frogans.designer.view;
 
 import com.frogans.designer.FrogansApp;
+import com.frogans.designer.model.ToolException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.stage.FileChooser;
@@ -55,8 +56,10 @@ public class RootController {
                 frogansApp.loadAFile(file);
             }
 
-        } catch (Exception e) {
+        } catch (ToolException e) {
             System.err.println(e);
+        } catch (Exception e1) {
+            System.err.println(e1);
         }
 
     }
