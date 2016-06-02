@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<<<<<<< HEAD
-=======
-<?import javafx.scene.effect.*?>
-<?import java.lang.*?>
-<?import javafx.scene.*?>
->>>>>>> d25af4a49e5d556d454272cc1aab378c2eb59d9f
 <?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.*?>
-
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frogans.designer.view.DesignerLayoutController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8"
+            fx:controller="com.frogans.designer.view.DesignerLayoutController">
     <children>
         <SplitPane cache="true" dividerPositions="0.23647294589178355, 0.7675350701402806" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" SplitPane.resizableWithParent="false">
             <items>
@@ -41,7 +35,6 @@
                                                 </TitledPane>
                                                 <TitledPane fx:id="titledPane" text="Shapes">
                                                     <content>
-<<<<<<< HEAD
                                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
                                                                     prefWidth="200.0">
                                                             <children>
@@ -52,11 +45,6 @@
                                                                           AnchorPane.leftAnchor="0.0"
                                                                           AnchorPane.rightAnchor="0.0"
                                                                           AnchorPane.topAnchor="0.0"/>
-=======
-                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                            <children>
-                                                                <ListView fx:id="listShapes" layoutX="15.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
->>>>>>> d25af4a49e5d556d454272cc1aab378c2eb59d9f
                                                             </children>
                                                         </AnchorPane>
                                                     </content>
@@ -92,17 +80,12 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="900.0">
                                     <children>
-<<<<<<< HEAD
                                         <Pane fx:id="testPane" layoutX="24.0" layoutY="58.0" prefHeight="283.0"
                                               prefWidth="454.0"/>
-=======
-                                        <Pane fx:id="testPane" layoutX="24.0" layoutY="58.0" prefHeight="283.0" prefWidth="454.0" />
->>>>>>> d25af4a49e5d556d454272cc1aab378c2eb59d9f
                                     </children>
                                 </AnchorPane>
                             </content>
                         </ScrollPane>
-<<<<<<< HEAD
                         <AnchorPane fx:id="anchorPaneForMessagesAbove" layoutY="673.0" prefHeight="25.0"
                                     prefWidth="524.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="0.0"
                                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -112,13 +95,6 @@
                                        text="Open a file or start by creating a new one."/>
                             </children>
                         </AnchorPane>
-=======
-                  <AnchorPane fx:id="anchorPaneForMessagesAbove" layoutY="673.0" prefHeight="25.0" prefWidth="524.0" style="-fx-background-color: grey;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                     <children>
-                        <Label fx:id="showingValidParseMessages" layoutX="12.0" layoutY="4.0" style="-fx-text-fill: white;" text="Open a file or start by creating a new one." />
-                     </children>
-                  </AnchorPane>
->>>>>>> d25af4a49e5d556d454272cc1aab378c2eb59d9f
                     </children></AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" SplitPane.resizableWithParent="false">
                     <children>
