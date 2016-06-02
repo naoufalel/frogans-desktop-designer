@@ -103,7 +103,6 @@ public class DesignerLayoutController {
     @FXML
     public void initialize() {
         accordion.setExpandedPane(titledPane);
-
         someTest();
 
         elementID.setCellValueFactory((TreeTableColumn.CellDataFeatures<Object, String> p) -> {
