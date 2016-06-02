@@ -48,7 +48,10 @@ public class DesignerLayoutController {
     double height;
     @FXML
     AnchorPane anchorPaneForMessagesAbove;
-
+    @FXML
+    ImageView leadImageView;
+    @FXML
+    ImageView vignetteImageView;
     private FrogansApp frogansApp;
     @FXML
     private Accordion accordion;
@@ -66,12 +69,6 @@ public class DesignerLayoutController {
     private Slider testSlider;
     @FXML
     private Label showingValidParseMessages;
-
-    @FXML
-    ImageView leadImageView;
-    @FXML
-    ImageView vignetteImageView;
-
     private ObservableList<Object> temp = FXCollections.observableArrayList();
     private ObservableList<String> controlers = FXCollections.observableArrayList(
             "Button",
@@ -121,17 +118,6 @@ public class DesignerLayoutController {
             ReadOnlyStringWrapper a = showHierarchy(1, p);
             return a;
         });
-
-//        gc = testCanvas.getGraphicsContext2D();
-        //gc.fillRect(80, 50, 20, 40);
-
-//        testSlider.setMax(500);
-//        testSlider.setMin(20);
-//        testSlider.setMinorTickCount(10);
-//        showingValidParseMessages.setText("20");
-//        sliderListening();
-//        updateCanvas();
-
         treeTableHierarchy.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             int i = treeTableHierarchy.getSelectionModel().getSelectedIndex();
             TreeItem<Object> a = treeTableHierarchy.getSelectionModel().getModelItem(i);
@@ -663,20 +649,22 @@ public class DesignerLayoutController {
 
     public TreeItem<Object> createSubTree() {
         if (!root.getChildren().isEmpty()) {
-            root.getChildren().removeAll(temp);
+            for (int i = 0; i < root.getChildren().size(); i++) {
+                root.getChildren().remove(i);
+            }
             frogansApp.getMainTags().forEach(e -> {
                 root.getChildren().add(new TreeItem<>(e));
                 //e.setExpanded(false);
             });
             temp = frogansApp.getMainTags();
-            showMessagesInBottomLabel();
+            //showMessagesInBottomLabel();
         } else {
             root.setExpanded(true);
             frogansApp.getMainTags().forEach(e -> {
                 root.getChildren().add(new TreeItem<>(e));
             });
             temp = frogansApp.getMainTags();
-            showMessagesInBottomLabel();
+            //showMessagesInBottomLabel();
         }
 
         return root;
@@ -686,8 +674,8 @@ public class DesignerLayoutController {
         try {
             Image image = SwingFXUtils.toFXImage(this.frogansApp.getFsdlParser().showRenderedLead(), null);
             leadImageView.setImage(image);
-            leadImageView.setFitHeight(500);
-            leadImageView.setFitWidth(500);
+            leadImageView.setFitHeight(400);
+            leadImageView.setFitWidth(400);
         } catch (Exception e) {
             System.err.println("yep.\n" + e);
         }
@@ -697,8 +685,8 @@ public class DesignerLayoutController {
         try {
             Image image = SwingFXUtils.toFXImage(this.frogansApp.getFsdlParser().showRenderedVignette(), null);
             vignetteImageView.setImage(image);
-            vignetteImageView.setFitHeight(500);
-            vignetteImageView.setFitWidth(500);
+            vignetteImageView.setFitHeight(400);
+            vignetteImageView.setFitWidth(400);
         } catch (Exception e) {
             System.err.println("yep.\n" + e);
         }
