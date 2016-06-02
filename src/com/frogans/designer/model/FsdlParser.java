@@ -364,18 +364,6 @@ public class FsdlParser {
                     AlanWalker.add(obj);
                 }
             }
-            AlanWalker.forEach(e -> {
-                if (e instanceof RestextFSDL) {
-                    // System.out.println((RestextFSDL) e);
-//                     ((ButtonFSDL) e).getLayersButton().forEach(ee->{
-//                        System.out.println(ee.getLayerid());
-//                    });
-                }
-            });
-//
-//                if(AlanWalker==null){
-//                    AlanWalker.add("Sorry");
-//                }
             return AlanWalker;
         } catch (Exception e) {
             System.err.println("Problem in function of parsing.\n" + e);
