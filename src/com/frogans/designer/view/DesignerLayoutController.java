@@ -657,14 +657,14 @@ public class DesignerLayoutController {
                 //e.setExpanded(false);
             });
             temp = frogansApp.getMainTags();
-            //showMessagesInBottomLabel();
+            showMessagesInBottomLabel();
         } else {
             root.setExpanded(true);
             frogansApp.getMainTags().forEach(e -> {
                 root.getChildren().add(new TreeItem<>(e));
             });
             temp = frogansApp.getMainTags();
-            //showMessagesInBottomLabel();
+            showMessagesInBottomLabel();
         }
 
         return root;
@@ -826,7 +826,7 @@ public class DesignerLayoutController {
                             DragAndResizeAndMove.makeResizable(rect, null);
                             testPane.getChildren().add(rect);
                         } else {
-                            System.out.println("TFOOOOOOOOOOOO");
+                            System.out.println("not a rectangle");
                         }
 
 //                        gc.fillRect(event.getX(),event.getY(),50,50);
