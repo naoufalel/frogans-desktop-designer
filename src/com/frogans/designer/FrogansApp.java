@@ -208,21 +208,5 @@ public class FrogansApp extends Application {
         }
     }
 
-//    private void insertLayerFuck(){
-//        try {
-//            DesignerLayoutController controller = new DesignerLayoutController();
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(FrogansApp.class.getResource("view/PropertiesLayout/LayerLayout.fxml"));
-//            AnchorPane layerFuck = loader.load();
-//
-//            controller.getPropertiesPane().setContent(layerFuck);
-//
-////            LayerLayoutController controller1 = loader.getController();
-////            controller1.setFrogansApp(this);
-//
-//        }catch (Exception e){
-//            System.err.println("Damn.\n"+e);
-//        }
-//    }
 
 }

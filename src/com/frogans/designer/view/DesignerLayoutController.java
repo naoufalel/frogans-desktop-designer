@@ -4,6 +4,7 @@ import com.frogans.designer.FrogansApp;
 import com.frogans.designer.model.DragResizeMod;
 import com.frogans.designer.model.Elements.*;
 import com.frogans.designer.view.PropertiesLayout.*;
+import javafx.animation.FadeTransition;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleObjectProperty;
@@ -18,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -74,6 +76,8 @@ public class DesignerLayoutController {
             "Rectangle",
             "Circle"
     );
+
+    private FadeTransition fadeTransition = new FadeTransition(Duration.millis(6000));
 
     public DesignerLayoutController() {
 
