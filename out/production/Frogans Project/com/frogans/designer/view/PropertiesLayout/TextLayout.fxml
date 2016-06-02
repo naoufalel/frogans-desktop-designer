@@ -4,24 +4,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frogans.designer.view.PropertiesLayout.TextLayoutController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0"
+            xmlns="http://javafx.com/javafx/8"
+            fx:controller="com.frogans.designer.view.PropertiesLayout.TextLayoutController">
    <children>
       <GridPane layoutX="3.0" layoutY="2.0" prefHeight="180.0" prefWidth="194.0">
          <children>
-            <Label text=" Fontref:" />
-            <Label text=" Talign:" GridPane.rowIndex="1" />
-            <Label text=" Linespace:" GridPane.rowIndex="2" />
+            <Label text="Fontref:"/>
+            <Label text="Talign:" GridPane.rowIndex="1"/>
+            <Label text="Linespace:" GridPane.rowIndex="2"/>
             <TextField fx:id="fontrefText" GridPane.columnIndex="1" />
             <TextField fx:id="linespaceText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text=" Vstyle:" GridPane.rowIndex="3" />
-            <Label text=" Join:" GridPane.rowIndex="4" />
+            <Label text="Vstyle:" GridPane.rowIndex="3"/>
+            <Label text="Join:" GridPane.rowIndex="4"/>
             <ChoiceBox fx:id="talignChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <ChoiceBox fx:id="vstyleChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <ChoiceBox fx:id="joinChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="72.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="128.0"/>
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="40.0" minHeight="0.0" prefHeight="36.0" vgrow="SOMETIMES" />

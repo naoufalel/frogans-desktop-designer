@@ -406,8 +406,7 @@ public class FsdlParser {
         return null;
     }
 
-
-<<<<<<< HEAD
+    
     public BufferedImage showRenderedLead() {
         try {
             BufferedImage bi;
@@ -423,7 +422,6 @@ public class FsdlParser {
 
     }
 
-=======
     /** this function takes in an Element from our fsdl class list
      * and returns an empty null if its null , and the string of
      * the attribute if its a button
@@ -431,7 +429,7 @@ public class FsdlParser {
      * @param s
      * @return
      */
->>>>>>> 1d6e3613eec909d8bcaff7362a2b54fb07b660aa
+
 
     private String checkAttributeifNull(Element e, String s) {
         if (e.getAttribute(s) != null) {
