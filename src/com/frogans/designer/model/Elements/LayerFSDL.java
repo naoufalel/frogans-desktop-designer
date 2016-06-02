@@ -10,31 +10,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by Naoufal EL BANTLI on 3/27/2016.
+/**  Thic class defines our LayerFSDL element
+ *
  */
 public class LayerFSDL {
-
-    // Mandatory shit
     private StringProperty layerid;
-
     private StringProperty leapout;
-
     private StringProperty combine;
-
     private StringProperty combineButton;
-
-
-
     private StringProperty[] leapoutArray = {
             new SimpleStringProperty("all"),
             new SimpleStringProperty("lead"),
             new SimpleStringProperty("vignette")
     };
     private StringProperty resref;
-
     private StringProperty pos;
-
     private StringProperty[] combineArray = {
             new SimpleStringProperty("add"),
             new SimpleStringProperty("cutout"),
@@ -46,24 +36,17 @@ public class LayerFSDL {
             new SimpleStringProperty("cutout"),
             new SimpleStringProperty("inter")
     };
-
-
-    // Optional shit
     private StringProperty flip;
     private StringProperty[] flipArray = {
             new SimpleStringProperty("none"),
             new SimpleStringProperty("xdir"),
             new SimpleStringProperty("ydir"),
             new SimpleStringProperty("xydir")};
-
     private StringProperty filterref;
-
     private StringProperty reliefref;
     private StringProperty blur;
     private StringProperty opacity;
-
     private StringProperty angle;
-
     private StringProperty align;
     private StringProperty[] alignArray = {
             new SimpleStringProperty("left-top"),
@@ -76,12 +59,7 @@ public class LayerFSDL {
             new SimpleStringProperty("right-middle"),
             new SimpleStringProperty("right-bottom"),
     };
-
-
     private StringProperty shadowref;
-
-
-    // Mandatory and optional shit
     private StringProperty visible;
     private StringProperty[] visibleArray = {
             new SimpleStringProperty("always"),

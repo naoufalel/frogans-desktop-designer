@@ -28,7 +28,7 @@ import java.util.prefs.Preferences;
 /**
  * Main class that handles all the views and displays the app and starts plugins
  * <p>
- * Created by Naoufal EL BANTLI on 3/19/2016.
+ *
  */
 public class FrogansApp extends Application {
 

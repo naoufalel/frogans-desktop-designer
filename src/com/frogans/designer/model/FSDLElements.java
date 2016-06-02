@@ -1,7 +1,7 @@
 package com.frogans.designer.model;
 
-/**
- * Created by Naoufal EL BANTLI on 3/20/2016.
+/** this class has our entire attributes of every single fsdl tag
+ *  , it also has an enum of our fsdl tags, the main ones and the sub ones
  */
 
 

@@ -4,18 +4,20 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frogans.designer.view.PropertiesLayout.ShadowidLayoutController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0"
+            xmlns="http://javafx.com/javafx/8"
+            fx:controller="com.frogans.designer.view.PropertiesLayout.ShadowidLayoutController">
    <children>
       <GridPane layoutY="8.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="72.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="128.0"/>
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text=" Shadowid:" />
+             <Label text="Shadowid:"/>
             <TextField fx:id="shadowidText" GridPane.columnIndex="1" />
          </children>
       </GridPane>

@@ -8,11 +8,10 @@ import javafx.collections.ObservableList;
 
 import java.util.Arrays;
 
-/**
- * Created by ABDELKABIR on 29/03/2016.
+/** Thic class defines our ButtonFSDL element
+ *
  */
 public class ButtonFSDL {
-    //mandatory shit
     private  StringProperty buttonid;
 
     private StringProperty go_to;
@@ -25,7 +24,6 @@ public class ButtonFSDL {
     };
 
 
-    // applicable if goto shit
     private StringProperty fileref; //goto =  slide
 
     private StringProperty address; //goto = frogans-site;

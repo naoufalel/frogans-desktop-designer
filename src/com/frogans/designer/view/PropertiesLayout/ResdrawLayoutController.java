@@ -10,7 +10,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 
 /**
- * Created by Alaeddine on 02/04/2016.
+ *
  */
 public class ResdrawLayoutController {
     ResdrawFSDL resdrawFSDL = new ResdrawFSDL();

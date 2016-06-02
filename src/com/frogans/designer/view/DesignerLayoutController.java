@@ -25,7 +25,7 @@ import java.io.IOException;
 
 
 /**
- * Created by Naoufal EL BANTLI on 3/19/2016.
+ *
  */
 public class DesignerLayoutController {
 

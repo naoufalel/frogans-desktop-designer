@@ -5,8 +5,8 @@ import javafx.beans.property.StringProperty;
 
 import java.util.Arrays;
 
-/**
- * Created by Aladdin on 29-Mar-16.
+/** Thic class defines our RespathFSDL element
+ *
  */
 public class RespathFSDL {
 

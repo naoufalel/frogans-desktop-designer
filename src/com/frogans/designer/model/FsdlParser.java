@@ -25,8 +25,8 @@ import java.util.Map;
 import static com.frogans.designer.Utils.Tools.capitalizeFirstLetter;
 
 
-/**
- * Created by Naoufal EL BANTLI on 3/19/2016.
+/** This class is used to parse our fsdl file and test the fsdl library
+ *
  */
 public class FsdlParser {
     private File file;
@@ -34,14 +34,27 @@ public class FsdlParser {
     private Fsdl.Composition leadRepresentation;
     private Fsdl.Composition vignetteRepresentation;
 
+    /**
+     * File class contructor
+     *
+     * @param file
+     */
     public FsdlParser(File file) {
         this.file = file;
     }
 
+    /** getter for attribute file
+     *
+     * @return
+     */
     public File getFile() {
         return file;
     }
 
+    /** setter for attribute file
+     *
+     * @param file
+     */
     public void setFile(File file) {
         this.file = file;
     }
@@ -159,6 +172,10 @@ public class FsdlParser {
 
     }
 
+    /**
+     *
+     * @throws ToolException
+     */
     private void renderingAndValidatingWithoutDisplaying() throws ToolException {
         byte[] fsdlDocumentBytes = new byte[16384];
         try {
@@ -285,9 +302,13 @@ public class FsdlParser {
     }
 
 
-
-
-
+    /** this function takes in an Element from our fsdl class list
+     * and returns an empty null if its null , and the string of
+     * the attribute if its a button
+     * @param e
+     * @param s
+     * @return
+     */
 
     private String checkAttributeifNull(Element e, String s) {
         if (e.getAttribute(s) != null) {
@@ -318,6 +339,10 @@ public class FsdlParser {
             return "";
     }
 
+    /**
+     *
+     * @return
+     */
 
     private NodeList getNodeListFromRoot() {
         try {
@@ -371,6 +396,12 @@ public class FsdlParser {
         return null;
     }
 
+    /**
+     *
+     * @param element
+     * @param obj
+     * @return
+     */
     private Object parseChildren(Element element, Object obj) {
         Class[] paramString = new Class[1];
         paramString[0] = String.class;
@@ -470,6 +501,12 @@ public class FsdlParser {
         return null;
     }
 
+    /**
+     *
+     * @param paramString
+     * @param node
+     * @return
+     */
     private Object getObjectWhenChild(Class[] paramString, Element node) {
         try {
             Element element = node;
@@ -560,6 +597,10 @@ public class FsdlParser {
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     private ListMultimap<String, String> getEverythingOfChildren() {
         try {
             ListMultimap<String, String> childrenEvian = childrenEvian = ArrayListMultimap.create();
@@ -602,7 +643,11 @@ public class FsdlParser {
         return null;
     }
 
-
+    /**
+     *
+     * @param node
+     * @return
+     */
     private boolean isNotTextOrComment(Node node) {
         return node.getNodeType() != Node.TEXT_NODE && node.getNodeType() != Node.COMMENT_NODE;
     }

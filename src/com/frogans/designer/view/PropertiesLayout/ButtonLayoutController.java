@@ -28,7 +28,6 @@ public class ButtonLayoutController {
     public void setFrogansApp(FrogansApp frogansApp) {
         this.frogansApp = frogansApp;
     }
-
     @FXML
     public void initialize() {
         fillType();

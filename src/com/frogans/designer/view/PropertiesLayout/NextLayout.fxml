@@ -4,9 +4,11 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.frogans.designer.view.PropertiesLayout.NextLayoutController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" minHeight="0.0" minWidth="0.0" prefHeight="700.0" prefWidth="200.0"
+            xmlns="http://javafx.com/javafx/8"
+            fx:controller="com.frogans.designer.view.PropertiesLayout.NextLayoutController">
    <children>
-      <GridPane layoutY="30.0" prefHeight="75.0" prefWidth="200.0">
+       <GridPane prefHeight="68.0" prefWidth="200.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -16,8 +18,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text=" Delay:" />
-            <Label text=" Fileref:" GridPane.rowIndex="1" />
+             <Label text="Delay:"/>
+             <Label text="Fileref:" GridPane.rowIndex="1"/>
             <TextField fx:id="delayText" GridPane.columnIndex="1" />
             <TextField fx:id="fileRefText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
