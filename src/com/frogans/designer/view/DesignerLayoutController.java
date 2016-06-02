@@ -69,6 +69,8 @@ public class DesignerLayoutController {
 
     @FXML
     ImageView leadImageView;
+    @FXML
+    ImageView vignetteImageView;
 
     private ObservableList<Object> temp = FXCollections.observableArrayList();
     private ObservableList<String> controlers = FXCollections.observableArrayList(
@@ -680,14 +682,25 @@ public class DesignerLayoutController {
         return root;
     }
 
-    public void drawLead(){
+    public void drawLead() {
         try {
             Image image = SwingFXUtils.toFXImage(this.frogansApp.getFsdlParser().showRenderedLead(), null);
             leadImageView.setImage(image);
-            //leadImageView.setFitHeight(500);
-            leadImageView.setFitWidth(50);
+            leadImageView.setFitHeight(500);
+            leadImageView.setFitWidth(500);
         } catch (Exception e) {
-            System.err.println("yep.\n"+e);
+            System.err.println("yep.\n" + e);
+        }
+    }
+
+    public void drawVignette() {
+        try {
+            Image image = SwingFXUtils.toFXImage(this.frogansApp.getFsdlParser().showRenderedVignette(), null);
+            vignetteImageView.setImage(image);
+            vignetteImageView.setFitHeight(500);
+            vignetteImageView.setFitWidth(500);
+        } catch (Exception e) {
+            System.err.println("yep.\n" + e);
         }
     }
 

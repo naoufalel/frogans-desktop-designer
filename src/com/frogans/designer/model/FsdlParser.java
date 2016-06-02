@@ -28,8 +28,8 @@ import java.util.Map;
 import static com.frogans.designer.Utils.Tools.capitalizeFirstLetter;
 
 
-/** This class is used to parse our fsdl file and test the fsdl library
- *
+/**
+ * This class is used to parse our fsdl file and test the fsdl library
  */
 public class FsdlParser {
     private File file;
@@ -46,7 +46,8 @@ public class FsdlParser {
         this.file = file;
     }
 
-    /** getter for attribute file
+    /**
+     * getter for attribute file
      *
      * @return
      */
@@ -54,7 +55,8 @@ public class FsdlParser {
         return file;
     }
 
-    /** setter for attribute file
+    /**
+     * setter for attribute file
      *
      * @param file
      */
@@ -176,7 +178,6 @@ public class FsdlParser {
     }
 
     /**
-     *
      * @throws ToolException
      */
     private void renderingAndValidatingWithoutDisplaying() throws ToolException {
@@ -362,7 +363,7 @@ public class FsdlParser {
 
                 failureCode = new UpilInteger32(Fsdl.FAILURE_CODE_UNDEFINED);
 
-                result = Fsdl.holdAuxiliaryFileContent (slideHandle, fileIdentifier, fileContent, failureCode);
+                result = Fsdl.holdAuxiliaryFileContent(slideHandle, fileIdentifier, fileContent, failureCode);
                 if (!result) {
 
                     String s;
@@ -378,26 +379,26 @@ public class FsdlParser {
     }
 
 
-    private byte[] externalAuxFilestoBytes(UpilBuffer fileIdentifier){
+    private byte[] externalAuxFilestoBytes(UpilBuffer fileIdentifier) {
         String fileID = new String(fileIdentifier.getValue());
         byte[] auxFilesBytes = new byte[16384];
 
 
         NodeList nodeList = getNodeListFromRoot();
-        for(int i=0; i<nodeList.getLength();i++){
+        for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             if (isNotTextOrComment(node)) {
                 Element element = (Element) node;
-                if(element.getNodeName().equals("file")){
-                    if(element.getAttribute("fileid").equals(fileID)){
+                if (element.getNodeName().equals("file")) {
+                    if (element.getAttribute("fileid").equals(fileID)) {
                         String fileName = element.getAttribute("name");
                         System.out.println(file.getAbsoluteFile());
-                        File auxFile = new File(file.getParentFile()+fileName);
+                        File auxFile = new File(file.getParentFile() + fileName);
                         try {
                             auxFilesBytes = Files.readAllBytes(auxFile.toPath());
                             return auxFilesBytes;
                         } catch (IOException e) {
-                            System.err.println("fiuy.\n"+e);
+                            System.err.println("fiuy.\n" + e);
                         }
                     }
                 }
@@ -406,8 +407,19 @@ public class FsdlParser {
         return null;
     }
 
-    
+
     public BufferedImage showRenderedLead() {
+        try {
+            BufferedImage bi;
+            bi = ImageIO.read(new ByteArrayInputStream(leadRepresentation.backgroundImage.content.getValue()));
+            return bi;
+        } catch (IOException e) {
+            System.err.println("Problem in rendering.\n" + e);
+        }
+        return null;
+    }
+
+    public BufferedImage showRenderedVignette() {
         try {
             BufferedImage bi;
             bi = ImageIO.read(new ByteArrayInputStream(vignetteRepresentation.backgroundImage.content.getValue()));
@@ -418,13 +430,11 @@ public class FsdlParser {
         return null;
     }
 
-    private void showRenderedVignette() {
-
-    }
-
-    /** this function takes in an Element from our fsdl class list
+    /**
+     * this function takes in an Element from our fsdl class list
      * and returns an empty null if its null , and the string of
      * the attribute if its a button
+     *
      * @param e
      * @param s
      * @return
@@ -461,7 +471,6 @@ public class FsdlParser {
     }
 
     /**
-     *
      * @return
      */
 
@@ -518,7 +527,6 @@ public class FsdlParser {
     }
 
     /**
-     *
      * @param element
      * @param obj
      * @return
@@ -623,7 +631,6 @@ public class FsdlParser {
     }
 
     /**
-     *
      * @param paramString
      * @param node
      * @return
@@ -719,7 +726,6 @@ public class FsdlParser {
     }
 
     /**
-     *
      * @return
      */
     private ListMultimap<String, String> getEverythingOfChildren() {
@@ -765,7 +771,6 @@ public class FsdlParser {
     }
 
     /**
-     *
      * @param node
      * @return
      */

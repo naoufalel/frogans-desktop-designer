@@ -28,7 +28,6 @@ import java.util.prefs.Preferences;
 /**
  * Main class that handles all the views and displays the app and starts plugins
  * <p>
- *
  */
 public class FrogansApp extends Application {
 
@@ -205,9 +204,10 @@ public class FrogansApp extends Application {
                 controller.createSubTree();
                 timeline.pause();
             }
-            if(fsdlParser.showRenderedLead()!=null){
+            if (fsdlParser.showRenderedLead() != null) {
                 timeline.play();
                 controller.drawLead();
+                controller.drawVignette();
                 timeline.pause();
             }
         }
