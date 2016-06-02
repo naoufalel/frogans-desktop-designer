@@ -99,7 +99,7 @@ public class FrogansApp extends Application {
 
         initRootLayout();
         showSplitContainers();
-
+//        fsdlParser.runFsdlLib();
 
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -203,6 +203,11 @@ public class FrogansApp extends Application {
         public void handle(ActionEvent t) {
             if (!mainTags.isEmpty()) {
                 controller.createSubTree();
+                timeline.pause();
+            }
+            if(fsdlParser.showRenderedLead()!=null){
+                timeline.play();
+                controller.drawLead();
                 timeline.pause();
             }
         }

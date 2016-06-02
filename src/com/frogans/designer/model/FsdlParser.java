@@ -11,8 +11,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.w3c.dom.*;
 
+import javax.imageio.ImageIO;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -254,6 +257,13 @@ public class FsdlParser {
 
         System.out.println("Fsdl.parsePerform() OK");
 
+
+        // AUX FILES
+        renderAuxFiles();
+
+
+        //END OF AUX FILES
+
         int renderMode = Fsdl.RenderMode.RENDERING_CANVAS;
 
         failureCode = new UpilInteger32(Fsdl.FAILURE_CODE_UNDEFINED);
@@ -284,9 +294,116 @@ public class FsdlParser {
 
     }
 
+    private void renderAuxFiles() throws ToolException {
+        UpilInteger32 failureCode;
+        boolean result;
+        UpilInteger32 auxiliaryFileCount = new UpilInteger32();
+
+        failureCode = new UpilInteger32(Fsdl.FAILURE_CODE_UNDEFINED);
+
+        result = Fsdl.parseGetAuxiliaryFileCount(slideHandle, auxiliaryFileCount, failureCode);
+        if (!result) {
+
+            String s;
+            s = "Fsdl.parseGetAuxiliaryFileCount() Failure: " + failureCode;
+            System.out.println(s);
+            throw new ToolException(s);
+        }
+
+        System.out.println("Fsdl.parseGetAuxiliaryFileCount() OK - count = " + auxiliaryFileCount.getValue());
+
+        if (auxiliaryFileCount.getValue() > 0) {
+
+            for (int index = 0; index < auxiliaryFileCount.getValue(); index++) {
+
+				/* call Fsdl.parseGetAuxiliaryFileIdentifier() */
+
+                UpilBuffer fileIdentifier = new UpilBuffer();
+
+                failureCode = new UpilInteger32(Fsdl.FAILURE_CODE_UNDEFINED);
+
+                result = Fsdl.parseGetAuxiliaryFileIdentifier(slideHandle, index, fileIdentifier, failureCode);
+                if (!result) {
+
+                    String s;
+                    s = "Fsdl.parseGetAuxiliaryFileIdentifier() Failure: " + failureCode;
+                    System.out.println(s);
+                    throw new ToolException(s);
+                }
+
+                System.out.println("Fsdl.parseGetAuxiliaryFileIdentifier() OK - id = '" + new String(fileIdentifier.getValue()) + "'");
+
+                /* Fsdl.parseGetFileInfo() can be called to retrieve the name and the nature of the file. */
+
+				/* generate the auxiliary file */
+
+                byte[] auxiliaryFileBytes = externalAuxFilestoBytes(fileIdentifier);
+
+				/* call Fsdl.holdAuxiliaryFileContent() */
+
+                UpilBuffer fileContent = new UpilBuffer(auxiliaryFileBytes);
+
+                failureCode = new UpilInteger32(Fsdl.FAILURE_CODE_UNDEFINED);
+
+                result = Fsdl.holdAuxiliaryFileContent (slideHandle, fileIdentifier, fileContent, failureCode);
+                if (!result) {
+
+                    String s;
+                    s = "Fsdl.holdAuxiliaryFileContent() Failure: " + failureCode;
+                    System.out.println(s);
+                    throw new ToolException(s);
+                }
+//
+                System.out.println("Fsdl.holdAuxiliaryFileContent() OK");
+
+            }
+        }
+    }
 
 
+    private byte[] externalAuxFilestoBytes(UpilBuffer fileIdentifier){
+        String fileID = new String(fileIdentifier.getValue());
+        byte[] auxFilesBytes = new byte[16384];
 
+
+        NodeList nodeList = getNodeListFromRoot();
+        for(int i=0; i<nodeList.getLength();i++){
+            Node node = nodeList.item(i);
+            if (isNotTextOrComment(node)) {
+                Element element = (Element) node;
+                if(element.getNodeName().equals("file")){
+                    if(element.getAttribute("fileid").equals(fileID)){
+                        String fileName = element.getAttribute("name");
+                        System.out.println(file.getAbsoluteFile());
+                        File auxFile = new File(file.getParentFile()+fileName);
+                        try {
+                            auxFilesBytes = Files.readAllBytes(auxFile.toPath());
+                            return auxFilesBytes;
+                        } catch (IOException e) {
+                            System.err.println("fiuy.\n"+e);
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+
+    public BufferedImage showRenderedLead() {
+        try {
+            BufferedImage bi;
+            bi = ImageIO.read(new ByteArrayInputStream(vignetteRepresentation.backgroundImage.content.getValue()));
+            return bi;
+        } catch (IOException e) {
+            System.err.println("Problem in rendering.\n" + e);
+        }
+        return null;
+    }
+
+    private void showRenderedVignette() {
+
+    }
 
 
     private String checkAttributeifNull(Element e, String s) {

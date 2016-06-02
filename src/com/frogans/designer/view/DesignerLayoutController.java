@@ -10,10 +10,13 @@ import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -63,6 +66,9 @@ public class DesignerLayoutController {
     private Slider testSlider;
     @FXML
     private Label showingValidParseMessages;
+
+    @FXML
+    ImageView leadImageView;
 
     private ObservableList<Object> temp = FXCollections.observableArrayList();
     private ObservableList<String> controlers = FXCollections.observableArrayList(
@@ -672,6 +678,17 @@ public class DesignerLayoutController {
         }
 
         return root;
+    }
+
+    public void drawLead(){
+        try {
+            Image image = SwingFXUtils.toFXImage(this.frogansApp.getFsdlParser().showRenderedLead(), null);
+            leadImageView.setImage(image);
+            //leadImageView.setFitHeight(500);
+            leadImageView.setFitWidth(50);
+        } catch (Exception e) {
+            System.err.println("yep.\n"+e);
+        }
     }
 
     private void showMessagesInBottomLabel() {
