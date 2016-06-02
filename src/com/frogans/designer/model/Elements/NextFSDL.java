@@ -3,8 +3,8 @@ package com.frogans.designer.model.Elements;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-/**
- * Created by Naoufal EL BANTLI on 29-Mar-16.
+/**  Thic class defines our NextFSDL element
+ *
  */
 public class NextFSDL {
 

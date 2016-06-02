@@ -6,8 +6,8 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-/**
- * Created by Aladdin on 29-Mar-16.
+/** Thic class defines our ResmergeFSDL element
+ *
  */
 public class ResmergeFSDL {
 

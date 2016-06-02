@@ -11,7 +11,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 
 /**
- * Created by ABDELKABIR on 31/03/2016.
+ *
  */
 public class MergeLayoutController {
 

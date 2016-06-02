@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 /**
- * Created by Aladdin on 08-May-16.
+ *
  */
 public class ResmergeLayoutController {
 

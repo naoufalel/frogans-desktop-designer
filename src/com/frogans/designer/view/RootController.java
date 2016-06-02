@@ -9,7 +9,7 @@ import javafx.stage.FileChooser;
 import java.io.File;
 
 /**
- * Created by Naoufal EL BANTLI on 3/19/2016.
+ *
  */
 public class RootController {
     private FrogansApp frogansApp;

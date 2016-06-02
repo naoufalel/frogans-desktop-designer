@@ -5,8 +5,8 @@ import javafx.beans.property.StringProperty;
 
 import java.util.Arrays;
 
-/**
- * Created by Aladdin on 29-Mar-16.
+/** Thic class defines our RespixelsFSDL element
+ *
  */
 public class RespixelsFSDL {
 
@@ -24,6 +24,7 @@ public class RespixelsFSDL {
     };
     private StringProperty color;
     private StringProperty alpha;
+
 
     public RespixelsFSDL() {
         this.resid = new SimpleStringProperty("");

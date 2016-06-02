@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 
 /**
- * Created by Aladdin on 11-May-16.
+ *
  */
 public class SetfontLayoutController {
     SetfontFSDL setfontFSDL= new SetfontFSDL();

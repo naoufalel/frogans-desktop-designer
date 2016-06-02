@@ -9,7 +9,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
 /**
- * Created by Aladdin on 11-May-16.
+ *
  */
 public class TextLayoutController {
 

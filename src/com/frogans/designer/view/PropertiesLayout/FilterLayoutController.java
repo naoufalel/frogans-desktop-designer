@@ -8,7 +8,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
 /**
- * Created by Aladdin on 07-May-16.
+ *
  */
 public class FilterLayoutController {
 

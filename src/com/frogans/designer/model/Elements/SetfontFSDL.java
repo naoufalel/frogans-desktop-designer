@@ -6,8 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.text.Font;
 
-/**
- * Created by Aladdin on 29-Mar-16.
+/** Thic class defines our SetfontFSDL element
+ *
  */
 public class SetfontFSDL {
 

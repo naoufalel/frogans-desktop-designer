@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 /**
- * Created by Aladdin on 07-May-16.
+ *
  */
 public class NextLayoutController {
 

@@ -1,7 +1,7 @@
 package com.frogans.designer.model;
 
-/**
- * Created by naouf on 5/15/2016.
+/** this class is used to handle our exceptions
+ *
  */
 public class ToolException extends Exception {
     private static final long serialVersionUID = 1L;

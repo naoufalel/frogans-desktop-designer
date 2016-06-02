@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by Aladdin on 29-Mar-16.
+/**  Thic class defines our ResimageFSDL element
+ *
  */
 public class ResimageFSDL {
     private StringProperty resid;

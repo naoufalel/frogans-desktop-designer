@@ -11,7 +11,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 
 /**
- * Created by Aladdin on 11-May-16.
+ *
  */
 public class ShadowLayoutController {
 

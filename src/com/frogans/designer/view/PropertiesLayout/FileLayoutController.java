@@ -9,18 +9,13 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
 /**
- * Created by Naoufal EL BANTLI on 3/30/2016.
+ *
  */
 public class FileLayoutController {
 
 
     FileFSDL fileFSDL;
     FrogansApp frogansApp;
-
-    public void setFrogansApp(FrogansApp frogansApp) {
-        this.frogansApp = frogansApp;
-    }
-
     @FXML
     private TextField idText;
     @FXML
@@ -29,6 +24,10 @@ public class FileLayoutController {
     private ChoiceBox<String> natureChoice;
     @FXML
     private ChoiceBox<String> cacheChoice;
+
+    public void setFrogansApp(FrogansApp frogansApp) {
+        this.frogansApp = frogansApp;
+    }
 
     @FXML
     public void initialize() {

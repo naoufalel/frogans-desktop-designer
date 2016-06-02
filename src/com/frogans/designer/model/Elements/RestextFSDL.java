@@ -7,8 +7,8 @@ import javafx.collections.ObservableList;
 
 import java.util.Arrays;
 
-/**
- * Created by Aladdin on 29-Mar-16.
+/** Thic class defines our RestextFSDL element
+ *
  */
 public class RestextFSDL {
 
