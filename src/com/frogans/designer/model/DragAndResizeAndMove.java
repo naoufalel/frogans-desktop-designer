@@ -13,7 +13,7 @@ import javafx.scene.shape.Rectangle;
  * <p>
  * Rectangle rectangle = new Rectangle(50, 50);
  * rectangle.setFill(Color.BLACK);
- * DragResizeMod.makeResizable(rectangle, null);
+ * DragAndResizeAndMove.makeResizable(rectangle, null);
  * <p>
  * Pane root = new Pane();
  * root.getChildren().add(rectangle);
@@ -31,7 +31,7 @@ import javafx.scene.shape.Rectangle;
  * There is defaultListener and it works only with Canvas nad Rectangle
  */
 
-public class DragResizeMod {
+public class DragAndResizeAndMove {
     private static final OnDragResizeEventListener defaultListener = new OnDragResizeEventListener() {
         @Override
         public void onDrag(Node node, double x, double y, double h, double w) {
@@ -84,7 +84,7 @@ public class DragResizeMod {
     private Node node;
     private OnDragResizeEventListener listener = defaultListener;
 
-    private DragResizeMod(Node node, OnDragResizeEventListener listener) {
+    private DragAndResizeAndMove(Node node, OnDragResizeEventListener listener) {
         this.node = node;
         if (listener != null)
             this.listener = listener;
@@ -95,7 +95,7 @@ public class DragResizeMod {
     }
 
     public static void makeResizable(Node node, OnDragResizeEventListener listener) {
-        final DragResizeMod resizer = new DragResizeMod(node, listener);
+        final DragAndResizeAndMove resizer = new DragAndResizeAndMove(node, listener);
 
         node.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override

@@ -1,7 +1,7 @@
 package com.frogans.designer.view;
 
 import com.frogans.designer.FrogansApp;
-import com.frogans.designer.model.DragResizeMod;
+import com.frogans.designer.model.DragAndResizeAndMove;
 import com.frogans.designer.model.Elements.*;
 import com.frogans.designer.view.PropertiesLayout.*;
 import javafx.animation.FadeTransition;
@@ -805,7 +805,7 @@ public class DesignerLayoutController {
                             rect.addEventHandler(MouseEvent.MOUSE_ENTERED, event1 -> {
                                 System.out.println(rect.getWidth());
                             });
-                            DragResizeMod.makeResizable(rect, null);
+                            DragAndResizeAndMove.makeResizable(rect, null);
                             testPane.getChildren().add(rect);
                         } else {
                             System.out.println("TFOOOOOOOOOOOO");
